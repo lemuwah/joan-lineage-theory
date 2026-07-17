@@ -1,0 +1,2 @@
+- [ ] Does the "above forty years" claim in 1678/9 align with other primary sources for Greene's arrival, or is it colonial advocacy?
+- [ ] Cross-check: Is this the same John Greene of Quidnessett, or could "Deputy" refer to another?
