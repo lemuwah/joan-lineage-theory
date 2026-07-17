@@ -2,6 +2,7 @@
 # Contamination Quarantine — /contamination/
 
 **Named Vectors Restored:**
+- La Mance (joan beggarly greene=Null)
 - alfredgibbs.com — copies unsourced Ancestry trees
 - WikiTree — user-edited without primary anchors
 - Findagrave — creates dates from lore
