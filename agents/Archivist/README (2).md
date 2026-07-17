@@ -1,3 +1,4 @@
+[README.md](https://github.com/user-attachments/files/30109080/README.md)
 # Archivist Agent
 
 The Archivist tracks evidence, documents source anchors, and maintains clarity about what is *supported*, what is *inferred*, and what is still *unverified*. This agent prevents confusion and keeps the project grounded.
