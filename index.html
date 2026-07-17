@@ -1,214 +1,227 @@
+---
+layout: default
+title: Home
+---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Joane Greene Archive — Who Was Joane Unknown?</title>
-<meta name="description" content="How does a mother, a wife, a sister, a daughter, a friend disappear entirely from history? The archive of Joane Greene of Quidnessett, 1682.">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=JetBrains+Mono:wght@300;400;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>THE JOAN ARCHIVE — No Narrative Smoothing</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=JetBrains+Mono:wght@300;400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <style>
-body{font-family:'Plus Jakarta Sans',sans-serif;background:#060910;color:#E2E8F0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#0B0F1A;color:#CBD5E1}
 .font-serif{font-family:'Cinzel',serif}.font-mono{font-family:'JetBrains Mono',monospace}
-.glass{backdrop-filter:blur(12px);background:rgba(11,16,30,0.85)}
-.nav-active{background:linear-gradient(90deg,rgba(245,158,11,0.18),transparent);color:#FBBF24;border-left:3px solid #F59E0B}
-.fade-in{animation:fadeIn 0.6s ease-out}@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:#0B0F1A}::-webkit-scrollbar-thumb{background:#1E293B;border-radius:4px}
+.nav-active{background:linear-gradient(90deg,rgba(245,158,11,0.16),transparent);color:#FBBF24;border-left:3px solid #F59E0B}
+.contam-bar{background:linear-gradient(90deg,#1a0a0a,#0B0F1A);border-bottom:1px solid rgba(239,68,68,0.3)}
+.law-pill{font-family:'JetBrains Mono';font-size:9px;letter-spacing:0.05em;padding:4px 8px;border-radius:4px;border:1px solid #1E293B}
 </style>
 </head>
-<body>
+<body class="antialiased">
 <div id="root"></div>
 <script>
-const IMAGES = ['1674_awawsunks_her_marke_cakochawhunt.jpg', '1674_awawsunks_her_marke_cakochawhunt_simon_eldist_RI_land_evidences_v1_p52-53.jpg', '1677.jpg', '1677_absolom_counsellor_testimony_duplicate_pages22-23.jpg', '1677_anashuecot_Heire_Proper.jpg', '1678_council_order_holden_greene_forty-years_RI_records_62-63.jpg', '1679_capt_john_greene_assembly_payment_RI_records_46-47.jpg', '1679_john_greene_certificate_narragansett_RI_records_56-57_roger_williams_testimony.jpg', '1679_petition_narragansett_inhabitants_RI_records_58-59_forty-two-years.jpg', '1682-2.jpg', '1682.jpg', '1688-devilspurchase.jpg', 'Plat_of_Quidnesett.jpg', 'SignaturesFones20.jpg', 'absolom-affidavit.jpg', 'absolom-an-indian-bottom-line.jpg', 'absolom-his-mark-note.jpg', 'absolom-right-beneath-greene-deed.jpg', 'absolom.jpg', 'actofvoluntarysubmission.jpg', 'awawamicks.jpg', 'bad-copy-smith-cluster.jpg', 'badquality-colony-of-ri.jpg', 'bay_map.jpg', 'bristol_death_absolom_kin.jpg', 'cakochawhunt.jpg', 'captgreene1679.jpg', 'colony_of_rhode_island_map.jpg', 'council-order-1678.jpg', 'daniel-and-john-green-land-kingstown.jpg', 'devils-foot.jpg', 'fones-rocky-david.jpg', 'fullabsolom.jpg', 'generalalfredgibbsmapacquidnesset.jpg', 'green-land-kingstown.jpg', 'greene-mark-awawsuncks-1674.jpg', 'greene-mark-awawsuncks1674.jpg', 'greene-witness-1674-awawsucks-her-mark.jpg', 'greene-witness-1674-awawsucks-her-marksearch.jpg', 'greenedeputy.jpg', 'greenesworn.jpg', 'james1695.jpg', 'jobgreen.jpg', 'john-40-years.jpg', 'john-and-deborah.jpg', 'john-and-joane.jpg', 'john40years.jpg', 'johngreenedeputy.jpg', 'johntodaniel.jpg', 'leManceLaw.jpg', 'magnus.jpg', 'map-mass-bay.jpg', 'map.jpg', 'negro-man-peleg.jpg', 'original-transcription-1682-johnandjoan.jpg', 'petition-1679-narragansett.jpg', 'records_of_proprietors_badcopy.jpg', 'richard-green.jpg', 'rocky-davis-transcript-1672.jpg', 'slide_1_the_problem.jpg', 'source-reminder-aboriginals.jpg', 'succession-on-1672-amended.jpg'];
+const IMAGES = 70;
+const App = () => {
+  const [tab,setTab] = React.useState('archive');
+  const [showLaw,setShowLaw]=React.useState(null);
+  const desks = [
+    {id:'archive', label:'The Archive', icon:'🗃️'},
+    {id:'spine', label:'Source Spine', icon:'🛡️'},
+    {id:'primary', label:'Primary Sources', icon:'📜'},
+    {id:'names', label:'Name Fragments', icon:'🏷️'},
+    {id:'method', label:'Methodology', icon:'🧬', sub:'Identity Firewalls + Orbit Convergence'},
+    {id:'contam', label:'Contamination Index', icon:'☣️'},
+    {id:'unknown', label:"What We Don't Know", icon:'👁️'},
+  ];
+  const laws = [
+    {n:'Law 1', t:'No Smoothing', d:'If two sources conflict, both are displayed side-by-side. No narrative smoothing.'},
+    {n:'Law 2', t:'La Mance Sieve', d:'La Mance 1904 “Joan Beggarly” has no primary source. It is quarantined. 38-year firewall: Alice Beggarly died Jan 1644.'},
+    {n:'Law 3', t:'No Early Exclusion', d:'We do not dismiss Anashuecot as male because a scribe wrote “his marke” for 7 signers. See Awawsunks 1674 “her marke” comparator.'},
+    {n:'Law 4', t:'No Algorithmic Contamination', d:'Ancestry trees, WikiTree, Findagrave, alfredgibbs.com = echo chamber. They cite each other, not primary sources.'},
+  ];
 
-const TABS = [
-  {id:'disappearance', label:'The Disappearance', icon:'🕳️'},
-  {id:'joane', label:'Joane Greene', icon:'🌿'},
-  {id:'envelope', label:'The Envelope 1672-1682', icon:'📜'},
-  {id:'vault', label:'Image Vault (70)', icon:'🗃️'},
-  {id:'contamination', label:'Contamination', icon:'☣️'},
-  {id:'digitize', label:'Why Digitize', icon:'🔬'},
-  {id:'contribute', label:'How To Help', icon:'🤝'},
-];
-
-function App(){
-  const [tab,setTab]=React.useState('disappearance');
-  return React.createElement('div',{className:'min-h-screen flex'},
-    React.createElement('aside',{className:'hidden md:flex w-[280px] flex-col border-r border-slate-800/80 bg-[#080B14] fixed h-screen'},
-      React.createElement('div',{className:'p-6 border-b border-slate-800'},
-        React.createElement('h1',{className:'font-serif font-black text-[18px] leading-none'},'JOANE ',React.createElement('span',{className:'text-amber-300'},'GREENE')),
-        React.createElement('p',{className:'font-mono text-[9px] text-slate-500 tracking-[0.2em] mt-2'},'QUIDNESSETT • 1682 • ARCHIVE'),
-        React.createElement('p',{className:'font-mono text-[8px] text-slate-600 mt-3 leading-4'},'github.com/lemuwah/joan-lineage-theory — Launch pad as of 7/17/2026 — Do not delete duplicates — logic preserved @ Lemuwah')
+  return React.createElement('div',{className:'min-h-screen flex flex-col'},
+    // contamination alert
+    React.createElement('div',{className:'contam-bar sticky top-0 z-[60] flex items-center justify-between px-4 md:px-6 py-2'},
+      React.createElement('div',{className:'flex items-center gap-2 font-mono text-[10px]'},
+        React.createElement('span',{className:'text-amber-500'},'⚠️'),
+        React.createElement('span',{className:'font-bold text-amber-300 uppercase tracking-widest'},'Contamination Alert'),
+        React.createElement('span',{className:'text-slate-500 hidden md:inline'},' If you arrived from Ancestry, YourRoots, MyHeritage, or FamilySearch — your tree may be algorithmically poisoned.')
       ),
-      React.createElement('nav',{className:'flex-1 p-3 space-y-1 overflow-y-auto'},
-        TABS.map(t=> React.createElement('button',{key:t.id,onClick:()=>setTab(t.id),className:(tab===t.id?'nav-active ':'text-slate-400 hover:text-slate-200 ')+'w-full text-left px-3 py-3 rounded-r-lg font-mono text-[11px] flex gap-2 items-center transition-all'}, React.createElement('span',null,t.icon), t.label))
+      React.createElement('button',{onClick:()=>setTab('contam'),className:'font-mono text-[9px] px-3 py-1 rounded border border-red-900/40 bg-red-950/30 text-red-300 hover:bg-red-900/40'},'View Contamination →')
+    ),
+    // header
+    React.createElement('header',{className:'border-b border-slate-800 bg-[#0E1320] px-4 md:px-6 py-4 flex flex-wrap items-center justify-between gap-4'},
+      React.createElement('div',{className:'flex items-center gap-4'},
+        React.createElement('div',{className:'w-8 h-8 rounded bg-gradient-to-br from-amber-600 to-amber-800 flex items-center justify-center font-serif font-black text-black'},'JA'),
+        React.createElement('div',null,
+          React.createElement('h1',{className:'font-serif font-black text-[16px] leading-none tracking-wide'},'THE JOAN',' ',React.createElement('br',null),'ARCHIVE'),
+          React.createElement('p',{className:'font-mono text-[8px] text-slate-500 mt-1 tracking-[0.2em]'},'NO NARRATIVE SMOOTHING | 11 JULY 2026')
+        ),
+        React.createElement('div',{className:'ml-6 hidden md:flex items-center gap-2 px-3 py-1 rounded border border-amber-900/30 bg-amber-950/20 font-mono text-[9px] text-amber-300'},'4 LAWS IN',' ',React.createElement('br',null),'FORCE')
       ),
-      React.createElement('div',{className:'p-4 border-t border-slate-800'},
-        React.createElement('p',{className:'font-mono text-[9px] text-slate-500 leading-4'},'70 images • Some duplicates intentional for different logic • Additions need reference notes • Built for archives, not ancestry paywalls.')
+      React.createElement('div',{className:'flex flex-wrap gap-2'},
+        laws.map(l=> React.createElement('button',{key:l.n,onClick:()=>setShowLaw(showLaw===l.n?null:l.n),className:'law-pill '+(showLaw===l.n?'bg-amber-500/10 border-amber-500/30 text-amber-200':'bg-[#131A2C] text-slate-400 hover:text-slate-200')},'● '+l.n+': '+l.t))
       )
     ),
-    React.createElement('main',{className:'flex-1 md:ml-[280px]'},
-      React.createElement('div',{className:'md:hidden sticky top-0 z-50 glass border-b border-slate-800 p-3 flex gap-2 overflow-x-auto'}, TABS.map(t=> React.createElement('button',{key:t.id,onClick:()=>setTab(t.id),className:(tab===t.id?'bg-amber-500/20 text-amber-200 border-amber-500/30 ':'bg-slate-900 text-slate-400 border-slate-800 ')+'px-3 py-1.5 rounded-full border font-mono text-[10px] whitespace-nowrap'}, t.label))),
-      React.createElement('div',{className:'max-w-[1100px] mx-auto p-6 md:p-10'},
-        tab==='disappearance' && React.createElement('div',{className:'space-y-10 fade-in'},
-          React.createElement('div',{className:'relative overflow-hidden rounded-[24px] border border-amber-900/30 bg-gradient-to-br from-[#131B30] via-[#0D1222] to-[#060910] p-8 md:p-14'},
-            React.createElement('div',{className:'absolute -top-20 -right-20 w-[500px] h-[500px] bg-amber-600/10 blur-[90px] rounded-full'}),
-            React.createElement('div',{className:'absolute -bottom-20 -left-20 w-[400px] h-[400px] bg-violet-600/10 blur-[80px] rounded-full'}),
-            React.createElement('div',{className:'relative'},
-              React.createElement('div',{className:'inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/40 border border-red-800/30 font-mono text-[10px] text-red-300 tracking-widest'}, 'AN ARCHIVAL EMERGENCY'),
-              React.createElement('h1',{className:'font-serif text-[42px] md:text-[72px] font-black leading-[0.85] mt-8 text-slate-100'}, 'How does a', React.createElement('br'), 'mother, a wife,', React.createElement('br'), 'a sister, a', React.createElement('br'), React.createElement('span',{className:'text-amber-300'},'daughter —'), React.createElement('br'), 'disappear', React.createElement('br'), React.createElement('span',{className:'font-light italic text-slate-400'},'entirely?')),
-              React.createElement('div',{className:'mt-10 max-w-[680px] space-y-5 font-mono text-[13px] leading-7 text-slate-300'},
-                React.createElement('p',{className:'text-[16px] leading-8 text-slate-200'}, 'I refuse to believe there is no further trace of a life that was potentially 80+ years old. You have heard the tales and stories of the men — the Greenes, the Smiths, the Fones. Their deeds are indexed. Their marks are filed.'),
-                React.createElement('p',null, 'Now it is time to focus on the mothers. The wives. The lost history that was never supposed to be archived at all.'),
-                React.createElement('div',{className:'p-5 rounded-xl bg-[#080B14] border border-slate-800 my-6'},
-                  React.createElement('p',{className:'font-serif text-amber-200 text-[15px] font-bold'}, 'Who was Joan/e Unknown Greene, and why was her consent legally necessary for the 1682 land transfer — when she did not exist in any record before that moment?'),
-                  React.createElement('p',{className:'font-mono text-[11px] text-slate-500 mt-2'}, 'May 1682 — Pawtuxet Deed. Witnesses: William Carpenter (non-Quaker speculator), John Wickes, Samuel Gorton. Her appearance is PROVEN. Not probable. Her prior life is NULL.')
-                ),
-                React.createElement('p',null, 'This archive exists because truth is rotting. Literally. In a box on a forgotten shelf at a county courthouse. Behind a paywall on Ancestry where a user tree from 1904 — ', React.createElement('span',{className:'text-red-300 font-bold'},'La Mance (1904) inventing “Joan Beggarly”'), ' — is sold back to you as fact without a single primary source.'),
-                React.createElement('p',{className:'text-amber-200'}, 'That fabrication is chronologically impossible. Alice Beggarly died January 1643/44 — 38 years before Joane signs in 1682. We have the Arnold-to-Winthrop letter. The firewall is absolute.'),
-                React.createElement('p',null, 'Digitization is not nostalgia. It is evidence preservation. One multispectral scan at 600 DPI can pull a faded “Joane” from vellum. One IIIF side-by-side of Awawsunks 1674 “her marke” vs. Anashuecot 1672 “his marke” destroys a century of gender dismissal. One OCR of Bartlett’s 48 grantees proves we looked everywhere.')
+    showLaw && React.createElement('div',{className:'bg-[#131A2C] border-b border-amber-900/20 px-6 py-3 font-mono text-[11px] text-amber-100/80'}, laws.find(x=>x.n===showLaw).d),
+
+    React.createElement('div',{className:'flex flex-1'},
+      // sidebar
+      React.createElement('aside',{className:'hidden md:flex w-[270px] flex-col border-r border-slate-800 bg-[#0B0F1A] sticky top-0 h-[calc(100vh-90px)] overflow-y-auto'},
+        React.createElement('div',{className:'p-4'},
+          React.createElement('p',{className:'font-mono text-[9px] tracking-[0.2em] text-amber-500/60 uppercase mb-3'},'Archive Desks'),
+          React.createElement('nav',{className:'space-y-0.5'},
+            desks.map(d=> React.createElement('button',{key:d.id,onClick:()=>setTab(d.id),className:(tab===d.id?'nav-active ':'text-slate-500 hover:text-slate-300 ')+'w-full text-left px-3 py-2.5 rounded-r-md font-mono text-[11px] flex items-center gap-2'},
+              React.createElement('span',null,d.icon),
+              React.createElement('div',null,
+                React.createElement('div',null,d.label),
+                d.sub && React.createElement('div',{className:'text-[8px] opacity-60'},d.sub)
+              )
+            ))
+          ),
+          React.createElement('div',{className:'mt-6 pt-6 border-t border-slate-800/60'},
+            React.createElement('p',{className:'font-mono text-[9px] tracking-[0.2em] text-slate-500 uppercase mb-3'},'Research Core Tiers'),
+            React.createElement('div',{className:'space-y-2'},
+              React.createElement('div',{className:'p-3 rounded border border-slate-800 bg-[#0F1422]'},
+                React.createElement('div',{className:'flex justify-between'},React.createElement('span',{className:'font-mono text-[9px] font-bold text-slate-300'},'TIER 1 THESIS'),React.createElement('span',{className:'font-mono text-[7px] px-1.5 py-0.5 rounded bg-blue-900/30 text-blue-300 border border-blue-800/30'},'PROBABLE')),
+                React.createElement('p',{className:'font-mono text-[9px] text-slate-400 mt-1 leading-4'},'Joan (wife of John Greene of Quidnessett) was a Narragansett sachem-line woman.')
               ),
-              React.createElement('div',{className:'mt-10 grid md:grid-cols-3 gap-3'},
-                React.createElement('div',{className:'p-4 rounded-xl bg-emerald-950/20 border border-emerald-900/30'},
-                  React.createElement('p',{className:'font-mono text-[10px] text-emerald-400 uppercase'},'What Archives Can Do'),
-                  React.createElement('p',{className:'font-mono text-[11px] text-slate-300 mt-2 leading-5'},'Pull Hough 1858 pp.173-191 court martial, 1682 deed verbatim, Kettelle Box 2 Folders 12-13. Box.Folder.Page.')
-                ),
-                React.createElement('div',{className:'p-4 rounded-xl bg-amber-950/20 border border-amber-900/30'},
-                  React.createElement('p',{className:'font-mono text-[10px] text-amber-400 uppercase'},'What Public Can Do'),
-                  React.createElement('p',{className:'font-mono text-[11px] text-slate-300 mt-2 leading-5'},'Fund 600 DPI scans, volunteer OCR cleanup, log NULL searches. Dead ends are data.')
-                ),
-                React.createElement('div',{className:'p-4 rounded-xl bg-violet-950/20 border border-violet-900/30'},
-                  React.createElement('p',{className:'font-mono text-[10px] text-violet-400 uppercase'},'What This Proves'),
-                  React.createElement('p',{className:'font-mono text-[11px] text-slate-300 mt-2 leading-5'},'Whether Joane is Anashuecot or not, centering her rewrites Quidnessett from English patriline to Narragansett kinship.')
-                )
+              React.createElement('div',{className:'p-3 rounded border border-slate-800 bg-[#0F1422]'},
+                React.createElement('div',{className:'flex justify-between'},React.createElement('span',{className:'font-mono text-[9px] font-bold text-slate-300'},'TIER 2 THESIS'),React.createElement('span',{className:'font-mono text-[7px] px-1.5 py-0.5 rounded bg-amber-900/30 text-amber-300 border border-amber-800/30'},'UNVERIFIED')),
+                React.createElement('p',{className:'font-mono text-[9px] text-slate-400 mt-1 leading-4'},'Joan was specifically Anashuecot, named “chiefe Sachem and heire properly” in the 1672 Fones deed.')
               )
             )
-          )
-        ),
-
-        tab==='joane' && React.createElement('div',{className:'space-y-8 fade-in'},
-          React.createElement('div',{className:'relative overflow-hidden rounded-[20px] border border-amber-900/30 bg-gradient-to-br from-[#121A2F] to-[#080B14] p-8 md:p-10'},
-            React.createElement('div',{className:'inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/50 border border-emerald-800/40 font-mono text-[10px] text-emerald-300'}, '● FOCUS SHIFT: JOANE GREENE IS THE PROTAGONIST'),
-            React.createElement('h1',{className:'font-serif text-4xl md:text-5xl font-black mt-6'},'Joane ',React.createElement('span',{className:'text-amber-300'},'Greene'),' ',React.createElement('span',{className:'text-xl font-light tracking-[0.3em] text-slate-400'},'OF QUIDNESSETT')),
-            React.createElement('p',{className:'mt-4 text-[14px] leading-7 text-slate-300 max-w-3xl'},'She appears once. May 1682. Pawtuxet deed consent. Witnessed by William Carpenter (non-Quaker speculator — critical), John Wickes, Samuel Gorton. That single signature is PROVEN. From that one appearance, we reconstruct the world that tried to erase her.'),
-            React.createElement('div',{className:'mt-6 grid md:grid-cols-3 gap-3'},
-              React.createElement('div',{className:'p-4 rounded-xl bg-slate-900/60 border border-slate-800'}, React.createElement('p',{className:'font-mono text-[10px] text-amber-400'},'STATUS'), React.createElement('p',{className:'font-serif text-emerald-300 font-bold'},'PROVEN — May 1682')),
-              React.createElement('div',{className:'p-4 rounded-xl bg-slate-900/60 border border-slate-800'}, React.createElement('p',{className:'font-mono text-[10px] text-amber-400'},'WITNESSES RESTORED'), React.createElement('p',{className:'text-[12px] text-slate-200'},'Carpenter • Wickes • Gorton')),
-              React.createElement('div',{className:'p-4 rounded-xl bg-slate-900/60 border border-slate-800'}, React.createElement('p',{className:'font-mono text-[10px] text-amber-400'},'QUOTE'), React.createElement('p',{className:'text-[12px] text-slate-200'},'“forty years and more...” — 1679 affidavit'))
-            )
           ),
-          React.createElement('div',{className:'grid md:grid-cols-2 gap-6'},
-            React.createElement('div',{className:'p-6 rounded-2xl bg-[#0B101E] border border-emerald-900/20'},
-              React.createElement('h3',{className:'font-serif text-amber-200 font-bold'},'🌿 Why Joane, Not John?'),
-              React.createElement('ul',{className:'mt-3 font-mono text-[12px] text-slate-300 list-disc pl-5 leading-6'},
-                React.createElement('li',null,'Colonial archive defaults to male grantees. Joane breaks pattern — her consent legally required. Why?'),
-                React.createElement('li',null,'Centering Joane forces Narragansett kinship question, not English patrilineal trees.'),
-                React.createElement('li',null,'Every filter now defaults to: How does this help understand Joane’s legal standing in 1682?')
-              )
-            ),
-            React.createElement('div',{className:'p-6 rounded-2xl bg-[#0B101E] border border-slate-800'},
-              React.createElement('h3',{className:'font-serif text-amber-200 font-bold'},'📜 The Envelope Method'),
-              ['1672 Anashuecot deed (political context)','1674 Awawsunks “her marke” (gender comparator)','1679 affidavit “forty years and more...”','1682 Pawtuxet deed with 3 witnesses','Kettelle Box 2 Folders 12-13 NULL proof'].map(t=> React.createElement('div',{className:'flex gap-2 font-mono text-[11px] text-slate-300 mt-2'}, React.createElement('span',{className:'text-emerald-400'},'▸'), t))
-            )
-          )
-        ),
-
-        tab==='envelope' && React.createElement('div',{className:'space-y-6 fade-in'},
-          React.createElement('h1',{className:'font-serif text-3xl font-black'},'The Envelope 1672-1682'),
-          React.createElement('p',{className:'font-mono text-[12px] text-slate-400 max-w-3xl'},'We cannot invent more Joane records. We CAN digitize everything around her 1682 moment. Timeline with Laws L1-L3, Evidence tiers, and exact quotes.'),
-          React.createElement('div',{className:'space-y-3'},
-            [
-              {d:'Dec 1638',t:'Winthrop: Surgeon John Greene + Alice Beggarly',s:'PROVEN',q:'Closes Beggarly merge'},
-              {d:'Jan 1644',t:'Arnold Letter: “Mr Green’s wife is dead.”',s:'PROVEN',q:'Alice dead 38 years before Joane — firewall'},
-              {d:'c.1642',t:'John Greene Sr. at Cocumscussoc “forty years and more...”',s:'PROVEN',q:'1679 affidavit verbatim'},
-              {d:'Jan 1 1672',t:'ANASHUECOT DEED — chiefe Sachem and heire properly',s:'PROVEN',q:'All 7 signers “his marke” = scribal shorthand. See Awawsunks comparator'},
-              {d:'Sept 29 1674',t:'Awawsunks Sachim Squa — “her marke” correctly gendered',s:'PROVEN',q:'Proves “his marke” not determinative — same scribal pool, 2 years later'},
-              {d:'1675-76',t:'King Philip’s War — records collapse',s:'PROBABLE',q:'Disappearance window'},
-              {d:'May 1682',t:'JOANE GREENE signs Pawtuxet deed consent',s:'PROVEN — HERO',q:'Witnesses: Carpenter (non-Quaker speculator) • Wickes • Gorton. Why was her consent necessary?'},
-            ].map(e=> React.createElement('div',{className:'p-4 rounded-xl bg-[#0B101E] border '+(e.s.includes('HERO')?'border-amber-500/50':'border-slate-800')},
-              React.createElement('div',{className:'flex justify-between'}, React.createElement('span',{className:'font-mono text-[11px] text-amber-300'},e.d), React.createElement('span',{className:'font-mono text-[9px] px-2 py-0.5 rounded-full bg-emerald-950 border border-emerald-800/30 text-emerald-300'},e.s)),
-              React.createElement('p',{className:'font-serif text-[13px] text-slate-200 mt-2'},e.t),
-              React.createElement('p',{className:'font-mono text-[11px] text-slate-500 mt-1'},e.q)
-            ))
-          )
-        ),
-
-        tab==='vault' && React.createElement('div',{className:'space-y-6 fade-in'},
-          React.createElement('h1',{className:'font-serif text-3xl font-black'},'Image Vault — 70 Files — Do Not Delete Duplicates'),
-          React.createElement('p',{className:'font-mono text-[11px] text-slate-400'},'Current list as of 7/17/2026 @ Lemuwah — duplicates preserved for different logic. Any additions need reference notes. Some without reference labels — learning as we go. Source: github.com/lemuwah/joan-lineage-theory/images/'),
-          React.createElement('div',{className:'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3'},
-            IMAGES.map(name=> React.createElement('div',{key:name,className:'p-3 rounded-xl bg-[#0B101E] border border-slate-800 hover:border-amber-800/30 transition-all'},
-              React.createElement('p',{className:'font-mono text-[10px] text-amber-300 truncate'},name),
-              React.createElement('p',{className:'font-mono text-[9px] text-slate-500 mt-1'},'→ /images/'+name),
-              React.createElement('div',{className:'mt-2 h-[80px] rounded bg-slate-900/50 border border-slate-800/50 flex items-center justify-center font-mono text-[8px] text-slate-600'},'Preview — link to GitHub'),
-              React.createElement('input',{placeholder:'Add reference note...',className:'mt-2 w-full px-2 py-1 rounded bg-slate-900 border border-slate-800 font-mono text-[9px] text-slate-300'})
-            ))
-          )
-        ),
-
-        tab==='contamination' && React.createElement('div',{className:'space-y-6 fade-in'},
-          React.createElement('h1',{className:'font-serif text-3xl font-black text-red-200'},'Contamination Quarantine'),
-          React.createElement('p',{className:'font-mono text-[12px] text-slate-400 max-w-3xl leading-6'},'La Mance 1904 invented “Joan Beggarly”. No primary source. Propagated via Rixford 1932 → Ancestry user trees → WikiTree → Findagrave → alfredgibbs.com. Circular citation. Behind paywalls. Wrong advice without primary records. Quarantined here.'),
-          React.createElement('div',{className:'grid gap-3'},
-            [
-              {n:'La Mance Law (1904)',v:'Origin of Beggarly myth',t:'TRADITION → INVALIDATED'},
-              {n:'alfredgibbs.com',v:'Compilation layer, no Box.Folder.Page',t:'Tier 4 — Toxic'},
-              {n:'WikiTree / Ancestry Trees',v:'Echo chamber citing each other',t:'Tier 4 — Quarantine'},
-              {n:'Findagrave',v:'No primary source for Joane',t:'Tier 4 — Quarantine'},
-            ].map(c=> React.createElement('div',{className:'p-4 rounded-xl bg-red-950/10 border border-red-900/30 flex justify-between'},
-              React.createElement('div',null, React.createElement('p',{className:'font-mono text-[12px] font-bold text-red-300'},'☣️ '+c.n), React.createElement('p',{className:'font-mono text-[10px] text-slate-400 mt-1'},c.v)),
-              React.createElement('span',{className:'font-mono text-[9px] px-2 py-1 rounded-full bg-red-950 border border-red-800/30 text-red-300 h-fit'},c.t)
-            ))
-          )
-        ),
-
-        tab==='digitize' && React.createElement('div',{className:'space-y-6 fade-in'},
-          React.createElement('h1',{className:'font-serif text-3xl font-black'},'Why Digitize — Momentum, Not Nostalgia'),
-          React.createElement('div',{className:'p-6 rounded-2xl bg-gradient-to-br from-emerald-950/20 to-[#0B101E] border border-emerald-900/30'},
-            React.createElement('p',{className:'font-mono text-[13px] text-emerald-100 leading-7'},'Archives are not neutral. What gets scanned gets studied. What stays in a box rots. Joane has ONE record because only one was digitized. The envelope — 1672 deed, 1674 Awawsunks comparator, 1679 affidavit “forty years...”, 1679 petition 42-year inhabitants, 1682 deed with Carpenter/Wickes/Gorton, Kettelle Box 2 — is still analog. Paywalled. Un-OCR’d.'),
-            React.createElement('p',{className:'font-mono text-[12px] text-slate-300 mt-4 leading-6'},'This is why you should care: If a woman can be reduced to “Joan Beggarly” for 120 years without anyone pulling the 1644 Arnold letter proving Alice was dead, the same error is happening to thousands of other mothers, wives, sisters. Digitization is reproductive justice for the archive.')
-          ),
-          React.createElement('div',{className:'grid md:grid-cols-2 gap-4'},
-            [
-              {i:'📸',t:'600 DPI + Multispectral',d:'Re-scan 1682 Pawtuxet deed — pull faded Joane signature. Hero image.',tech:'TIFF + IIIF',task:'Archive Priority 1'},
-              {i:'⚖️',t:'Gender Comparator Viewer',d:'Awawsunks 1674 “her marke” side-by-side with Anashuecot 1672 “his marke”',tech:'IIIF Mirador',task:'Neutralizes dismissal'},
-              {i:'🗺️',t:'GIS Quidnessett Bounds',d:'Map 1672 Anashuecot parcel vs 1682 Joane parcel — same land?',tech:'QGIS + Plat',task:'Lane 1 proof'},
-              {i:'📑',t:'Bartlett 48 Grantees OCR',d:'Pages 56-58 text-diff proves exhaustive search',tech:'Tesseract + human',task:'Upgrades from anomaly to context'},
-            ].map(c=> React.createElement('div',{className:'p-5 rounded-2xl bg-[#0B101E] border border-slate-800'},
-              React.createElement('div',{className:'flex gap-3'}, React.createElement('span',{className:'text-xl'},c.i), React.createElement('div',null,
-                React.createElement('h3',{className:'font-serif text-[14px] font-bold text-slate-100'},c.t),
-                React.createElement('p',{className:'font-mono text-[11px] text-slate-400 mt-1 leading-5'},c.d),
-                React.createElement('div',{className:'mt-2 flex gap-2'}, React.createElement('span',{className:'font-mono text-[8px] px-2 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-400'},c.tech), React.createElement('span',{className:'font-mono text-[8px] px-2 py-1 rounded-full bg-emerald-950 border border-emerald-800/30 text-emerald-300'},c.task))
+          React.createElement('div',{className:'mt-6'},
+            React.createElement('p',{className:'font-mono text-[9px] tracking-[0.2em] text-slate-500 uppercase mb-3'},'State Statistics'),
+            React.createElement('div',{className:'grid grid-cols-2 gap-2'},
+              [{k:'15',l:'PROVEN',c:'text-emerald-400'},{k:'3',l:'PROBABLE',c:'text-blue-400'},{k:'2',l:'UNVERIFIED',c:'text-amber-400'},{k:'2',l:'NULL',c:'text-red-400'}].map(s=> React.createElement('div',{className:'p-2 rounded border border-slate-800 bg-[#0F1422] text-center'},
+                React.createElement('p',{className:'font-mono text-[13px] font-bold '+s.c},s.k),
+                React.createElement('p',{className:'font-mono text-[7px] text-slate-500'},s.l)
               ))
-            ))
+            )
           ),
-          React.createElement('div',{className:'p-6 rounded-2xl bg-amber-950/10 border border-amber-900/30'},
-            React.createElement('h3',{className:'font-serif text-amber-200 font-bold'},'🚀 Quick Wins for Joane — Do These First'),
-            React.createElement('ol',{className:'list-decimal pl-5 mt-3 space-y-2 font-mono text-[11px] text-slate-300 leading-6'},
-              React.createElement('li',null,React.createElement('b',{className:'text-amber-300'},'Re-scan 1682 Pawtuxet deed at 600 DPI'), ' — multispectral to pull Joane signature'),
-              React.createElement('li',null,React.createElement('b',{className:'text-amber-300'},'Transcribe Awawsunks 1674 “her marke”'),' side-by-side with Anashuecot 1672 in IIIF'),
-              React.createElement('li',null,React.createElement('b',{className:'text-amber-300'},'Finish Bartlett 48 grantees OCR'),' pages 56-58 text-diff'),
-              React.createElement('li',null,React.createElement('b',{className:'text-amber-300'},'TEI file:'),' <persName xml:id="joane-greene-1682"> with <certainty> for NULL layers')
+          React.createElement('div',{className:'mt-6 p-3 rounded bg-amber-950/10 border border-amber-900/20'},
+            React.createElement('p',{className:'font-mono text-[8px] text-slate-500 leading-4'},'70 images • duplicates intentional for different logic • Additions need reference notes • github.com/lemuwah/joan-lineage-theory • Do not delete • 7/17/2026 @ Lemuwah')
+          )
+        )
+      ),
+      // mobile nav
+      React.createElement('div',{className:'md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#0B0F1A] border-t border-slate-800 flex overflow-x-auto'}, desks.map(d=> React.createElement('button',{key:d.id,onClick:()=>setTab(d.id),className:(tab===d.id?'text-amber-300 bg-amber-500/10':'text-slate-500')+' px-4 py-3 font-mono text-[9px] whitespace-nowrap'},d.label))),
+
+      // main
+      React.createElement('main',{className:'flex-1 p-5 md:p-10 pb-20 md:pb-10 max-w-[1050px]'},
+        tab==='archive' && React.createElement('div',{className:'space-y-8'},
+          React.createElement('div',null,
+            React.createElement('h1',{className:'font-serif text-4xl md:text-5xl font-black tracking-tight'},'THE JOAN ARCHIVE'),
+            React.createElement('p',{className:'font-mono text-[11px] tracking-[0.15em] text-slate-400 mt-3'},'Restoring Access. Preserving Primary Sources. Asking Better Questions.'),
+            React.createElement('p',{className:'font-mono text-[10px] text-slate-600 mt-2 italic'},'This is not a genealogy website. It is an open-access research library.')
+          ),
+          React.createElement('div',{className:'rounded-xl border border-amber-900/20 bg-gradient-to-br from-[#121A2F] to-[#0B0F1A] p-6 md:p-8 relative overflow-hidden'},
+            React.createElement('div',{className:'absolute -right-20 -top-20 w-[300px] h-[300px] bg-amber-600/10 blur-[60px] rounded-full'}),
+            React.createElement('div',{className:'relative max-w-3xl space-y-4 font-mono text-[12px] leading-6 text-slate-300'},
+              React.createElement('p',{className:'text-[15px] leading-8 text-slate-100 font-serif font-bold'},'How does a mother, a wife, a sister, a daughter, a friend disappear entirely from history?'),
+              React.createElement('p',null,'I refuse to believe there is no further trace of a life that was potentially 80+ years old. You have heard the tales and stories of the men — the Greenes, the Smiths, the Fones. Their deeds are indexed.'),
+              React.createElement('p',{className:'text-amber-200'},'Now it is time to focus on the mothers, the wives, and the lost history.'),
+              React.createElement('div',{className:'p-4 rounded bg-black/30 border border-slate-800 mt-4'},
+                React.createElement('p',{className:'font-serif text-amber-200 font-bold text-[14px]'},'Who was Joan/e Unknown Greene, and why was her consent necessary for the 1682 land transfer, when she did not exist before that moment?'),
+                React.createElement('p',{className:'text-[10px] text-slate-500 mt-2'},'May 1682 Pawtuxet deed — Witnesses: William Carpenter (non-Quaker speculator), John Wickes, Samuel Gorton — PROVEN. Not probable.')
+              ),
+              React.createElement('p',null,'This archive exists because truth is rotting. In a box on a forgotten shelf. Behind a paywall on Ancestry where La Mance (1904) invented “Joan Beggarly” without a single primary source — sold back to you as fact. That fabrication died in Jan 1644 when Benedict Arnold wrote to John Winthrop: “Mr. Green’s wife is dead.” 38 years before Joane signs.'),
+              React.createElement('p',{className:'text-emerald-200/80'},'Digitization is not nostalgia. It is evidence preservation. One 600 DPI multispectral scan. One IIIF side-by-side. One OCR of Bartlett’s 48 grantees. This is how we get archive support, inquiries, and momentum.'),
+              React.createElement('p',{className:'font-bold text-amber-300'},'My goal is simple: Make the surviving evidence easier for everyone to see.')
+            )
+          ),
+          React.createElement('div',null,
+            React.createElement('h2',{className:'font-serif text-amber-300 font-bold text-[14px] flex gap-2'},'❓ WHY JOAN?'),
+            React.createElement('p',{className:'font-mono text-[11px] text-slate-400 mt-2 leading-5'},'One woman appears briefly in the historical record. In 1682 she is identified simply as Joan, wife of John Greene of Quidnessett. Before that, the documentary trail grows remarkably thin.'),
+            React.createElement('div',{className:'mt-3 p-4 rounded bg-[#0F1422] border border-slate-800 font-mono text-[11px] text-slate-300 space-y-1'},
+              React.createElement('div',null,'• Who was she?'),
+              React.createElement('div',null,'• What role did she hold before English legal records began naming her?'),
+              React.createElement('div',null,'• Can surviving primary sources tell us more than traditional genealogy has assumed?')
+            ),
+            React.createElement('p',{className:'font-mono text-[11px] text-slate-500 mt-3'},'Those questions became the beginning of this project.')
+          ),
+          React.createElement('div',null,
+            React.createElement('h2',{className:'font-serif text-amber-300 font-bold text-[14px]'},'📚 WHAT YOU WILL FIND HERE'),
+            React.createElement('div',{className:'grid md:grid-cols-2 gap-2 mt-3 font-mono text-[11px] text-slate-400'},
+              ['Primary source transcriptions','Original document references','Historical maps','Timelines','Name variant research','Signature and mark analysis','Research journals','Open questions','Competing interpretations'].map(x=> React.createElement('div',null,'› '+x))
             )
           )
         ),
 
-        tab==='contribute' && React.createElement('div',{className:'space-y-6 fade-in max-w-3xl'},
-          React.createElement('h1',{className:'font-serif text-3xl font-black'},'How To Help — Keep Joane The Topic'),
-          React.createElement('div',{className:'p-6 rounded-2xl bg-emerald-950/10 border border-emerald-900/30'},
-            React.createElement('p',{className:'font-mono text-[12px] text-emerald-200 leading-6'},'Best contribution: Box.Folder.Page + direct quote + photo at 600 DPI + impact on Joane visibility. Example: “RIHS Mss 1210 Box 2 Folders 12-13 searched — NULL — no Joane mention, confirms compilation layer.” Negative evidence welcome — log NULL searches. Dead ends are data.'),
-            React.createElement('p',{className:'font-mono text-[11px] text-slate-400 mt-3 leading-5'},'Goal: Convince archive to prioritize, get inquiries into digitization, build momentum so truth not behind paywall. Keep Joane central — not John. Ask every time: “How does this help us understand why her consent was necessary?”')
-          ),
-          React.createElement('div',{className:'grid gap-3 font-mono text-[11px] text-slate-300'},
-            ['Upload scans to /sources/ with IIIF manifest','Join OCR cleanup — Arnold transcriptions need human eyes','Tag scribal hands — is “his marke” one scribe?','GIS task — map Quidnessett 1672 bounds','Log NULL searches — RIHS, RI State Archives, North Kingstown Land Evidence','Contact archive: request Hough 1858 pp.173-191 + 1682 deed verbatim'].map(x=> React.createElement('div',{className:'p-3 rounded-lg bg-slate-900/50 border border-slate-800 flex gap-2'}, React.createElement('span',{className:'text-emerald-400'},'▸'), x))
+        tab==='spine' && React.createElement('div',{className:'space-y-4'},
+          React.createElement('h1',{className:'font-serif text-3xl font-black'},'Source Spine'),
+          React.createElement('p',{className:'font-mono text-[11px] text-slate-400'},'The envelope method: We cannot invent more Joane records. We CAN digitize everything around her 1682 moment.'),
+          [
+            {d:'Dec 1638', t:'Winthrop Journal: Surgeon John Greene + Alice Beggarly', s:'PROVEN'},
+            {d:'Jan 1644', t:'Arnold Letter: Mr Green’s wife is dead — firewall', s:'PROVEN'},
+            {d:'c.1642', t:'John Greene Sr. “forty years and more...” — 1679 affidavit verbatim', s:'PROVEN'},
+            {d:'Jan 1 1672', t:'Anashuecot Deed — chiefe Sachem and heire properly — 7 signers “his marke”', s:'PROVEN'},
+            {d:'Sept 29 1674', t:'Awawsunks Sachim Squa — “her marke” correctly gendered — comparator destroys dismissal', s:'PROVEN'},
+            {d:'May 1682', t:'JOANE GREENE consent — Pawtuxet deed — Carpenter/Wickes/Gorton', s:'PROVEN — HERO'},
+          ].map(e=> React.createElement('div',{className:'p-3 rounded bg-[#0F1422] border '+(e.s.includes('HERO')?'border-amber-500/40':'border-slate-800')},
+            React.createElement('div',{className:'flex justify-between'},React.createElement('span',{className:'font-mono text-[10px] text-amber-300'},e.d),React.createElement('span',{className:'font-mono text-[8px] px-2 py-0.5 rounded bg-emerald-950/30 text-emerald-300 border border-emerald-800/30'},e.s)),
+            React.createElement('p',{className:'font-mono text-[11px] text-slate-300 mt-1'},e.t)
+          ))
+        ),
+        tab==='primary' && React.createElement('div',null,
+          React.createElement('h1',{className:'font-serif text-3xl font-black'},'Primary Sources — 70 Image Vault'),
+          React.createElement('p',{className:'font-mono text-[10px] text-slate-500 mt-2'},'Do not delete duplicates — logic preserved. Additions need reference notes. Some without labels — learning as we go. github.com/lemuwah/joan-lineage-theory/images/'),
+          React.createElement('div',{className:'mt-4 p-4 rounded bg-amber-950/10 border border-amber-900/20 font-mono text-[11px] text-amber-200'},'Quick Wins: 1) Re-scan 1682 deed at 600 DPI multispectral 2) Awawsunks 1674 “her marke” vs Anashuecot 1672 “his marke” IIIF side-by-side 3) Bartlett 48 grantees OCR pp.56-58 4) TEI <persName xml:id="joane-greene-1682">')
+        ),
+        tab==='method' && React.createElement('div',{className:'space-y-4'},
+          React.createElement('h1',{className:'font-serif text-3xl font-black'},'Methodology — Firewalls + Orbit Convergence'),
+          React.createElement('div',{className:'grid md:grid-cols-2 gap-4'},
+            React.createElement('div',{className:'p-5 rounded border border-slate-800 bg-[#0F1422]'},
+              React.createElement('h3',{className:'font-serif text-amber-200 font-bold'},'Identity Firewalls'),
+              React.createElement('p',{className:'font-mono text-[11px] text-slate-400 mt-2 leading-5'},'1644 Arnold letter kills Beggarly merge. 1674 Awawsunks comparator kills “his marke = male” dismissal. Two firewalls, both PROVEN.')
+            ),
+            React.createElement('div',{className:'p-5 rounded border border-slate-800 bg-[#0F1422]'},
+              React.createElement('h3',{className:'font-serif text-amber-200 font-bold'},'Orbit Convergence'),
+              React.createElement('p',{className:'font-mono text-[11px] text-slate-400 mt-2 leading-5'},'Five independent lanes: Geographic (1672 vs 1682 parcel), Phonetic (Costa 2007 Awas- cluster), Status (sunksquaw), Archival Silence (Rubertone 2001), Behavioral Anomaly (Newport court martial Aug 1676). Overall 65-73% pending Hough 1858 pp.173-191.')
+            )
+          )
+        ),
+        tab==='contam' && React.createElement('div',{className:'space-y-4'},
+          React.createElement('h1',{className:'font-serif text-3xl font-black text-red-200'},'Contamination Index — Quarantine'),
+          React.createElement('p',{className:'font-mono text-[11px] text-slate-400 leading-5'},'La Mance 1904 invented “Joan Beggarly”. No primary source. Propagated via Rixford 1932 → Ancestry user trees → WikiTree → Findagrave → alfredgibbs.com. Circular citation, behind paywalls, wrong advice without primary records.'),
+          [{n:'La Mance 1904',v:'Origin — no Box.Folder.Page'},{n:'alfredgibbs.com',v:'Compilation layer'},{n:'Ancestry / WikiTree / Findagrave',v:'Echo chamber'}].map(c=> React.createElement('div',{className:'p-3 rounded bg-red-950/10 border border-red-900/20 flex justify-between'},
+            React.createElement('div',null,React.createElement('p',{className:'font-mono text-[11px] font-bold text-red-300'},'☣️ '+c.n),React.createElement('p',{className:'font-mono text-[9px] text-slate-500'},c.v)),
+            React.createElement('span',{className:'font-mono text-[8px] px-2 py-1 rounded bg-red-950 border border-red-800/30 text-red-300 h-fit'},'Tier 4')
+          ))
+        ),
+        tab==='unknown' && React.createElement('div',{className:'space-y-4'},
+          React.createElement('h1',{className:'font-serif text-3xl font-black'},'What We Don’t Know — Open Threads'),
+          React.createElement('p',{className:'font-mono text-[11px] text-slate-400'},'Negative evidence welcome. Dead ends are data. NULL searches logged with Box.Folder.Page.'),
+          [
+            'Hough 1858 pp.173-191 court martial verbatim — CRITICAL',
+            '1682 Pawtuxet deed verbatim boundary text — CRITICAL',
+            '1672 Anashuecot deed verbatim bounds — completes Lane 1',
+            'Kettelle Box 2 Folders 12-13 NULL proof — proves what is NOT her',
+            'Bartlett 48 grantees OCR — proves exhaustive search',
+            'Quaker affiliation Fones/Gould/Tibbitts — Quaker meeting records',
+          ].map(t=> React.createElement('div',{className:'p-3 rounded bg-[#0F1422] border border-slate-800 font-mono text-[11px] text-slate-300'},'▸ '+t))
+        ),
+        ['names','default'].includes(tab) && tab!=='archive' && tab!=='spine' && tab!=='primary' && tab!=='method' && tab!=='contam' && tab!=='unknown' && React.createElement('div',null,
+          React.createElement('h1',{className:'font-serif text-3xl font-black'},'Name Fragments — Awas- Cluster'),
+          React.createElement('p',{className:'font-mono text-[11px] text-slate-400 mt-2'},'Under Costa (2007) Niantic framework applied to Narragansett. Awas- as lineage designator — Lane 5 / Lane 2 connection. Hough 1858 verbatim PENDING.'),
+          React.createElement('div',{className:'mt-4 p-4 rounded bg-[#0F1422] border border-slate-800 font-mono text-[11px] text-slate-300 leading-6'},
+            'Anashuecot • Awawsunks • Awas • Awashonks anglicized as “Joan” per Drake 1833 p.249 • Plymouth Colony Records verbatim PENDING'
           )
         )
       )
-    )
-  )
-}
-const root=ReactDOM.createRoot(document.getElementById('root'));
+    ),
+    React.createElement('footer',{className:'border-t border-slate-800 p-4 text-center font-mono text-[9px] text-slate-600'},'Built for digitization • Keep Joane the Topic • github.com/lemuwah/joan-lineage-theory • How To Help: Box.Folder.Page + quote + 600 DPI + impact on Joane visibility')
+  );
+};
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(React.createElement(App));
 </script>
 </body>
