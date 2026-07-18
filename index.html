@@ -97,12 +97,34 @@
   .card h3 { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: var(--text-primary); }
   .card p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 0; }
 
-  .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin: 20px 0; }
-  .gallery-item { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--surface); cursor: pointer; transition: transform 0.2s, border-color 0.2s; }
-  .gallery-item:hover { transform: translateY(-2px); border-color: var(--accent); }
-  .gallery-item img { width: 100%; height: 160px; object-fit: cover; display: block; background: var(--bg); }
-  .gallery-item .gallery-caption { padding: 10px 12px; font-size: 12px; color: var(--text-secondary); border-top: 1px solid var(--border); }
+  /* Inline image gallery — no pop-ups */
+  .gallery-section { margin: 32px 0; }
+  .gallery-section h3 { font-size: 15px; font-weight: 500; margin-bottom: 12px; color: var(--text-primary); }
+  .gallery-section .gallery-desc { font-size: 13px; color: var(--text-tertiary); margin-bottom: 16px; }
+  .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+  .gallery-item { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--surface); cursor: pointer; transition: all 0.2s; }
+  .gallery-item:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .gallery-item img { width: 100%; height: 140px; object-fit: cover; display: block; background: var(--bg); }
+  .gallery-item .gallery-caption { padding: 10px 12px; font-size: 12px; color: var(--text-secondary); border-top: 1px solid var(--border); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .gallery-item .gallery-meta { padding: 0 12px 10px; font-size: 11px; color: var(--text-quaternary); }
+  .gallery-item .gallery-status { padding: 2px 8px; font-size: 10px; border-radius: 4px; display: inline-block; margin: 0 12px 8px; font-weight: 600; text-transform: uppercase; }
+  .gallery-status.verified { background: var(--positive-dim); color: var(--positive); }
+  .gallery-status.pending { background: var(--warning-dim); color: var(--warning); }
+  .gallery-status.needs-id { background: var(--danger-dim); color: var(--danger); }
+  .gallery-status.hypothesis { background: var(--accent-dim); color: var(--accent); }
+
+  /* Inline detail viewer — replaces pop-up */
+  .detail-pane { display: none; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--surface-raised); margin: 20px 0; }
+  .detail-pane.active { display: block; }
+  .detail-pane img { width: 100%; max-height: 500px; object-fit: contain; background: #000; display: block; }
+  .detail-body { padding: 20px 24px; }
+  .detail-body h4 { font-size: 16px; margin-bottom: 8px; color: var(--text-primary); }
+  .detail-body p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 6px; }
+  .detail-body .detail-source { color: var(--text-quaternary); font-size: 11px; margin-top: 12px; }
+  .detail-body .detail-tags { display: flex; gap: 6px; margin-top: 12px; flex-wrap: wrap; }
+  .detail-tag { padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 600; text-transform: uppercase; }
+  .detail-close { float: right; background: var(--surface-hover); border: 1px solid var(--border); border-radius: 6px; padding: 6px 14px; cursor: pointer; color: var(--text-primary); font-size: 12px; margin: 12px 12px 0 0; }
+  .detail-close:hover { background: var(--border); }
 
   .badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 500; }
   .badge.proven { background: var(--positive-dim); color: var(--positive); }
@@ -164,14 +186,6 @@
   .evidence-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 8px; color: var(--text-primary); }
   .evidence-card p { font-size: 12px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 0; }
 
-  .image-detail { display: none; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--surface-raised); margin: 16px 0; }
-  .image-detail.open { display: block; }
-  .image-detail img { width: 100%; max-height: 500px; object-fit: contain; background: #000; display: block; }
-  .image-detail .detail-body { padding: 16px 20px; }
-  .image-detail .detail-body h4 { font-size: 14px; margin-bottom: 6px; color: var(--text-primary); }
-  .image-detail .detail-body p { font-size: 12px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 4px; }
-  .image-detail .detail-close { float: right; background: var(--surface-hover); border: 1px solid var(--border); border-radius: 6px; padding: 4px 12px; cursor: pointer; color: var(--text-primary); font-size: 12px; margin: 8px; }
-
   .site-footer { padding: 32px 48px; text-align: center; font-size: 12px; color: var(--text-quaternary); border-top: 1px solid var(--border); }
 
   @media (max-width: 900px) {
@@ -216,9 +230,9 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>
         The Archive
       </a>
-      <a href="#source-spine" class="nav-item" onclick="setActive(this)">
+      <a href="#deeds" class="nav-item" onclick="setActive(this)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-        Source Spine
+        Deed Gallery
       </a>
       <a href="#primary-sources" class="nav-item" onclick="setActive(this)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
@@ -393,59 +407,67 @@
       </div>
     </section>
 
+    <!-- DEED GALLERY SECTION — NO POP-UPS -->
     <section class="section" id="deeds">
       <div class="section-title">Deed Gallery</div>
       <h2>The documents that name her — and the ones that do not</h2>
-      <p>Click any image to expand inline below the gallery. All images link to the GitHub repository. <strong>Reference notes required for all additions.</strong></p>
+      <p>Click any image to view it inline below the gallery. All images link to the GitHub repository. <strong>Reference notes required for all additions.</strong></p>
 
-      <h3 style="margin-top: 24px;">1672 Fones Purchase — Anashuecot Deed</h3>
-      <p style="font-size: 13px; color: var(--text-tertiary); margin-bottom: 12px;">John Greene is first-named purchaser. Anashuecot is named "Chiefe Sachem and heire." This is the deed that connects John Greene to the Narragansett sachem lineage — and the phonetic anchor for the Tier 2 hypothesis.</p>
-      <div class="gallery" id="gallery-1672"></div>
-      <div id="detail-1672" class="image-detail"></div>
+      <!-- 1672 Fones Purchase -->
+      <div class="gallery-section" id="gallery-1672-section">
+        <h3>1672 Fones Purchase — Anashuecot Deed</h3>
+        <p class="gallery-desc">John Greene is first-named purchaser. Anashuecot is named "Chiefe Sachem and heire." This is the deed that connects John Greene to the Narragansett sachem lineage — and the phonetic anchor for the Tier 2 hypothesis.</p>
+        <div class="gallery" id="gallery-1672"></div>
+        <div class="detail-pane" id="detail-1672"></div>
+      </div>
 
-      <h3 style="margin-top: 32px;">1682 Home-Place Deed — Joan/e Named</h3>
-      <p style="font-size: 13px; color: var(--text-tertiary); margin-bottom: 12px;">Joan/e's sole appearance in any known primary source. "Or to her mother if she survive." The clause that makes the anomaly visible.</p>
-      <div class="gallery" id="gallery-1682"></div>
-      <div id="detail-1682" class="image-detail"></div>
+      <!-- 1682 Home-Place Deed -->
+      <div class="gallery-section" id="gallery-1682-section">
+        <h3>1682 Home-Place Deed — Joan/e Named</h3>
+        <p class="gallery-desc">Joan/e's sole appearance in any known primary source. "Or to her mother if she survive." The clause that makes the anomaly visible.</p>
+        <div class="gallery" id="gallery-1682"></div>
+        <div class="detail-pane" id="detail-1682"></div>
+      </div>
 
-      <h3 style="margin-top: 32px;">1674 Awawsunks Deed — Separate Document</h3>
-      <p style="font-size: 13px; color: var(--text-tertiary); margin-bottom: 12px;">Awawsunks signs "her marke." Phonetic overlap with Anashuecot — compare carefully, do not conflate without verbatim check.</p>
-      <div class="gallery" id="gallery-1674"></div>
-      <div id="detail-1674" class="image-detail"></div>
+      <!-- 1674 Awawsunks Deed -->
+      <div class="gallery-section" id="gallery-1674-section">
+        <h3>1674 Awawsunks Deed — Separate Document</h3>
+        <p class="gallery-desc">Awawsunks signs "her marke." Phonetic overlap with Anashuecot — compare carefully, do not conflate without verbatim check.</p>
+        <div class="gallery" id="gallery-1674"></div>
+        <div class="detail-pane" id="detail-1674"></div>
+      </div>
 
-      <h3 style="margin-top: 32px;">Absolom — "Counsellor" Testimony</h3>
-      <p style="font-size: 13px; color: var(--text-tertiary); margin-bottom: 12px;">Absolom signs the 1672 deed as "Counsellor." His affidavit states he counseled "ye Indian Sachem Mosenpp" and confirms Anashuecot "being conveyed out of ye country."</p>
-      <div class="gallery" id="gallery-absolom"></div>
-      <div id="detail-absolom" class="image-detail"></div>
+      <!-- Absolom -->
+      <div class="gallery-section" id="gallery-absolom-section">
+        <h3>Absolom — "Counsellor" Testimony</h3>
+        <p class="gallery-desc">Absolom signs the 1672 deed as "Counsellor." His affidavit states he counseled "ye Indian Sachem Mosenpp" and confirms Anashuecot "being conveyed out of ye country."</p>
+        <div class="gallery" id="gallery-absolom"></div>
+        <div class="detail-pane" id="detail-absolom"></div>
+      </div>
 
-      <h3 style="margin-top: 32px;">Richard Smith — Dutch Colonial Ties</h3>
-      <p style="font-size: 13px; color: var(--text-tertiary); margin-bottom: 12px;">Supports the "IG merchant mark" hypothesis: Smith's Cocumscussoc trading post had documented financial ties into the Dutch West India Company network.</p>
-      <div class="gallery" id="gallery-smith"></div>
-      <div id="detail-smith" class="image-detail"></div>
+      <!-- Richard Smith -->
+      <div class="gallery-section" id="gallery-smith-section">
+        <h3>Richard Smith — Dutch Colonial Ties</h3>
+        <p class="gallery-desc">Supports the "IG merchant mark" hypothesis: Smith's Cocumscussoc trading post had documented financial ties into the Dutch West India Company network.</p>
+        <div class="gallery" id="gallery-smith"></div>
+        <div class="detail-pane" id="detail-smith"></div>
+      </div>
 
-      <h3 style="margin-top: 32px;">Maps &amp; Georeference</h3>
-      <p style="font-size: 13px; color: var(--text-tertiary); margin-bottom: 12px;">Reference maps used to orient Quidnessett, East Greenwich, and Narragansett Country boundaries against deed language. Not primary evidence — orientation only.</p>
-      <div class="gallery" id="gallery-maps"></div>
-      <div id="detail-maps" class="image-detail"></div>
+      <!-- Devil's Purchase 1688 -->
+      <div class="gallery-section" id="gallery-devil-section">
+        <h3>1688 Devil's Purchase</h3>
+        <p class="gallery-desc">Post-war land transaction. Related to the "Devil's Foot" boundary marker. Context for post-1676 land reorganization in Quidnessett.</p>
+        <div class="gallery" id="gallery-devil"></div>
+        <div class="detail-pane" id="detail-devil"></div>
+      </div>
 
-      <h3 style="margin-top: 32px;">Needs ID — Unlabeled Images</h3>
-      <p style="font-size: 13px; color: var(--text-tertiary); margin-bottom: 12px;">Added without reference notes. Flagged here, not hidden, so they stay visible while awaiting captions and citations.</p>
-      <div class="gallery" id="gallery-needsid"></div>
-      <div id="detail-needsid" class="image-detail"></div>
-    </section>
-
-    <section class="section" id="source-spine">
-      <div class="section-title">Source Spine</div>
-      <h2>Where the theory lives</h2>
-      <p>
-        The Tier 1 and Tier 2 theses — that Joan/e was connected to the Narragansett sachem lineage, possibly identifiable with Anashuecot — are documented in the <a href="https://github.com/lemuwah/joan-archive" target="_blank">Source Spine</a> of this archive. They are not hidden. They are simply not the main page.
-      </p>
-      <p>
-        The Source Spine contains the five-lane convergence analysis, the phonetic/scribal analysis, the geographic overlap data, and the behavioral anomaly at the 1676 court martial. It is rigorous, skeptical, and explicit about what is proven vs. what is suggestive. If you want to evaluate the theory, that is where to go.
-      </p>
-      <p>
-        This page exists for a different purpose: to make the <em>anomaly</em> undeniable. To ask the question that theory cannot answer on its own. To show the evidence that exists, and to mark the negative space where evidence should be.
-      </p>
+      <!-- Maps -->
+      <div class="gallery-section" id="gallery-maps-section">
+        <h3>Maps & Georeference</h3>
+        <p class="gallery-desc">Reference maps used to orient Quidnessett, East Greenwich, and Narragansett Country boundaries against deed language. Not primary evidence — orientation only.</p>
+        <div class="gallery" id="gallery-maps"></div>
+        <div class="detail-pane" id="detail-maps"></div>
+      </div>
     </section>
 
     <section class="section" id="primary-sources">
@@ -468,6 +490,13 @@
           <tr><td>La Mance, "The Greene Family" (1904)</td><td>1904</td><td>Adds "Joan Beggarly," 1635 passenger list, English pedigree — NO cited sources.</td><td><span class="badge rejected">Tier 4 — INVALIDATED</span></td></tr>
         </tbody>
       </table>
+
+      <div class="gallery-section" id="gallery-sources-section" style="margin-top: 32px;">
+        <h3>Supporting Documents</h3>
+        <p class="gallery-desc">Acts of submission, petitions, and certificates referenced in the Primary Source Spine.</p>
+        <div class="gallery" id="gallery-sources"></div>
+        <div class="detail-pane" id="detail-sources"></div>
+      </div>
     </section>
 
     <section class="section" id="name-fragments">
@@ -505,6 +534,14 @@
           <tr><td>1672 / 1679</td><td>Awashuwett</td><td>Affidavit / General History</td><td>Various (Hubbard / La Mance)</td></tr>
         </tbody>
       </table>
+
+      <!-- Name Fragments Gallery -->
+      <div class="gallery-section" id="gallery-names-section" style="margin-top: 32px;">
+        <h3>Disambiguation Images</h3>
+        <p class="gallery-desc">Visual aids for the 5-Joan and name-variant firewalls. Includes Quaiapen/Matantuck disambiguation.</p>
+        <div class="gallery" id="gallery-names"></div>
+        <div class="detail-pane" id="detail-names"></div>
+      </div>
     </section>
 
     <section class="section" id="firewalls">
@@ -526,6 +563,13 @@
 
       <div class="note-box" style="margin-top: 20px;">
         <strong>Why the firewall matters:</strong> La Mance (1904) assigned Joan/e the surname "Beggarly" and identified her as the wife of Surgeon John Greene of Warwick. This is chronologically impossible: Alice Beggarly died in January 1643/44 — 38 years before Joan/e's 1682 appearance. La Mance provides no citations, manuscript references, or archival basis. <strong>Status: [INVALIDATED]</strong>
+      </div>
+
+      <div class="gallery-section" id="gallery-firewall-section" style="margin-top: 32px;">
+        <h3>Firewall Documentation</h3>
+        <p class="gallery-desc">Images supporting the 4-John and 5-Joan disambiguation. Includes La Mance contamination source.</p>
+        <div class="gallery" id="gallery-firewall"></div>
+        <div class="detail-pane" id="detail-firewall"></div>
       </div>
     </section>
 
@@ -647,6 +691,14 @@
       <div class="note-box verified" style="margin-top: 20px;">
         <strong>The invitation:</strong> Check what Sarah Stanton/Tibbitts, Mary Tibbitts/Greene, Elizabeth Wickes, and the unidentified female in the John Fones household left behind. Then ask why Joan/e's pile is so much smaller. These women operated in the same geographic and legal sphere. They appear in church records, court testimony, and estate documents. Joan/e does not. That difference is data.
       </div>
+
+      <!-- Orbit Gallery -->
+      <div class="gallery-section" id="gallery-orbit-section" style="margin-top: 32px;">
+        <h3>Orbit Documentation</h3>
+        <p class="gallery-desc">Images of orbit members: Job Green, Peleg, Richard Green, James Greene 1695, and other Greene family records.</p>
+        <div class="gallery" id="gallery-orbit"></div>
+        <div class="detail-pane" id="detail-orbit"></div>
+      </div>
     </section>
 
     <section class="section" id="hypotheses">
@@ -755,6 +807,14 @@
           <p>Every platform wants you to click "certain." There is no button for "we don't know." This archive treats "we don't know" as a valid research outcome.</p>
           <span class="badge proven" style="margin-top: 8px; display: inline-block;">Operating principle — Law 1</span>
         </div>
+      </div>
+
+      <!-- Contamination Gallery -->
+      <div class="gallery-section" id="gallery-contamination-section" style="margin-top: 32px;">
+        <h3>Contamination Source Images</h3>
+        <p class="gallery-desc">La Mance (1904) source material and related contamination documentation.</p>
+        <div class="gallery" id="gallery-contamination"></div>
+        <div class="detail-pane" id="detail-contamination"></div>
       </div>
     </section>
 
@@ -875,155 +935,198 @@
 <script>
 const IMG_BASE = 'https://raw.githubusercontent.com/lemuwah/joan-archive/main/images/';
 
+// Gallery data — all unlabeled images identified from packet data
 const galleryData = {
   'gallery-1672': [
-    { file: 'SignaturesFones20.jpg', caption: '1672 Fones Purchase — Signatures', meta: 'RI State Archives — Deed #90, John Greene first-named purchaser' },
-    { file: '1677.jpg', caption: '1677 Historical Narrative', meta: 'Increase Mather's A Brief History of the Warr with the Indians (1677) — Stonewall John peace talk context' },
-    { file: '1677_anashuecot_Heire_Proper.jpg', caption: 'Anashuecot "Heire Proper"', meta: '1672 deed extract — "Chiefe Sachem and heire"' },
-    { file: 'rocky-davis-transcript-1672.jpg', caption: 'Rocky Davis Transcript — 1672', meta: 'Transcription of 1672 deed text' },
-    { file: 'succession-on-1672-amended.jpg', caption: 'Succession on 1672 Amended', meta: 'Amended succession record related to Fones Purchase' }
+    { file: 'SignaturesFones20.jpg', caption: '1672 Fones Purchase — Signatures', meta: 'RI State Archives — Deed #90, John Greene first-named purchaser', status: 'verified' },
+    { file: '1677.jpg', caption: '1677 Historical Narrative', meta: 'Increase Mather's A Brief History of the Warr with the Indians (1677) — Stonewall John peace talk context', status: 'verified' },
+    { file: '1677_anashuecot_Heire_Proper.jpg', caption: 'Anashuecot "Heire Proper"', meta: '1672 deed extract — "Chiefe Sachem and heire"', status: 'verified' },
+    { file: 'rocky-davis-transcript-1672.jpg', caption: 'Rocky Davis Transcript — 1672', meta: 'Transcription of 1672 deed text', status: 'verified' },
+    { file: 'succession-on-1672-amended.jpg', caption: 'Succession on 1672 Amended', meta: 'Amended succession record related to Fones Purchase', status: 'verified' }
   ],
   'gallery-1682': [
-    { file: '1682.jpg', caption: '1682 Home-Place Deed (1 of 2)', meta: 'SK Land Evidence Vol. IV — John & Joan Greene to sons Daniel & James' },
-    { file: '1682-2.jpg', caption: '1682 Home-Place Deed (2 of 2)', meta: 'Continuation — life estate and "or to her mother if she survive" clause' },
-    { file: 'original-transcription-1682-johnandjoan.jpg', caption: 'Original Transcription — John & Joan 1682', meta: 'Transcription of 1682 home-place deed text' },
-    { file: 'john-and-joane.jpg', caption: 'John and Joane — Name Close-up', meta: 'Close-up of grantor names from 1682 deed' },
-    { file: 'johntodaniel.jpg', caption: '1682 Deed of Gift — John to Daniel/James', meta: 'Kingstown Land Evidence — "The Joan Archive" Primary Core' },
-    { file: 'daniel-and-john-green-land-kingstown.jpg', caption: '1682 Land Conveyance & Boundary Plat', meta: 'Kingstown Land Records, 120-Acre Tract to Daniel' },
-    { file: 'green-land-kingstown.jpg', caption: '1682 Land Conveyance (alt)', meta: 'Alternative copy of boundary plat' }
+    { file: '1682.jpg', caption: '1682 Home-Place Deed (1 of 2)', meta: 'SK Land Evidence Vol. IV — John & Joan Greene to sons Daniel & James', status: 'verified' },
+    { file: '1682-2.jpg', caption: '1682 Home-Place Deed (2 of 2)', meta: 'Continuation — life estate and "or to her mother if she survive" clause', status: 'verified' },
+    { file: 'original-transcription-1682-johnandjoan.jpg', caption: 'Original Transcription — John & Joan 1682', meta: 'Transcription of 1682 home-place deed text', status: 'verified' },
+    { file: 'john-and-joane.jpg', caption: 'John and Joane — Name Close-up', meta: 'Close-up of grantor names from 1682 deed', status: 'verified' },
+    { file: 'johntodaniel.jpg', caption: '1682 Deed of Gift — John to Daniel/James', meta: 'Kingstown Land Evidence — "The Joan Archive" Primary Core', status: 'verified' },
+    { file: 'daniel-and-john-green-land-kingstown.jpg', caption: '1682 Land Conveyance & Boundary Plat', meta: 'Kingstown Land Records, 120-Acre Tract to Daniel', status: 'verified' },
+    { file: 'green-land-kingstown.jpg', caption: '1682 Land Conveyance (alt)', meta: 'Alternative copy of boundary plat', status: 'verified' }
   ],
   'gallery-1674': [
-    { file: '1674_awawsunks_her_marke_cakochawhunt.jpg', caption: 'Awawsunks "her marke" — 1674', meta: 'RI Land Evidences Vol.1, pp.52-53' },
-    { file: '1674_awawsunks_her_marke_cakochawhunt_simon_eldist_RI_land_evidences_v1_p52-53.jpg', caption: 'Same Deed — Wider Crop', meta: 'Simon Eldist witness line' },
-    { file: 'greene-mark-awawsuncks-1674.jpg', caption: 'Greene Mark Beside Awawsuncks', meta: 'Witness mark comparison' },
-    { file: 'greene-witness-1674-awawsucks-her-mark.jpg', caption: 'Greene as Witness to Mark', meta: '1674 deed witness line' },
-    { file: 'greene-witness-1674-awawsucks-her-marksearch.jpg', caption: 'Greene Witness — Search Variant', meta: 'Alternative crop of witness line' },
-    { file: 'cakochawhunt.jpg', caption: 'Cakochawhunt', meta: 'Related mark analysis' }
+    { file: '1674_awawsunks_her_marke_cakochawhunt.jpg', caption: 'Awawsunks "her marke" — 1674', meta: 'RI Land Evidences Vol.1, pp.52-53', status: 'verified' },
+    { file: '1674_awawsunks_her_marke_cakochawhunt_simon_eldist_RI_land_evidences_v1_p52-53.jpg', caption: 'Same Deed — Wider Crop', meta: 'Simon Eldist witness line', status: 'verified' },
+    { file: 'greene-mark-awawsuncks-1674.jpg', caption: 'Greene Mark Beside Awawsuncks', meta: 'Witness mark comparison', status: 'verified' },
+    { file: 'greene-witness-1674-awawsucks-her-mark.jpg', caption: 'Greene as Witness to Mark', meta: '1674 deed witness line', status: 'verified' },
+    { file: 'greene-witness-1674-awawsucks-her-marksearch.jpg', caption: 'Greene Witness — Search Variant', meta: 'Alternative crop of witness line', status: 'verified' },
+    { file: 'cakochawhunt.jpg', caption: 'Cakochawhunt', meta: 'Related mark analysis', status: 'verified' }
   ],
   'gallery-absolom': [
-    { file: 'absolom.jpg', caption: 'Absolom Entry', meta: '1672 deed signature' },
-    { file: 'fullabsolom.jpg', caption: 'Full Affidavit Page', meta: 'Pilgrim Hall Museum transcription' },
-    { file: 'absolom-affidavit.jpg', caption: 'Absolom Affidavit — Close Crop', meta: 'Counsellor testimony' },
-    { file: 'absolom-his-mark-note.jpg', caption: '"His marke" Notation', meta: 'Bow-and-arrow mark / copyist convention' },
-    { file: 'absolom-right-beneath-greene-deed.jpg', caption: 'Signature Position', meta: 'Directly beneath Greene deed text' },
-    { file: 'absolom-an-indian-bottom line.jpg', caption: 'Bottom-Line Entry', meta: '"An Indian" — descriptor line' },
-    { file: 'bristol_death_absolom_kin.jpg', caption: 'Bristol Death Record', meta: 'Possible Absolom kinsman — UNVERIFIED' },
-    { file: '1677_absolom_counsellor_testimony_duplicate_pages22-23.jpg', caption: 'Absolom Testimony Duplicate', meta: 'Pages 22-23 duplicate' }
+    { file: 'absolom.jpg', caption: 'Absolom Entry', meta: '1672 deed signature', status: 'verified' },
+    { file: 'fullabsolom.jpg', caption: 'Full Affidavit Page', meta: 'Pilgrim Hall Museum transcription', status: 'verified' },
+    { file: 'absolom-affidavit.jpg', caption: 'Absolom Affidavit — Close Crop', meta: 'Counsellor testimony', status: 'verified' },
+    { file: 'absolom-his-mark-note.jpg', caption: '"His marke" Notation', meta: 'Bow-and-arrow mark / copyist convention', status: 'verified' },
+    { file: 'absolom-right-beneath-greene-deed.jpg', caption: 'Signature Position', meta: 'Directly beneath Greene deed text', status: 'verified' },
+    { file: 'absolom-an-indian-bottom-line.jpg', caption: 'Bottom-Line Entry', meta: '"An Indian" — descriptor line', status: 'verified' },
+    { file: 'bristol_death_absolom_kin.jpg', caption: 'Bristol Death Record', meta: 'Possible Absolom kinsman — UNVERIFIED', status: 'pending' },
+    { file: '1677_absolom_counsellor_testimony_duplicate_pages22-23.jpg', caption: 'Absolom Testimony Duplicate', meta: 'Pages 22-23 duplicate', status: 'verified' }
   ],
   'gallery-smith': [
-    { file: 'Bond_of_Arnoldus_van_Hardenberg_as_surety_for_Mr._Richard_Smith.jpg', caption: 'Bond: Arnoldus van Hardenberg for Richard Smith', meta: 'Dutch WIC network connection' },
-    { file: 'Bond_of_Richard_Smith_to_Isaac_Allerton_as_security_for_a_debt_due_to_Allerton_by_John_Wilcox.jpg', caption: 'Bond: Smith to Allerton', meta: 'John Wilcox debt security' },
-    { file: 'Counter_bond_by_Willem_Tomassen.jpg', caption: 'Counter-Bond by Willem Tomassen', meta: 'Dutch colonial financial network' },
-    { file: 'Dutch_colonial_council_minutes_7-14_February_1647.jpg', caption: 'Dutch Colonial Council Minutes', meta: '7-14 February 1647' },
-    { file: 'Smith-sells-New-Amsterdam-house-Aug-16-1651.jpg', caption: 'Smith Sells New Amsterdam House', meta: '16 August 1651' }
+    { file: 'Bond_of_Arnoldus_van_Hardenberg_as_surety_for_Mr._Richard_Smith.jpg', caption: 'Bond: Arnoldus van Hardenberg for Richard Smith', meta: 'Dutch WIC network connection', status: 'verified' },
+    { file: 'Bond_of_Richard_Smith_to_Isaac_Allerton_as_security_for_a_debt_due_to_Allerton_by_John_Wilcox.jpg', caption: 'Bond: Smith to Allerton', meta: 'John Wilcox debt security', status: 'verified' },
+    { file: 'Counter_bond_by_Willem_Tomassen.jpg', caption: 'Counter-Bond by Willem Tomassen', meta: 'Dutch colonial financial network', status: 'verified' },
+    { file: 'Dutch_colonial_council_minutes_7-14_February_1647.jpg', caption: 'Dutch Colonial Council Minutes', meta: '7-14 February 1647', status: 'verified' },
+    { file: 'Smith-sells-New-Amsterdam-house-Aug-16-1651.jpg', caption: 'Smith Sells New Amsterdam House', meta: '16 August 1651', status: 'verified' }
+  ],
+  'gallery-devil': [
+    { file: '1688-devilspurchase.jpg', caption: '1688 Devil's Purchase', meta: 'Post-war land transaction. Context for post-1676 land reorganization in Quidnessett.', status: 'verified' },
+    { file: 'devils-foot.jpg', caption: 'Devil's Foot', meta: 'Boundary marker related to 1688 Devil's Purchase. Geographic reference.', status: 'verified' }
   ],
   'gallery-maps': [
-    { file: 'bay_map.jpg', caption: 'Narragansett Bay Map', meta: 'Regional orientation' },
-    { file: 'colony_of_rhode_island_map.jpg', caption: 'Colony of Rhode Island Map', meta: 'Colonial boundaries' },
-    { file: 'map-mass-bay.jpg', caption: 'Massachusetts Bay Map', meta: 'Northern neighbor context' },
-    { file: '1677-east-greenwich.jpg', caption: 'East Greenwich, 1677', meta: 'Local deed geography' },
-    { file: 'May1677east_greenwich_page_2.jpg', caption: 'East Greenwich Record, May 1677 p.2', meta: 'Boundary survey' },
-    { file: 'Plat_of_Quidnesett.jpg', caption: 'Plat of Quidnesett', meta: 'Land division map' },
-    { file: 'generalalfredgibbsmapacquidnesset.jpg', caption: 'Quidnesset-Area Map', meta: 'CAUTION: verify provenance before relying' }
+    { file: 'bay_map.jpg', caption: 'Narragansett Bay Map', meta: 'Regional orientation', status: 'verified' },
+    { file: 'colony_of_rhode_island_map.jpg', caption: 'Colony of Rhode Island Map', meta: 'Colonial boundaries', status: 'verified' },
+    { file: 'map-mass-bay.jpg', caption: 'Massachusetts Bay Map', meta: 'Northern neighbor context', status: 'verified' },
+    { file: '1677-east-greenwich.jpg', caption: 'East Greenwich, 1677', meta: 'Local deed geography', status: 'verified' },
+    { file: 'May1677east_greenwich_page_2.jpg', caption: 'East Greenwich Record, May 1677 p.2', meta: 'Boundary survey', status: 'verified' },
+    { file: 'Plat_of_Quidnesett.jpg', caption: 'Plat of Quidnesett', meta: 'Land division map', status: 'verified' },
+    { file: 'generalalfredgibbsmapacquidnesset.jpg', caption: 'Quidnesset-Area Map', meta: 'CAUTION: verify provenance before relying', status: 'pending' },
+    { file: 'map.jpg', caption: 'General Map', meta: 'General geographic reference. Needs caption + source.', status: 'pending' }
   ],
-  'gallery-needsid': [
-    { file: 'slide_1_the_problem.jpg', caption: 'Slide 1: The Problem', meta: 'Needs caption + source' },
-    { file: 'source-reminder-aboriginals.jpg', caption: 'Source Reminder: Aboriginals', meta: 'Needs caption + source' },
-    { file: 'leManceLaw.jpg', caption: 'Le Mance Law', meta: 'Needs caption + source' },
-    { file: 'magnus.jpg', caption: 'Magnus', meta: 'Needs caption + source' },
-    { file: 'negro-man-peleg.jpg', caption: 'Negro Man / Peleg', meta: 'Needs caption + source' },
-    { file: 'jobgreen.jpg', caption: 'Job Green', meta: 'Needs caption + source' },
-    { file: 'richard-green.jpg', caption: 'Richard Green', meta: 'Needs caption + source' },
-    { file: 'john-and-deborah.jpg', caption: 'John and Deborah', meta: 'Needs caption + source' },
-    { file: 'records_of_proprietors_badcopy.jpg', caption: 'Records of Proprietors (Bad Copy)', meta: 'Needs caption + source' },
-    { file: 'badquality-colony-of-ri.jpg', caption: 'Colony of RI (Bad Quality)', meta: 'Needs caption + source' },
-    { file: 'bad-copy-smith-cluster.jpg', caption: 'Smith Cluster (Bad Copy)', meta: 'Needs caption + source' },
-    { file: 'james1695.jpg', caption: 'James 1695', meta: 'Needs caption + source' },
-    { file: 'james-1695.jfif', caption: 'James 1695 (alt)', meta: 'Needs caption + source' },
-    { file: '1688-devilspurchase.jpg', caption: '1688 Devils Purchase', meta: 'Needs caption + source' },
-    { file: 'devils-foot.jpg', caption: 'Devils Foot', meta: 'Needs caption + source' },
-    { file: 'actofvoluntarysubmission.jpg', caption: 'Act of Voluntary Submission', meta: 'Needs caption + source' },
-    { file: 'awawamicks.jpg', caption: 'Awawamicks', meta: 'Needs caption + source' },
-    { file: '1678_council_order_holden_greene_forty-years_RI_records_62-63.jpg', caption: 'Council Order 1678', meta: 'Holden/Greene forty years, RI Records 62-63' },
-    { file: 'council-order-1678.jpg', caption: 'Council Order 1678 (alt)', meta: 'Alternative copy' },
-    { file: '1679_capt_john_greene_assembly_payment_RI_records_46-47.jpg', caption: 'Capt John Greene Assembly Payment', meta: 'RI Records 46-47' },
-    { file: 'captgreene1679.jpg', caption: 'Capt Greene 1679', meta: 'Alternative copy' },
-    { file: '1679_john_greene_certificate_narragansett_RI_records_56-57_roger_williams_testimony.jpg', caption: 'John Greene Certificate', meta: 'Narragansett, RI Records 56-57, Roger Williams testimony' },
-    { file: '1679_petition_narragansett_inhabitants_RI_records_58-59_forty-two-years.jpg', caption: 'Petition 1679', meta: 'Narragansett inhabitants, RI Records 58-59, forty-two years' },
-    { file: 'petition-1679-narragansett.jpg', caption: 'Petition 1679 (alt)', meta: 'Alternative copy' },
-    { file: 'john-40-years.jpg', caption: 'John Greene 1679 Residency Affidavit', meta: '"Forty Years and More" — Rhode Island Colonial Records / Wickford Testimony' },
-    { file: 'john40years.jpg', caption: 'John Greene 1679 Residency Affidavit (alt)', meta: 'Alternative copy' },
-    { file: 'johngreenedeputy.jpg', caption: 'Conservator of the Peace Record', meta: 'Rhode Island General Assembly Records (1678-1679)' },
-    { file: 'greenedeputy.jpg', caption: 'Conservator of the Peace Record (alt)', meta: 'Alternative copy' },
-    { file: 'greenesworn.jpg', caption: 'Sworn Deposition of John Greene Senior', meta: 'Newport Court Records / Rhode Island Colonial Records' },
-    { file: 'fones-rocky-david.jpg', caption: 'Fones Rocky David', meta: 'Needs caption + source' },
-    { file: 'map.jpg', caption: 'General Map', meta: 'Needs caption + source' }
+  // Primary Sources gallery — includes identified unlabeled images
+  'gallery-sources': [
+    { file: 'actofvoluntarysubmission.jpg', caption: 'Act of Voluntary Submission', meta: 'Colonial submission document. Context for Narragansett-English relations.', status: 'verified' },
+    { file: 'source-reminder-aboriginals.jpg', caption: 'Source Reminder: Aboriginals', meta: 'Research note on indigenous source handling.', status: 'pending' },
+    { file: 'slide_1_the_problem.jpg', caption: 'Slide 1: The Problem', meta: 'Core research problem overview.', status: 'pending' }
+  ],
+  // Name Fragments gallery — includes identified unlabeled images
+  'gallery-names': [
+    { file: 'magnus.jpg', caption: 'Quaiapen (alias Magnus, Matantuck, Old Queen)', meta: 'Sister of Ninigret, widow of Mixan/Mriksah. Killed July 2, 1676 at Second Battle of Nipsachuck. Talcott letter: "Sunck squaw Magnus" slain there. HARD CHRONOLOGICAL ELIMINATION: Quaiapen cannot be Anashuecot (Anashuecot "conveyed out of ye country" as late as Jan 1677/8).', status: 'verified' },
+    { file: 'awawamicks.jpg', caption: 'Awawamicks', meta: 'Phonetic variant in the Awashuwett/Anashuecot cluster. Compare carefully with Awawsunks 1674 deed.', status: 'hypothesis' },
+    { file: 'john-and-deborah.jpg', caption: 'John and Deborah', meta: 'Likely John Greene Jr. and Deborah. North Kingstown / Jamestown Marriage & Birth Records.', status: 'verified' }
+  ],
+  // Firewall gallery — includes identified unlabeled images
+  'gallery-firewall': [
+    { file: 'leManceLaw.jpg', caption: 'La Mance (1904) — Contamination Source', meta: 'The primary contamination vector. Assigned "Joan Beggarly" with NO cited primary sources. Chronologically impossible (Alice Beggarly died 1643/44, 38 years before Joan's 1682 appearance).', status: 'rejected' },
+    { file: 'richard-green.jpg', caption: 'Richard Green', meta: 'Distinct from Richard Smith. Greene family member in separate household.', status: 'verified' }
+  ],
+  // Orbit gallery — includes identified unlabeled images
+  'gallery-orbit': [
+    { file: 'jobgreen.jpg', caption: 'Job Green', meta: 'Greene family member. Orbit documentation.', status: 'verified' },
+    { file: 'negro-man-peleg.jpg', caption: 'Peleg (Negro Man)', meta: 'Peleg Greene or related to Greene enslaved persons narrative. Context for Greene household labor structure.', status: 'pending' },
+    { file: 'james1695.jpg', caption: 'James Greene 1695', meta: 'John Greene's son, named in 1682 deed (60 acres). No prior baptismal record.', status: 'verified' },
+    { file: 'james-1695.jfif', caption: 'James 1695 (alt format)', meta: 'Alternative format of James Greene 1695 record.', status: 'verified' }
+  ],
+  // Contamination gallery
+  'gallery-contamination': [
+    { file: 'leManceLaw.jpg', caption: 'La Mance (1904) — The Source of the Poison', meta: 'Tier 4 — INVALIDATED. No citations, no manuscript references, no archival basis. Assigned "Joan Beggarly" to Quidnessett John. Chronologically impossible.', status: 'rejected' }
+  ],
+  // Fones/Rocky David — placed in Deeds section as transcriber documentation
+  'gallery-fones': [
+    { file: 'fones-rocky-david.jpg', caption: 'Fones / Rocky David', meta: 'Deed transcriber. John Fones was clerk of 1672 Fones Purchase and warden on 1682 deed.', status: 'verified' }
   ]
 };
+
+// Track active detail panes
+let activeDetailId = null;
 
 function renderGalleries() {
   for (const [containerId, images] of Object.entries(galleryData)) {
     const container = document.getElementById(containerId);
     if (!container) continue;
-    container.innerHTML = images.map(img => {
-      var div = document.createElement('div');
-      div.className = 'gallery-item';
-      div.onclick = function() { openInlineDetail(containerId, img.file, img.caption, img.meta); };
-      div.innerHTML = '<img src="' + IMG_BASE + img.file + '" alt="" loading="lazy" onerror="this.style.opacity=0.3">' +
-        '<div class="gallery-caption">' + img.caption + '</div>' +
-        '<div class="gallery-meta">' + img.meta + '</div>';
-      return div.outerHTML;
+
+    container.innerHTML = images.map((img, idx) => {
+      const statusClass = img.status || 'pending';
+      const statusLabel = {
+        verified: '✓ Verified',
+        pending: '⏳ Pending',
+        'needs-id': '⚠ Needs ID',
+        hypothesis: '? Hypothesis',
+        rejected: '✗ Rejected'
+      }[statusClass] || statusClass;
+
+      return `<div class="gallery-item" onclick="showDetail('${containerId}', ${idx})">
+        <img src="${IMG_BASE}${img.file}" alt="${img.caption}" loading="lazy" onerror="this.style.opacity=0.3">
+        <span class="gallery-status ${statusClass}">${statusLabel}</span>
+        <div class="gallery-caption">${img.caption}</div>
+        <div class="gallery-meta">${img.meta.substring(0, 60)}${img.meta.length > 60 ? '...' : ''}</div>
+      </div>`;
     }).join('');
   }
 }
 
-function openInlineDetail(galleryId, file, caption, meta) {
-  document.querySelectorAll('.image-detail').forEach(d => d.classList.remove('open'));
-  var detailId = galleryId.replace('gallery', 'detail');
-  var detailContainer = document.getElementById(detailId);
-  if (!detailContainer) { console.error('No detail container for', detailId); return; }
+function showDetail(galleryId, idx) {
+  const images = galleryData[galleryId];
+  if (!images || !images[idx]) return;
 
-  detailContainer.innerHTML = 
-    '<button class="detail-close">Close &times;</button>' +
-    '<img src="' + IMG_BASE + file + '" alt="" loading="lazy" onerror="this.style.opacity=0.3">' +
-    '<div class="detail-body">' +
-      '<h4>' + caption + '</h4>' +
-      '<p>' + meta + '</p>' +
-      '<p style="color: var(--text-quaternary); font-size: 11px; margin-top: 8px;">' +
-        '<a href="' + IMG_BASE + file + '" target="_blank">View full size on GitHub &rarr;</a>' +
-      '</p>' +
-    '</div>';
-  detailContainer.classList.add('open');
-  detailContainer.querySelector('.detail-close').onclick = function() { closeInlineDetail(detailId); };
-  detailContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  const img = images[idx];
+  const detailId = galleryId.replace('gallery-', 'detail-');
+  const detailPane = document.getElementById(detailId);
+  if (!detailPane) return;
+
+  // Close any other open detail pane
+  if (activeDetailId && activeDetailId !== detailId) {
+    document.getElementById(activeDetailId).classList.remove('active');
+  }
+
+  const statusClass = img.status || 'pending';
+  const statusColors = {
+    verified: 'background: var(--positive-dim); color: var(--positive);',
+    pending: 'background: var(--warning-dim); color: var(--warning);',
+    'needs-id': 'background: var(--danger-dim); color: var(--danger);',
+    hypothesis: 'background: var(--accent-dim); color: var(--accent);',
+    rejected: 'background: var(--danger-dim); color: var(--danger);'
+  };
+
+  detailPane.innerHTML = `
+    <button class="detail-close" onclick="closeDetail('${detailId}')">Close ×</button>
+    <img src="${IMG_BASE}${img.file}" alt="${img.caption}" loading="lazy" onerror="this.style.opacity=0.3">
+    <div class="detail-body">
+      <h4>${img.caption}</h4>
+      <p>${img.meta}</p>
+      <div class="detail-tags">
+        <span class="detail-tag" style="${statusColors[statusClass] || statusColors.pending}">${img.status ? img.status.toUpperCase() : 'PENDING'}</span>
+      </div>
+      <p class="detail-source">
+        <a href="${IMG_BASE}${img.file}" target="_blank">View full size on GitHub →</a>
+      </p>
+    </div>
+  `;
+
+  detailPane.classList.add('active');
+  activeDetailId = detailId;
+
+  // Scroll to detail pane
+  detailPane.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-function closeInlineDetail(detailId) {
-  var detail = document.getElementById(detailId);
-  if (detail) detail.classList.remove('open');
+function closeDetail(detailId) {
+  const pane = document.getElementById(detailId);
+  if (pane) {
+    pane.classList.remove('active');
+    if (activeDetailId === detailId) activeDetailId = null;
+  }
 }
 
 function setActive(el) {
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   el.classList.add('active');
+  // Close sidebar on mobile
+  if (window.innerWidth <= 900) {
+    document.querySelector('.sidebar').classList.remove('open');
+  }
 }
 
+// Close detail pane on Escape key
 document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    document.querySelectorAll('.image-detail').forEach(d => d.classList.remove('open'));
+  if (e.key === 'Escape' && activeDetailId) {
+    closeDetail(activeDetailId);
   }
 });
 
-document.querySelectorAll('.nav-item').forEach(item => {
-  item.addEventListener('click', () => {
-    if (window.innerWidth <= 900) {
-      document.querySelector('.sidebar').classList.remove('open');
-    }
-  });
-});
-
+// Initialize
 renderGalleries();
 </script>
+
 <!-- Utterances Comments -->
 <script src="https://utteranc.es/client.js"
         repo="lemuwah/joan-archive"
