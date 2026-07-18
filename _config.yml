@@ -22,9 +22,9 @@ exclude:
   - vendor
   - ".git"
   - ".github"
-  - agents/explorer/*.md
+  - agents/Explorer/*.md
   - agents/hostile_reviewer/*.md
-  - agents/synthesizer/*.md
+  - agents/Synthesizer/*.md
   - research_queue/*.md
 
 # Include specific files (if needed)
@@ -70,11 +70,9 @@ github:
 nav:
   - Home: index.html
   - Primary Sources:
-      - Fones Purchase (1672): primary_sources/1672_fones.md
+      - Fones Purchase (1672): primary_sources/1672-fones.md
   - Theory:
       - Kin Map: theory/anashuecot_kin_map.md
-  - Sources:
-      - Bibliography: sources/sources.md
   - Notes:
       - Name Variants: notes/name_variants.md
   - Research Queue:
