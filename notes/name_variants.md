@@ -22,8 +22,8 @@
 ## Anashuecot / Anawfecout
 - **Canonical:** Anashuecot
 - **Variants:** Anawfecout, Anashuecot, Anashuecate
-- **Gender:** **PROVEN female** (1674 Awawsunks comparison)
+- **Gender:** **Possibly female** (1674 Awawsunks comparison)
 - **Joane Link:** Land boundary reference point
 - **Status:** PROVEN
 
-[continue for all key names...]
+
