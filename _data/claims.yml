@@ -1,0 +1,32 @@
+# Claims database for evidence tracking
+
+claims:
+  - id: claim-001
+    title: "Joan Greene Identified in 1682"
+    status: "documented"
+    evidence_level: "primary"
+    sources:
+      - 1682-fones-purchase
+    notes: "Single documented appearance"
+
+  - id: claim-002
+    title: "Land Ownership at Quidnessett"
+    status: "supported"
+    evidence_level: "primary"
+    sources:
+      - 1682-fones-purchase
+    notes: "Deed records show land transaction"
+
+  - id: claim-003
+    title: "Family Network Connections"
+    status: "under-investigation"
+    evidence_level: "secondary"
+    sources: []
+    notes: "Requires further genealogical research"
+
+  - id: claim-004
+    title: "Narragansett Lineage"
+    status: "hypothetical"
+    evidence_level: "theoretical"
+    sources: []
+    notes: "Working theory based on location and time period"
