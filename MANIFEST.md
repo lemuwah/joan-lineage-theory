@@ -102,17 +102,17 @@ https://raw.githubusercontent.com/lemuwah/joan-lineage-theory/main/images/1674_a
 🔥 NEW — 5 Images That Change Hostile Review (July 17 2026)
 These 5 were just transcribed from your uploads:
 
-1. john_40_years.JPG / 1679_john_greene_certificate...
+1. john-40-years.jpg / 1679_john_greene_certificate...
 Transcript: 'I, John Greene, inhabiting in the Narragansett Country, called King's Province, I being sworn a Conservator of the Peace, do on my oath affirme, that forty years and more, Mr. Richard Smith, that I then lived with, did first begin and make a settlement in the Narragansett...'
 
 Impact: PROVEN oath, not boast. Anchors Cocumscussoc c.1639. Kills hostile 'self-serving' attack.
 Save: images/1679_john_greene_certificate_narragansett_RI_records_56-57_roger_williams_testimony.jpg
-2. actofvoluntarysubmission.JPG (p40-41)
+2. actofvoluntarysubmission.jpg (p40-41)
 Transcript: 'Randall Holden and John Greene, Deputies in the Colony of Rhode Island, have certified our said Privy Council (of their certain knowledge as having inhabited our country for above forty years) that never any legal purchase had been made thereof from the Indians by the Massachusetts...' Act of voluntary submission April 19 1644, Atherton purchases void.
 
 Impact: Crown recognizes Greene as Deputy with 'certain knowledge'. Not marginal. Upgrades Lane 5.
 Save: images/actofvoluntarysubmission.jpg or images/1679_charles_ii_letter_mount_hope_40_years_p40-41.jpg
-3. petition-1679-narragansett.JPG (p58-59)
+3. petition-1679-narragansett.jpg (p58-59)
 Transcript: 'About forty-two yeares since, the father of one of your petitioners, namely, Richard Smith, deceased, who sold his possessions in Gloucestershire, and came to New England, began the first settlement of the Narragansett Country (then living at Taunton, in Colony of New Plymouth)...'
 
 Impact: Independent 42-year count. 1679-42 = 1637 anchor. Corroborates Greene 40-year. Not rounding. Dual certification.
@@ -122,22 +122,22 @@ Transcript: 'Newport on Rhode Island January 8th 1677... an Indian called Absolo
 
 Impact: CRITICAL. Absolom present at 1671 sale, confirms bounds truly shown to Anawfecout, his two brothers. Councillor testimony. Tier 1.
 Save: images/1677_absolom_counsellor_testimony_duplicate_pages22-23.jpg
-5. devils_foot.JPG (pp20-21)
+5. devils-foot.jpg (pp20-21)
 Transcript yellow: '...Twenty foot way... Womphagee & Ompaniat as my two Brothers, Tyecumsha and Mammo... have... Possession thereof given to... John Green...'
 
 Impact: Womphagee = Wampkegge, Ompaniat = Ompamiatt, Tyecumsha = Tyecuecsha, Mammoosk = Nammeash/Seecomp. Same consent group as 1672 Anashuecot deed body. Proves Costa nasalization w- ↔ n-/m- same family, same parcel, possession given to John Green. Lane 2 + Lane 1 link.
-Save: images/1672_fones_record_p20-21_womphagee_ompaniat_tyecumsha_mammoosk.jpg or keep as devils_foot.JPG with note
+Save: images/1672_fones_record_p20-21_womphagee_ompaniat_tyecumsha_mammoosk.jpg or keep as devils-foot.jpg with note
 Duplicates Intentional — Logic Map
 greene-mark-awawsuncks-1674.jpg vs greene-mark-awawsuncks1674.jpg vs greene-witness-1674-awawsucks-her-mark.jpg vs greene-witness-1674-awawsucks-her-marksearch.jpg — Same 1674 Awawsunks deed, different crops: full, signature, search highlight. Keep all.
 john-40-years.jpg vs john40years.jpg vs 1679_john_greene_certificate... — Same 1679 affidavit 40-year quote, different scan qualities. Keep for verification.
 absolom*.jpg cluster (5 variants) — Affidavit, bottom line, his mark note, beneath deed — keep — shows scribal variation.
 1674_awawsunks_her_marke_cakochawhunt.jpg vs ..._simon_eldist_RI_land_evidences_v1_p52-53.jpg — Same record, different resolution.
 Quick Wins (PeerReviewPacket v4.2 + New)
- 1679 certificate 40-year oath — DONE — john_40_years.JPG
- 1679 petition 42-year corroboration — DONE — petition-1679-narragansett.JPG
- 1679 Charles II letter Holden/Greene Deputies 40-year — DONE — actofvoluntarysubmission.JPG
+ 1679 certificate 40-year oath — DONE — john-40-years.jpg
+ 1679 petition 42-year corroboration — DONE — petition-1679-narragansett.jpg
+ 1679 Charles II letter Holden/Greene Deputies 40-year — DONE — actofvoluntarysubmission.jpg
  Absolom counselor testimony Jan 8 1677 — DONE — SignaturesFones20.jfif
- Womphagee Ompaniat Tyecumsha consent group — DONE — devils_foot.JPG
+ Womphagee Ompaniat Tyecumsha consent group — DONE — devils-foot.jpg
  Re-scan 1682 Pawtuxet deed at 600 DPI + multispectral — HERO image — still PENDING
  IIIF side-by-side Awawsunks her marke vs Anashuecot his marke — still PENDING
  Bartlett 48 grantees OCR pp56-58 text-diff — still PENDING
