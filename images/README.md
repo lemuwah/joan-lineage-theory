@@ -64,3 +64,22 @@ rocky-davis-transcript-1672.jpg
 slide_1_the_problem.jpg
 source-reminder-aboriginals.jpg
 succession-on-1672-amended.jpg
+
+File,Caption,Source,Status
+1677.jpg,1677 Historical Narrative (Stonewall John Peace Talk),Increase Mather's A Brief History of the Warr with the Indians (1677),✅ Verified
+1678_council_order_holden_greene_forty-years_RI_records_62-63.jpg,Council Order 1678,"Holden/Greene forty years, RI Records 62-63",✅ Verified
+council-order-1678.jpg,Council Order 1678 (alt),Alternative copy,✅ Verified
+1679_capt_john_greene_assembly_payment_RI_records_46-47.jpg,Capt John Greene Assembly Payment,RI Records 46-47,✅ Verified
+captgreene1679.jpg,Capt Greene 1679,Alternative copy,✅ Verified
+1679_john_greene_certificate_narragansett_RI_records_56-57_roger_williams_testimony.jpg,John Greene Certificate,"Narragansett, RI Records 56-57, Roger Williams testimony",✅ Verified
+1679_petition_narragansett_inhabitants_RI_records_58-59_forty-two-years.jpg,Petition 1679,"Narragansett inhabitants, RI Records 58-59, forty-two years",✅ Verified
+petition-1679-narragansett.jpg,Petition 1679 (alt),Alternative copy,✅ Verified
+john-40-years.jpg,"John Greene 1679 Residency Affidavit (""Forty Years and More"")",Rhode Island Colonial Records / Wickford Testimony,✅ Verified
+john40years.jpg,John Greene 1679 Residency Affidavit (alt),Alternative copy,✅ Verified
+johngreenedeputy.jpg,Conservator of the Peace Record,Rhode Island General Assembly Records (1678-1679),✅ Verified
+greenedeputy.jpg,Conservator of the Peace Record (alt),Alternative copy,✅ Verified
+greenesworn.jpg,Sworn Deposition of John Greene Senior,Newport Court Records / Rhode Island Colonial Records,✅ Verified
+john-and-deborah.jpg,Vital Record Entry for John Greene Jr. Lineage,North Kingstown / Jamestown Marriage & Birth Records,✅ Verified
+johntodaniel.jpg,1682 Home-Place Deed of Gift (John & Joan to Daniel/James),"Kingstown Land Evidence / ""The Joan Archive"" Primary Core",✅ Verified
+daniel-and-john-green-land-kingstown.jpg,1682 Land Conveyance and Boundary Plat,"Kingstown Land Records, 120-Acre Tract",✅ Verified
+green-land-kingstown.jpg,1682 Land Conveyance and Boundary Plat (alt),Alternative copy,✅ Verified
