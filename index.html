@@ -1335,6 +1335,39 @@ renderNetwork('all');
     <p style="margin-top:8px;">Peer Review Packet v4.2 — March 2026. Built with rigor. No narrative smoothing. <a href="https://github.com/lemuwah/joan-lineage-theory" target="_blank">GitHub</a></p>
   </div>
 </footer>
+<script>
+// Load and populate stats from JSON
+async function loadStats() {
+  try {
+    const response = await fetch('/joan-lineage-theory/data/archive-stats.json');
+    const stats = await response.json();
+    
+    const grid = document.getElementById('stat-grid');
+    if (!grid) return;
+    
+    const statBoxes = [
+      { label: 'PROVEN', count: stats.byStatus.PROVEN, class: 'proven' },
+      { label: 'PROBABLE', count: stats.byStatus.PROBABLE, class: 'probable' },
+      { label: 'UNVERIFIED', count: stats.byStatus.UNVERIFIED, class: 'unverified' },
+      { label: 'Total Scans', count: stats.totalImages, class: 'null' }
+    ];
+    
+    grid.innerHTML = statBoxes
+      .map(box => `
+        <div class="stat-box ${box.class}">
+          <div class="stat-num">${box.count}</div>
+          <div class="stat-label">${box.label}</div>
+        </div>
+      `)
+      .join('');
+      
+  } catch (error) {
+    console.warn('Stats unavailable:', error);
+  }
+}
 
+// Load on page ready
+document.addEventListener('DOMContentLoaded', loadStats);
+</script>
 </body>
 </html>
