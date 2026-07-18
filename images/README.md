@@ -10,8 +10,8 @@ any additions need reference notes. This is the launch pad of what I have accumu
 1679_capt_john_greene_assembly_payment_RI_records_46-47.jpg
 1679_john_greene_certificate_narragansett_RI_records_56-57_roger_williams_testimony.jpg
 1679_petition_narragansett_inhabitants_RI_records_58-59_forty-two-years.jpg
-1682-2.jpg
-1682.jpg
+1682-2.jpg=home place 2 of 2
+1682.jpg=home place 1 of 2 
 1688-devilspurchase.jpg
 MANIFEST.md
 Plat_of_Quidnesett.jpg
