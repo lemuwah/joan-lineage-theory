@@ -202,3 +202,236 @@ john-and-deborah.jpg,Vital Record Entry for John Greene Jr. Lineage,North Kingst
 johntodaniel.jpg,1682 Home-Place Deed of Gift (John & Joan to Daniel/James),"Kingstown Land Evidence / ""The Joan Archive"" Primary Core",✅ Verified
 daniel-and-john-green-land-kingstown.jpg,1682 Land Conveyance and Boundary Plat,"Kingstown Land Records, 120-Acre Tract",✅ Verified
 green-land-kingstown.jpg,1682 Land Conveyance and Boundary Plat (alt),Alternative copy,✅ Verified
+##full list of images in case i missed any## 
+
+Name	Last commit message	Last commit date
+..
+1644-gorton-pessacus-canonicus-act-of-submission-with-awashawe.jpg
+Add files via upload
+yesterday
+1644-gorton-pessacus-canonicus-act-of-submission.jpg
+Add files via upload
+yesterday
+1644-gorton-pessacus-canonicus-act-of-submission2.jpg
+Add files via upload
+yesterday
+1647-dutch.jpg
+Rename Dutch_colonial_council_minutes_7-14_February_1647.jpg to 1647-…
+yesterday
+1672_scan_p22_kin_cluster.jpg
+Rename 1677.jpg to 1672_scan_p22_kin_cluster.jpg
+34 minutes ago
+1674_awawsunks_her_marke_cakochawhunt.jpg
+Rename images/awawsunks/1674_awawsunks_her_marke_cakochawhunt.jpg to …
+yesterday
+1674_awawsunks_her_marke_cakochawhunt_simon_eldist_RI_land_evidences_v1_p52-53.jpg
+Rename images/1674_awawsunks_her_marke_cakochawhunt_simon_eldist_RI_l…
+yesterday
+1677-east-greenwich.jpg
+Add files via upload
+2 days ago
+1677_absolom_counsellor_testimony_duplicate_pages22-23.jpg
+Add files via upload
+3 days ago
+1677_anashuecot_Heire_Proper.jpg
+Rename 1677_anashuecot_Heire_Proper to 1677_anashuecot_Heire_Proper.jpg
+3 days ago
+1678_council_order_holden_greene_forty-years_RI_records_62-63.jpg
+Add files via upload
+3 days ago
+1679_capt_john_greene_assembly_payment_RI_records_46-47.jpg
+Add files via upload
+3 days ago
+1679_john_greene_certificate_narragansett_RI_records_56-57_roger_williams_testimony.jpg
+Add files via upload
+3 days ago
+1679_petition_narragansett_inhabitants_RI_records_58-59_forty-two-years.jpg
+Add files via upload
+3 days ago
+1682-2.jpg
+Rename 1682-2.JPG to 1682-2.jpg
+3 days ago
+1682.jpg
+Rename 1682.JPG to 1682.jpg
+3 days ago
+1688-devilspurchase.jpg
+Rename 1688-devilspurchase.JPG to 1688-devilspurchase.jpg
+3 days ago
+1937_updike_p19_overseer_thesis_john_greene_not_warwick.jpg
+Add files via upload
+2 days ago
+Bond_of_Arnoldus_van_Hardenberg_as_surety_for_Mr._Richard_Smith.jpg
+Add files via upload
+2 days ago
+Bond_of_Richard_Smith_to_Isaac_Allerton_as_security_for_a_debt_due_to_Allerton_by_John_Wilcox.jpg
+Add files via upload
+2 days ago
+Counter_bond_by_Willem_Tomassen.jpg
+Add files via upload
+2 days ago
+May1677east_greenwich_page_2.jpg
+Add files via upload
+2 days ago
+October-1674-survey-to-rename-town-to-kingstown.jpg
+Rename 1679-survey-to-rename-town-to-kingstown.jpg to October-1674-su…
+2 days ago
+Plat_of_Quidnesett.jpg
+Add files via upload
+3 days ago
+README.md
+Fix spacing in Base URL line of README
+yesterday
+SignaturesFones20.jpg
+Rename SignaturesFones20.jfif to SignaturesFones20.jpg
+3 days ago
+Smith-sells-New-Amsterdam-house-Aug-16-1651 .jpg
+Add files via upload
+2 days ago
+absolom-affidavit.jpg
+Rename SignaturesFones20.jfif to images/absolom-affidavit.jpg
+3 days ago
+absolom-an-indian-bottom line.jpg
+Rename absolom an indian bottom line.jfif to absolom-an-indian-bottom…
+3 days ago
+absolom-his-mark-note.jpg
+Rename absolom-his-mark-note.JPG to absolom-his-mark-note.jpg
+3 days ago
+absolom-right-beneath-greene-deed.jpg
+Rename absolom-right-beneath-greene-deed to absolom-right-beneath-gre…
+3 days ago
+absolom.jpg
+Add files via upload
+3 days ago
+actofvoluntarysubmission.jpg
+Rename actofvoluntarysubmission.JPG to actofvoluntarysubmission.jpg
+3 days ago
+awawamicks.jpg
+Rename awawamicks.JPG to awawamicks.jpg
+3 days ago
+bad-copy-smith-cluster.jpg
+Rename bad-copy-smith-cluster to bad-copy-smith-cluster.jpg
+3 days ago
+badquality-colony-of-ri.jpg
+Rename badquality-colony-of-ri to badquality-colony-of-ri.jpg
+3 days ago
+bay_map.jpg
+Rename bay_map to bay_map.jpg
+3 days ago
+bristol_death_absolom_kin.jpg
+Rename bristol_death_absolom_unknown to bristol_death_absolom_kin.jpg
+3 days ago
+cakochawhunt.jpg
+Rename cakochawhunt.JPG to cakochawhunt.jpg
+3 days ago
+captgreene1679.jpg
+Rename captgreene1679.JPG to captgreene1679.jpg
+3 days ago
+colony_of_rhode_island_map.jpg
+Rename colony_of_rhode_island_map to colony_of_rhode_island_map.jpg
+3 days ago
+council-order-1678.jpg
+Rename council-order-1678.JPG to council-order-1678.jpg
+3 days ago
+daniel-and-john-green-land-kingstown.jpg
+Rename daniel-and-john-green-land-kingstown.JPG to daniel-and-john-gr…
+3 days ago
+devils-foot.jpg
+Rename devils-foot.JPG to devils-foot.jpg
+3 days ago
+fones-rocky-david.jpg
+Rename fones rocky david.jfif to fones-rocky-david.jpg
+3 days ago
+fullabsolom.jpg
+Rename absolom.jpg to images/fullabsolom.jpg
+3 days ago
+generalalfredgibbsmapacquidnesset.jpg
+Rename generalalfredgibbsmapacquidnesset.jfif to generalalfredgibbsma…
+3 days ago
+green-land-kingstown.jpg
+Rename green land kingstown.jpg to green-land-kingstown.jpg
+3 days ago
+greene-mark-awawsuncks-1674.jpg
+Rename greene-mark-awawsuncks-1674.JPG to greene-mark-awawsuncks-1674…
+3 days ago
+greene-mark-awawsuncks1674.jpg
+Rename greene-mark-awawsuncks1674.JPG to greene-mark-awawsuncks1674.jpg
+3 days ago
+greene-witness-1674-awawsucks-her-mark.jpg
+Rename greene witness 1674 awawsucks her mark.JPG to greene-witness-1…
+3 days ago
+greene-witness-1674-awawsucks-her-marksearch.jpg
+Rename greene-witness-1674-awawsucks-her-mark.JPG to greene-witness-1…
+3 days ago
+greenedeputy.jpg
+Rename greenedeputy.JPG to greenedeputy.jpg
+3 days ago
+greenesworn.jpg
+Rename greenesworn.JPG to greenesworn.jpg
+3 days ago
+james-1695.jfif
+Rename james 1695.jfif to images/james-1695.jfif
+3 days ago
+james1695.jpg
+Rename james 1695.jfif to james1695.jpg
+3 days ago
+jobgreen.jpg
+Rename jobgreen.jfif to jobgreen.jpg
+3 days ago
+john-40-years.jpg
+Rename john-40-years.JPG to john-40-years.jpg
+3 days ago
+john-and-deborah.jpg
+Rename john and deborah.jfif to john-and-deborah.jpg
+3 days ago
+john-and-joane.jpg
+Rename Capture.JPG to images/john-and-joane.jpg
+3 days ago
+john40years.jpg
+Rename john40years.JPG to john40years.jpg
+3 days ago
+johngreenedeputy.jpg
+Rename johngreenedeputy.JPG to johngreenedeputy.jpg
+3 days ago
+johntodaniel.jpg
+Add files via upload
+3 days ago
+leManceLaw.jpg
+Rename leManceLaw to leManceLaw.jpg
+3 days ago
+magnus.jpg
+Rename magnus to magnus.jpg
+3 days ago
+map-mass-bay.jpg
+Rename b62e59af-6a21-4225-a415-ac1df26af40a.jfif to map-mass-bay.jpg
+3 days ago
+map.jpg
+Rename map.jpeg to map.jpg
+3 days ago
+negro-man-peleg.jpg
+Rename negro-man-peleg.jfif to negro-man-peleg.jpg
+3 days ago
+new-york-mass-map
+Rename b62e59af-6a21-4225-a415-ac1df26af40a.jfif to images/new-york-m…
+3 days ago
+original-transcription-1682-johnandjoan.jpg
+Rename original-transcription-1682-johnandjoan to original-transcript…
+3 days ago
+petition-1679-narragansett.jpg
+Rename petition-1679-narragansett.JPG to petition-1679-narragansett.jpg
+3 days ago
+records_of_proprietors_badcopy.jpg
+Rename records_of_proprietors_badcopy to records_of_proprietors_badco…
+3 days ago
+richard-green.jpg
+Rename richard green.jpg to richard-green.jpg
+3 days ago
+rocky-davis-transcript-1672.jpg
+Rename images-rocky-davis-transcript-1672.jpg to images/rocky-davis-t…
+3 days ago
+source-reminder-aboriginals.jpg
+Rename d5a9221a-09f4-4952-8c54-8761b3f5b9ad.jfif to source-reminder-a…
+3 days ago
+succession-on-1672-amended.jpg
+Rename rockydavid.JPG to succession-on-1672-amended.jpg
+3 days ago
+
