@@ -1,0 +1,35 @@
+name: 📥 Submit TEI/IIIF Primary Source
+description: Propose a primary source to be brought into the 1682 network.
+title: "[Source Submission]: "
+labels: ["incoming-source", "needs-transcription"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for submitting data to the Joan Archive. To prevent narrative contamination, all submissions must point to primary records.
+  - type: input
+    id: archive-id
+    attributes:
+      label: Repository / Archival Citation
+      placeholder: e.g., Rhode Island Land Evidence, Vol. 1, p. 82
+    validations:
+      required: true
+  - type: input
+    id: iiif-manifest
+    attributes:
+      label: IIIF Manifest URL (Optional)
+      placeholder: If the hosting archive provides a IIIF manifest, paste it here.
+  - type: textarea
+    id: tei-snippet
+    attributes:
+      label: Draft TEI XML or Literal Transcription
+      placeholder: <p>Within this space, transcribers can paste raw text or <persName> tags...</p>
+      render: xml
+  - type: checkboxes
+    id: mark-verification
+    attributes:
+      label: Physical Scribal Marks Observed
+      options:
+        - label: Contains the distinct bow and arrow mark
+        - label: Contains the block "IG" mark
+        - label: Contains an alternate mark (specify in transcription)
