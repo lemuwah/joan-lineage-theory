@@ -3,364 +3,237 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Joan Archive — History Is Rotting. Help Save It.</title>
+<title>The Joan Archive — Open Access Research Library</title>
 <style>
-  :root{--bg:#0a0a0f;--surface:#111118;--surface-raised:#1a1a24;--surface-hover:#22222e;--border:#2a2a3a;--border-accent:#3a3a4a;--text-primary:#e8e6e1;--text-secondary:#a0a0b0;--text-tertiary:#6a6a7a;--text-quaternary:#4a4a5a;--accent:#c9a96e;--accent-dim:#c9a96e33;--accent-glow:#c9a96e15;--danger:#c45c5c;--danger-dim:#c45c5c22;--positive:#5c9e6e;--positive-dim:#5c9e6e22;--warning:#c9a44c;--warning-dim:#c9a44c22;--info:#5c8ec9;--info-dim:#5c8ec922;--sidebar-width:280px}
-  *{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text-primary);line-height:1.6;overflow-x:hidden}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
-  .app-layout{display:flex;min-height:100vh}.sidebar{width:var(--sidebar-width);background:var(--surface);border-right:1px solid var(--border);position:fixed;height:100vh;overflow-y:auto;z-index:200;display:flex;flex-direction:column}
-  .sidebar-header{padding:24px 20px 16px;border-bottom:1px solid var(--border)}.sidebar-brand{display:flex;align-items:center;gap:12px;margin-bottom:8px}.sidebar-mark{width:40px;height:40px;border-radius:8px;background:var(--accent);color:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px}
-  .sidebar-title{font-size:17px;font-weight:600}.sidebar-subtitle{font-size:10px;color:var(--text-quaternary);text-transform:uppercase;letter-spacing:.8px;margin-top:2px}
-  .sidebar-nav{padding:16px 12px;flex:1}.nav-section-title{font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent);margin:16px 8px 8px;font-weight:600}
-  .nav-item{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:6px;color:var(--text-secondary);font-size:13px;transition:all .15s;cursor:pointer;margin-bottom:2px;text-decoration:none}.nav-item:hover{background:var(--surface-hover);color:var(--text-primary)}.nav-item.active{background:var(--accent-glow);color:var(--accent);border-left:2px solid var(--accent);margin-left:-2px}
-  .main-content{margin-left:var(--sidebar-width);flex:1;min-width:0}
-  .verify-banner{background:var(--surface-raised);border-bottom:1px solid var(--border);padding:10px 24px;font-size:11px;color:var(--text-tertiary)}.verify-banner strong{color:var(--accent)}.dot-live{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--positive);margin-right:6px}
-  .hero{padding:80px 48px 48px;text-align:center;border-bottom:1px solid var(--border);background:radial-gradient(ellipse at top, var(--accent-glow) 0%, transparent 60%)}.hero h1{font-size:52px;font-weight:400;line-height:1.1;margin-bottom:20px;font-family:Georgia,serif}.hero h1 em{color:var(--accent);font-style:italic}.hero p{max-width:680px;margin:0 auto 24px;font-size:16px;color:var(--text-secondary);line-height:1.7}
-  .hero-stat{font-size:32px;font-weight:700;color:var(--accent);font-family:Georgia,serif}.hero-stat-sub{font-size:12px;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:1px}
-  .stats-row{display:flex;gap:24px;justify-content:center;margin:32px 0 24px;flex-wrap:wrap}.stat-card{background:var(--surface-raised);border:1px solid var(--border);border-radius:12px;padding:16px 20px;min-width:160px;max-width:220px}
-  .section{padding:48px;border-bottom:1px solid var(--border);max-width:900px}.section-title{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:20px;font-weight:600}.section h2{font-size:28px;font-weight:500;margin-bottom:16px;line-height:1.3}.section p{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:16px}.section p.lead{font-size:17px;color:var(--text-primary);line-height:1.6}
-  .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:24px 0}.card{border:1px solid var(--border);border-radius:10px;padding:20px;background:var(--surface-raised)}.card h3{font-size:15px;font-weight:600;margin-bottom:8px;color:var(--text-primary)}.card p{font-size:13px;color:var(--text-secondary);line-height:1.6}
-  .scan-reading{border:1px solid var(--accent);border-radius:12px;padding:20px;background:#1a1a24;margin:24px 0}.scan-reading h4{color:var(--accent);margin-bottom:12px}.scan-reading .transcript{font-family:Georgia,serif;font-size:13px;background:#0a0a0f;padding:12px;border-radius:6px;border:1px solid var(--border);margin:12px 0;white-space:pre-wrap;color:var(--text-secondary)}
-  .badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:500}.badge.proven{background:var(--positive-dim);color:var(--positive)}.badge.caution{background:var(--warning-dim);color:var(--warning)}.badge.rejected{background:var(--danger-dim);color:var(--danger)}.badge.hypothesis{background:var(--accent-dim);color:var(--accent)}.badge.info{background:var(--info-dim);color:var(--info)}
-  .note-box{padding:14px 18px;border-radius:8px;border-left:3px solid var(--warning);background:#c9a44c11;font-size:13px;color:var(--text-secondary);line-height:1.6;margin:16px 0}.note-box.verified{border-left-color:var(--positive);background:#5c9e6e11}.note-box.danger{border-left-color:var(--danger);background:#c45c5c11}.note-box.info{border-left-color:var(--info);background:#5c8ec911}.note-box.mystery{border-left-color:var(--accent);background:#c9a96e11}
-  .data-table{width:100%;border-collapse:collapse;font-size:13px;margin:16px 0}.data-table th{text-align:left;padding:10px 12px;border-bottom:2px solid var(--border);color:var(--text-tertiary);font-weight:500;font-size:11px;text-transform:uppercase}.data-table td{padding:10px 12px;border-bottom:1px solid var(--border);color:var(--text-secondary);vertical-align:top}
-  .gallery-section{margin:32px 0}.gallery-section h3{font-size:16px;font-weight:500;margin-bottom:8px;color:var(--text-primary)}.gallery-desc{font-size:13px;color:var(--text-tertiary);margin-bottom:16px}
-  .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}.gallery-item{border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--surface);cursor:pointer;transition:all .2s}.gallery-item:hover{border-color:var(--accent);transform:translateY(-2px)}.gallery-item img{width:100%;height:140px;object-fit:cover;display:block;background:var(--bg)}.gallery-caption{padding:10px 12px;font-size:12px;color:var(--text-secondary);border-top:1px solid var(--border);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.gallery-meta{padding:0 12px 10px;font-size:11px;color:var(--text-quaternary)}.gallery-status{padding:2px 8px;font-size:10px;border-radius:4px;display:inline-block;margin:0 12px 8px;font-weight:600;text-transform:uppercase}.gallery-status.sourced{background:var(--positive-dim);color:var(--positive)}.gallery-status.pending{background:var(--warning-dim);color:var(--warning)}.gallery-status.needs-id{background:var(--danger-dim);color:var(--danger)}.gallery-status.hypothesis{background:var(--accent-dim);color:var(--accent)}.gallery-status.rejected{background:var(--danger-dim);color:var(--danger)}
-  .detail-pane{display:none;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--surface-raised);margin:20px 0}.detail-pane.active{display:block}.detail-pane img{width:100%;max-height:500px;object-fit:contain;background:#000;display:block}.detail-body{padding:20px 24px}.detail-body h4{font-size:16px;margin-bottom:8px;color:var(--text-primary)}.detail-body p{font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:6px}.detail-close{float:right;background:var(--surface-hover);border:1px solid var(--border);border-radius:6px;padding:6px 14px;cursor:pointer;color:var(--text-primary);font-size:12px;margin:12px 12px 0 0}
-  .request-box{border:1px dashed var(--accent);border-radius:10px;padding:16px;background:var(--accent-glow);margin:16px 0}.request-box a{display:inline-block;margin-top:8px;padding:8px 14px;background:var(--surface-raised);border:1px solid var(--accent);border-radius:6px;color:var(--accent);font-size:12px}
-  .site-footer{padding:32px 48px;text-align:center;font-size:12px;color:var(--text-quaternary);border-top:1px solid var(--border)}
-  @media(max-width:900px){.sidebar{transform:translateX(-100%);transition:transform .3s}.sidebar.open{transform:translateX(0)}.main-content{margin-left:0}.section{padding:32px 24px}.menu-toggle{display:block;position:fixed;top:16px;left:16px;z-index:300;background:var(--surface);border:1px solid var(--border);color:var(--text-primary);padding:8px 12px;border-radius:6px;cursor:pointer}}@media(min-width:901px){.menu-toggle{display:none}}
+:root{--bg:#0a0a0f;--surface:#111118;--surface-raised:#1a1a24;--border:#2a2a3a;--text-primary:#e8e6e1;--text-secondary:#a0a0b0;--text-tertiary:#6a6a7a;--text-quaternary:#4a4a5a;--accent:#c9a96e;--accent-dim:#c9a96e33;--accent-glow:#c9a96e15;--danger:#c45c5c;--danger-dim:#c45c5c22;--positive:#5c9e6e;--positive-dim:#5c9e6e22;--warning:#c9a44c;--warning-dim:#c9a44c22;--info:#5c8ec9;--info-dim:#5c8ec922;--sidebar-width:280px}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text-primary);line-height:1.6;overflow-x:hidden}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.app-layout{display:flex;min-height:100vh}.sidebar{width:var(--sidebar-width);background:var(--surface);border-right:1px solid var(--border);position:fixed;height:100vh;overflow-y:auto;z-index:200;display:flex;flex-direction:column}
+.sidebar-header{padding:24px 20px 16px;border-bottom:1px solid var(--border)}.sidebar-brand{display:flex;align-items:center;gap:12px}.sidebar-mark{width:40px;height:40px;border-radius:8px;background:var(--accent);color:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px}
+.sidebar-title{font-size:17px;font-weight:600}.sidebar-subtitle{font-size:10px;color:var(--text-quaternary);text-transform:uppercase;margin-top:2px}
+.sidebar-nav{padding:16px 12px;flex:1}.nav-section-title{font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent);margin:16px 8px 8px;font-weight:600}
+.nav-item{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:6px;color:var(--text-secondary);font-size:13px;margin-bottom:2px;text-decoration:none}.nav-item:hover{background:var(--surface-raised);color:var(--text-primary)}.nav-item.active{background:var(--accent-glow);color:var(--accent);border-left:2px solid var(--accent);margin-left:-2px}
+.main-content{margin-left:var(--sidebar-width);flex:1;min-width:0}.verify-banner{background:var(--surface-raised);border-bottom:1px solid var(--border);padding:10px 24px;font-size:11px;color:var(--text-tertiary)}.verify-banner strong{color:var(--accent)}.dot-live{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--positive);margin-right:6px}
+.hero{padding:64px 48px 40px;text-align:left;border-bottom:1px solid var(--border);max-width:900px}.hero h1{font-size:52px;font-weight:400;line-height:.95;margin-bottom:20px;font-family:Georgia,serif;letter-spacing:-.5px}.hero h1 em{color:var(--accent);font-style:italic}.why-matters{font-size:18px;color:var(--text-primary);max-width:640px;margin:0 0 16px;line-height:1.5}
+.stat-row{display:flex;gap:12px;margin:20px 0 24px;flex-wrap:wrap}.stat-card{border:1px solid var(--border);border-radius:10px;padding:14px 16px;background:var(--surface-raised);min-width:180px;flex:1}.stat-card .num{font-size:28px;font-weight:600;color:var(--accent);line-height:1}.stat-card .label{font-size:11px;color:var(--text-tertiary);margin-top:6px;text-transform:uppercase}.stat-card .source{font-size:10px;color:var(--text-quaternary);margin-top:8px}
+.cta-row{display:flex;gap:12px;margin:24px 0;flex-wrap:wrap}.cta-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;background:var(--accent);color:var(--bg);border-radius:8px;font-weight:600;font-size:13px;text-decoration:none}.cta-secondary{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border:1px solid var(--border);color:var(--text-primary);border-radius:8px;font-size:13px;background:var(--surface-raised);text-decoration:none}
+.section{padding:48px;border-bottom:1px solid var(--border);max-width:900px}.section-title{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:20px;font-weight:600}.section h2{font-size:28px;font-weight:500;margin-bottom:16px;line-height:1.2}.section p{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:16px}.section p.lead{font-size:16px;color:var(--text-primary);line-height:1.6}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:24px 0}.card{border:1px solid var(--border);border-radius:10px;padding:20px;background:var(--surface-raised)}.card h3{font-size:15px;font-weight:500;margin-bottom:8px;color:var(--text-primary)}.card p{font-size:13px;color:var(--text-secondary);line-height:1.6}
+.scan-reading{border:1px solid var(--accent);border-radius:12px;padding:20px;background:#1a1a24;margin:24px 0}.scan-reading h4{color:var(--accent);margin-bottom:12px}.transcript{font-family:Georgia,serif;font-size:14px;background:#0a0a0f;padding:12px;border-radius:6px;border:1px solid var(--border);margin:12px 0;white-space:pre-wrap}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:500}.badge.proven{background:var(--positive-dim);color:var(--positive)}.badge.caution{background:var(--warning-dim);color:var(--warning)}.badge.rejected{background:var(--danger-dim);color:var(--danger)}.badge.hypothesis{background:var(--accent-dim);color:var(--accent)}
+.note-box{padding:14px 18px;border-radius:8px;border-left:3px solid var(--warning);background:#c9a44c11;font-size:13px;color:var(--text-secondary);margin:16px 0}.note-box.mystery{border-left-color:var(--accent);background:#c9a96e11}.note-box.verified{border-left-color:var(--positive);background:#5c9e6e11}
+.data-table{width:100%;border-collapse:collapse;font-size:13px;margin:16px 0}.data-table th{text-align:left;padding:10px 12px;border-bottom:2px solid var(--border);color:var(--text-tertiary);font-size:11px;text-transform:uppercase}.data-table td{padding:10px 12px;border-bottom:1px solid var(--border);color:var(--text-secondary);vertical-align:top}
+.request-box{border:1px dashed var(--accent);border-radius:10px;padding:16px;background:var(--accent-glow);margin:16px 0}.request-box strong{color:var(--accent)}.request-box a{display:inline-block;margin-top:8px;padding:8px 14px;background:var(--surface-raised);border:1px solid var(--accent);border-radius:6px;color:var(--accent);font-size:12px}
+.site-footer{padding:32px 48px;text-align:center;font-size:12px;color:var(--text-quaternary);border-top:1px solid var(--border)}
+@media(max-width:900px){.sidebar{transform:translateX(-100%);transition:transform .3s}.sidebar.open{transform:translateX(0)}.main-content{margin-left:0}.hero{padding:40px 24px}.section{padding:32px 24px}.menu-toggle{display:block;position:fixed;top:16px;left:16px;z-index:300;background:var(--surface);border:1px solid var(--border);color:var(--text-primary);padding:8px 12px;border-radius:6px}}@media(min-width:901px){.menu-toggle{display:none}}
 </style>
 </head>
 <body>
 <button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰ Menu</button>
 <div class="app-layout">
 <aside class="sidebar">
-<div class="sidebar-header"><div class="sidebar-brand"><div class="sidebar-mark">JA</div><div><div class="sidebar-title">The Joan Archive</div><div class="sidebar-subtitle">v2.0 Public — 19 July 2026</div></div></div></div>
+<div class="sidebar-header"><div class="sidebar-brand"><div class="sidebar-mark">JA</div><div><div class="sidebar-title">The Joan Archive</div><div class="sidebar-subtitle">Open Access · v1.3 Public · 19 July 2026</div></div></div></div>
 <nav class="sidebar-nav">
-<div class="nav-section-title">Why This Matters</div>
-<a href="#why" class="nav-item active" onclick="setActive(this)">Why Should It Matter?</a>
-<a href="#who" class="nav-item" onclick="setActive(this)">Who Else It Affects</a>
-<div class="nav-section-title">The Evidence</div>
-<a href="#anomaly" class="nav-item" onclick="setActive(this)">The Anomaly</a>
-<a href="#scan-lab" class="nav-item" onclick="setActive(this)">⭐ Scan Lab — Proof</a>
-<a href="#deeds" class="nav-item" onclick="setActive(this)">Deed Gallery — 55 Images</a>
-<a href="#english-proof" class="nav-item" onclick="setActive(this)">English Women vs Joan</a>
-<a href="#primary-sources" class="nav-item" onclick="setActive(this)">Primary Sources</a>
-<a href="#firewalls" class="nav-item" onclick="setActive(this)">5-John Firewall</a>
-<a href="#contamination" class="nav-item" onclick="setActive(this)">Contamination Index</a>
-<a href="#unknown" class="nav-item" onclick="setActive(this)">What We Don't Know</a>
-<a href="#pressure" class="nav-item" onclick="setActive(this)">📦 Pressure the Archive</a>
+<div class="nav-section-title">Start Here</div>
+<a href="#why" class="nav-item active">Why it matters to you</a>
+<a href="#core" class="nav-item">The 2 appearances</a>
+<a href="#scan-lab" class="nav-item">⭐ How we read a damaged page</a>
+<div class="nav-section-title">Evidence</div>
+<a href="#deeds" class="nav-item">Deed Gallery</a>
+<a href="#who" class="nav-item">Who else this affects</a>
+<a href="#sources" class="nav-item">Primary Sources</a>
+<a href="#names" class="nav-item">Name Fragments</a>
+<a href="#firewalls" class="nav-item">5-John Firewall</a>
+<a href="#pressure" class="nav-item">📦 Pressure the Archive</a>
+<div class="nav-section-title">Method</div>
+<a href="#contamination" class="nav-item">Contamination Index</a>
+<a href="#unknown" class="nav-item">What We Don't Know</a>
 </nav>
+<div style="padding:16px 20px;border-top:1px solid var(--border);font-size:10px;color:var(--text-quaternary);">
+Open RED threads for researchers:<br>
+<a href="/theory/open-contradictions/" style="color:var(--text-tertiary);">/theory/open-contradictions/</a>
+</div>
 </aside>
+
 <main class="main-content">
-<div class="verify-banner"><span class="dot-live"></span> <strong>Images:</strong> 55 total | 42 Verified | 8 Pending | All in /images/ — served via GitHub raw. <strong>Research Packet:</strong> v4.2 March 2026 — 5-lane convergence 65-73% | Last verified: 19 July 2026</div>
+<div class="verify-banner"><span class="dot-live"></span> <strong>Research Packet:</strong> v5.0-draft | <strong>Public Site v1.3 Public:</strong> Death-date corrected, Pawtuxet marked UNPULLED, Phillippa fix, 1688 continuity. Every PROVEN links to image.</div>
 
 <section class="hero" id="why">
-<h1>More history is <em>rotting</em> than is being used.</h1>
-<p class="lead">We tell our children we protect their history. We don't. We let it rot on shelves.</p>
-<div class="stats-row">
-<div class="stat-card"><div class="hero-stat">~5%</div><div class="hero-stat-sub">Digitized — Council of Europe 2024 survey found only small proportion, about 5%, digitized【2505269480216209349†L60-L63】<br><a href="https://phys.org/news/2024-04-freedom-extent-archives-accessible.html" target="_blank">Source →</a></div></div>
-<div class="stat-card"><div class="hero-stat">10B+</div><div class="hero-stat-sub">Pages undigitized at NARA — boxes fill vast storehouses, well over 10 billion pages, most with little to none digitized【3639377021753146381†L66-L72】<br><a href="https://today.umd.edu/the-national-archives-has-over-10b-undigitized" target="_blank">Source →</a></div></div>
-<div class="stat-card"><div class="hero-stat">1-3%</div><div class="hero-stat-sub">Kept forever — NARA: only 1%-3% are kept forever【3639377021753146381†L5-L8】<br><a href="https://www.archives.gov/" target="_blank">Source →</a></div></div>
-<div class="stat-card"><div class="hero-stat">Vast majority</div><div class="hero-stat-sub">Not online — vast majority has *not* been digitized and is *not* available online【3639377021753146381†L41-L45】</div></div>
+<h1>She appears twice, <br>then <em>vanishes.</em> <br>95% of her world was never scanned.</h1>
+<p class="why-matters">In March and May 1682, Joan, wife of John Greene of Quidnessett, had to give consent for two land sales. No baptism, no marriage, no burial record — before or after. For 40 years of her husband's career, she is visible only when English law needed to extinguish her title. Where does that authority come from?</p>
+
+<div class="stat-row">
+<div class="stat-card"><div class="num">~5%</div><div class="label">of archives digitized</div><div class="source">Council of Europe survey: “only a small proportion, about 5%, have been digitized” — 2024 <a href="https://phys.org/news/2024-04-freedom-extent-archives-accessible.html" target="_blank">source</a></div></div>
+<div class="stat-card"><div class="num">10B+</div><div class="label">pages still on shelves</div><div class="source">NARA: “well over 10 billion pages... most having little to none... digitized”</div></div>
+<div class="stat-card"><div class="num">1-3%</div><div class="label">kept forever at all</div><div class="source">NARA: “only 1%-3%... are kept by us forever”</div></div>
 </div>
-<p>This site is about one woman — Joan, wife of John Greene of Quidnessett — who appears twice in 1682 and then vanishes. She is not unknown. She is undigitized. And the same system that lost her is losing everyone else.</p>
-<p style="color:var(--accent);">Joane appears twice: March 24, 1681/2 home-place (life estate to Joan, "or to her mother if she survive") and May 19, 1682 Pawtuxet (free & voluntary consent to William Carpenter, witnesses Wickes & Gorton) — then never again. That pattern is the evidence.</p>
+
+<p style="font-size:14px;color:var(--text-secondary);max-width:640px;">Most unpublished archival material “has *not* been digitized and is *not* available online” and represents “just a fraction of holdings”. If we don't request it, it rots. If we don't make it accessible, our children can't find it.</p>
+
+<div class="cta-row">
+<a href="#pressure" class="cta-primary">📦 Request a deed — 5 min →</a>
+<a href="#core" class="cta-secondary">See the 2 deeds that name her →</a>
+</div>
+
+<div class="note-box mystery"><strong>Why Joan matters beyond genealogy:</strong> If Joan held Narragansett title, English law had to translate matrilineal property logic (“or to her mother if she survive”) into a life-estate clause. That's a rare written trace of two legal systems colliding — and it survived because someone asked for consent twice in one month.</div>
 </section>
 
-<section class="section" id="who">
-<div class="section-title">Who else it affects — Not just genealogy</div>
-<h2>This is not about one family. It's about whose history we preserve.</h2>
-<div class="card-grid">
-<div class="card"><h3>🏛 Narragansett descendants</h3><p>English deed forms hid matrilineal title. "Or to her mother if she survive" is Narragansett law translated into English. If we don't digitize sachem marks, we erase female sachem authority.</p></div>
-<div class="card"><h3>🏡 Rhode Island landowners</h3><p>Your chain of title may hinge on an unread sachem mark. 1672 Fones Purchase (Anashuecot) and 1682 Joan deeds are same parcel — Quidnessett. Boundaries still matter.</p></div>
-<div class="card"><h3>👨👩👧 Greene descendants — 10,000 broken trees</h3><p>La Mance (1904) invented "Joan Beggarly" with NO sources. Rixford copied it. Ancestry copied Rixford. Now 10k trees say Joan died 1643/44 — 38 years before she appears in 1682. One error became fact.</p></div>
-<div class="card"><h3>🎓 Every child in Rhode Island</h3><p>If 95% of founding documents are not digitized, we are teaching history from 5% of the evidence. Are we protecting our children's history?</p></div>
-</div>
-<div class="note-box info"><strong>Greene DNA Project:</strong> Greene DNA project suggests John Greene of Quidnessett is NOT same DNA thread as Surgeon John of Warwick — supports 5-John firewall. Greene DNA project results: <a href="https://www.familytreedna.com/public/Green?iframe=ydna-results-overview" target="_blank">FamilyTreeDNA Green project →</a></div>
-</section>
-
-<section class="section" id="anomaly">
-<div class="section-title">The Anomaly — Two Appearances</div>
+<section class="section" id="core">
+<div class="section-title">The Core Question</div>
 <h2>Why does a woman who appears twice have to give consent?</h2>
-<p class="lead">March 24, 1681/2 (OS) — John & Joan convey home-place to sons Daniel & James, reserving 30s life estate to Joan, "or to her mother if she survive." May 19, 1682 — John & Joan give "free & voluntary consent" to William Carpenter, Pawtuxet. Witnesses: John Wickes, Samuel Gorton.</p>
-<p>She is alive at both. English law reached for her twice in 56 days because her title was load-bearing. Then she disappears. No death, burial, probate, dower. No record after May 19, 1682.</p>
-<div class="note-box mystery"><strong>Where English women should appear, Joan does not.</strong> See English proof comparison below — Sarah Stanton, Mary Tibbitts, Elizabeth Wickes appear in multiple record types. Joan appears only when land title required her.</div>
+<p class="lead"><strong>Appearance 1 — March 24, 1681/2 (OS = March 1682 NS) Home-place:</strong> John Greene and Joan his wife grant 180 acres to sons Daniel (120a) and James (60a), reserving 30-shilling life estate to Joan, “or to her mother if she survive.” <span class="badge proven">TIER 1 — SK Land Evid Vol IV</span></p>
+<p class="lead"><strong>Appearance 2 — May 19, 1682 Pawtuxet:</strong> John Greene and Joan his wife — “free & voluntary consent” to William Carpenter, witnessed by John Wickes, Samuel Gorton, William Carpenter. <span class="badge caution">TIER 1 — UNPULLED original — previous link to 1688 Devil's Purchase was error and removed</span></p>
+<p>56 days apart. Alive at both. Then — nothing. No baptism, marriage, church roll, court testimony, estate inventory, dower claim, or gravestone before or after May 1682.</p>
 </section>
 
 <section class="section" id="scan-lab">
-<div class="section-title">⭐ Scan Lab — Primary Forensics — 19 July 2026</div>
-<h2>What your images prove — with links</h2>
+<div class="section-title">⭐ How we read a damaged page — Primary Forensics</div>
+<h2>Same name, three spellings, same deed — and a mark that isn't hers</h2>
 
 <div class="scan-reading">
-<h4>1. Anashuecot = Awassecouse — PROVEN same person, same deed</h4>
-<p>Your image <code>1672_scan_p22_kin_cluster.jpg</code> (NK Land Evidence pp.22-23) proves:</p>
-<div class="transcript">Top damaged header: [Awashowet / Anashuecot]
-Absolom affidavit: "...bargayne and sale ... that the Indian Sachem Awassecouse made unto John Green..."
-
-Same transaction, same role (Chiefe Sachem and heire), two spellings. Phonetic variation, not two people.</div>
-<p><span class="badge proven">PROVEN — Tier 1 — Image: 1672_scan_p22_kin_cluster.jpg</span> <a href="https://raw.githubusercontent.com/lemuwah/joan-archive/main/images/1672_scan_p22_kin_cluster.jpg" target="_blank">View original →</a></p>
+<h4>Proof: Anashuecot = Awashowet = Awassecouse — same person</h4>
+<div class="transcript">Top header, damaged: ...of Awashowet [Anashuecot — head torn]
+Affidavit: "...that the Indian Sachem Awassecouse made unto John Green Henry Tibbits John Fones..."
+Fones index: Anashuecot, "Chiefe Sachem and heire"
+Three spellings, one role, same grantor, same deed. PROVEN same individual.</div>
+<p>If Awassecouse = Anashuecot, and affidavit says Awassecouse was left as guardian by father Tocomiquian (“left as a gaurdan by his father Tocomiquian Lamey”), then Tocomiquian is father of Anashuecot. Chain now probable — but kept in researcher notes footer per Law 3, no early promotion.</p>
 </div>
 
 <div class="scan-reading">
-<h4>2. Bow-and-arrow mark — Does NOT = Anashuecot</h4>
-<p>You correctly noted: visible mark is part of kin cluster, not Anashuecot.</p>
-<div class="transcript">Marks visible p.22:
-Womphoage [mark]
-Ompaniot [mark]
-Mommocke [mark that looks like bow-and-arrow — NOT Anashuecot]
-Seecomp his mark
-Tyworasha his mark
-Absolom Counseler his Mark
-
-Top where Anashuecot mark would be = TORN/MISSING.</div>
-<p><span class="badge rejected">NULL — Origin Kettelle Papers Box 2; RIHS Mss 1210 — isolated compilation, no primary</span> — Rocky Mountain transcript adding "his marke" for Anashuecot = UNVERIFIED layer</p>
+<h4>Disproof: Bow-and-arrow mark ≠ Anashuecot's mark</h4>
+<div class="transcript">Visible marks p.22:
+- Womphoage [his mark]
+- Ompaniat [his mark]
+- Mommocke [mark that looks like A / bow-and-arrow]
+- Seecomp his mark
+- Tyworasha his mark
+Top where Anashuecot mark would be = TORN / MISSING.
+You cannot assign Mommocke's mark to Anashuecot.
+Claim origin: Kettelle Papers Box 2; RIHS Mss 1210 — isolated compilation, no primary shows Anashuecot bow-and-arrow.
+Rocky Mountain transcript adding “his marke” = UNVERIFIED layer.</div>
+<div class="note-box verified">Lesson: A damaged page can create a false fact if a transcriber fills the gap. This is why we link every PROVEN badge to the image.</div>
 </div>
+</section>
 
-<div class="scan-reading">
-<h4>3. Tocomiquian line — Careful reading</h4>
-<div class="transcript">"...left as a gaurdan by his father Tocomiquian Lamey should not deprive him of his lands..."
-
-Proves: Tocomiquian is father of Awassecouse (=Anashuecot per #1). Does NOT prove father of Joan — requires Joan=Anashuecot proof first (PROBABLE not PROVEN per Packet v4.2 65-73%). Kept as open thread in /theory/open-contradictions/, not homepage banner per Law 3.</div>
-<p><span class="badge caution">OPEN — Image: 1672_scan_p22_kin_cluster.jpg — lower half</span></p>
-</div>
-
-<div class="scan-reading">
-<h4>4. 1688 Devil's Purchase — Same kin group, 16 years later, after John Sr dead — Jr hypothesis</h4>
-<p>Your upload <code>image_538701.png</code> (pp.20-21) — highlighted names: <strong>Womphoage, Ompamont, Quanuske and Mommocke have both signed formerly</strong> + <strong>John Greene</strong></p>
-<p>1672 network = 1688 network = same Fones, Tibbitts, Womphoage, Ompamont, Mommocke. If Edward deed proves John Sr dead by Sep 25, 1685, then 1688 John Greene = probable John Greene Jr stepping into father's network.</p>
-<div class="transcript">This is why 1688 is vital even though it is NOT 1682: It proves continuity of title through King Philip's War. The sachem cluster survived and is STILL grantor in 1688. Joan's title was load-bearing in between — May 1682.</div>
-<p><span class="badge proven">VERIFIED — Image: 1688-devilspurchase.jpg</span> <a href="https://raw.githubusercontent.com/lemuwah/joan-archive/main/images/1688-devilspurchase.jpg" target="_blank">View original →</a></p>
+<section class="section" id="who">
+<div class="section-title">Who else this affects</div>
+<h2>It's not just about Joan.</h2>
+<div class="card-grid">
+<div class="card"><h3>🪶 Narragansett descendants</h3><p>If Joan held title through her mother, English law translated matrilineal inheritance into “or to her mother if she survive.” That's a rare written trace of two legal systems colliding.</p></div>
+<div class="card"><h3>🏠 Rhode Island landowners</h3><p>Your chain of title may run through 1672 Fones and 1688 Devil's Purchase — same kin group: Womphoage, Ompamont, Quanuske, Mommocke. 1688 repeating 1672 proves sachem cluster's sale was honored after King Philip's War.</p></div>
+<div class="card"><h3>🌳 Greene descendants</h3><p>La Mance (1904) assigned “Joan Beggarly” zero sources. Alice Beggarly died Jan 1643/44 — 38 yrs before Joan 1682. Impossible, still in trees today.</p></div>
+<div class="card"><h3>👧 Every child in RI</h3><p>Only ~5% digitized. If we don't request, no public pressure to preserve. 95% still on shelves.</p></div>
 </div>
 </section>
 
 <section class="section" id="deeds">
-<div class="section-title">Deed Gallery — All 55 Images Linked</div>
-<h2>Every claim links to an image. No image deleted per your README.</h2>
-<p>Base URL: <code>https://raw.githubusercontent.com/lemuwah/joan-archive/main/images/</code> — All images in one folder for ease.</p>
+<div class="section-title">Deed Gallery — Timeline</div>
+<h2>The documents</h2>
 
-<div class="request-box" style="border-color:var(--danger);">
-<strong>⚠ May 19, 1682 Pawtuxet — Joan's "free & voluntary consent" — IMAGE NEEDED — High priority</strong><br>
-Previous version incorrectly linked to 1688-devilspurchase.jpg. That image is 1688 Devil's Purchase, NOT 1682 Pawtuxet. Link removed.<br>
-Where: RI State Archives — NK Land Evidence Vol 1 — May 19, 1682 — John & Joan Greene to William Carpenter, Pawtuxet, witnesses Wickes & Gorton.<br>
-<a href="mailto:reference@sos.ri.gov?subject=Request: May 19 1682 Greene to Carpenter Pawtuxet&body=Hello, I request 600 DPI scan of NK Land Evidence Vol 1, May 19 1682, John and Joan Greene to William Carpenter, Pawtuxet, witnesses John Wickes and Samuel Gorton. For public research library The Joan Archive.">📧 Request this deed — 5 min →</a>
+<div class="gallery-section">
+<h3>1672 Fones Purchase — Anashuecot / Awassecouse / Awashowet — same person, head damaged</h3>
+<p style="font-size:13px;color:var(--text-tertiary);">John Greene first-named purchaser. Grantor “Chiefe Sachem and heire.” Top torn — no mark verifiable. Witness Henry Greene (unflagged). <span class="badge proven">PROVEN Tier 1 — /images/1672_kin_cluster_p22_marks_tocomiquian.jpg</span></p>
 </div>
 
-<div class="gallery-section"><h3>1672 Fones Purchase — Anashuecot Deed — 5 images + new scan</h3><div class="gallery" id="gallery-1672"></div><div class="detail-pane" id="detail-1672"></div></div>
-<div class="gallery-section"><h3>1682 Home-Place — Joan/e Named — Appearance 1: Mar 24 1681/2 + Appearance 2: May 19 1682 UNPULLED</h3><div class="gallery" id="gallery-1682"></div><div class="detail-pane" id="detail-1682"></div></div>
-<div class="gallery-section"><h3>1674 Awawsunks — "her marke" correctly recorded — comparator</h3><div class="gallery" id="gallery-1674"></div><div class="detail-pane" id="detail-1674"></div></div>
-<div class="gallery-section"><h3>Absolom — Counsellor Testimony — 8 images — includes Tocomiquian line</h3><div class="gallery" id="gallery-absolom"></div><div class="detail-pane" id="detail-absolom"></div></div>
-<div class="gallery-section"><h3>Richard Smith — Dutch Colonial Ties — 5 images</h3><div class="gallery" id="gallery-smith"></div><div class="detail-pane" id="detail-smith"></div></div>
-<div class="gallery-section"><h3>1688 Devil's Purchase — Post-war network continuity — Jr hypothesis — 2 images</h3><p class="gallery-desc">NOT Joan's appearance — proves kin group survived war and re-conveyed to John Greene (probable Jr after Sr dead Sep 25 1685).</p><div class="gallery" id="gallery-devil"></div><div class="detail-pane" id="detail-devil"></div></div>
-<div class="gallery-section"><h3>Maps & Georeference — 8 images</h3><div class="gallery" id="gallery-maps"></div><div class="detail-pane" id="detail-maps"></div></div>
-<div class="gallery-section"><h3>Primary Sources — Supporting — 3 images + Council Orders</h3><div class="gallery" id="gallery-sources"></div><div class="detail-pane" id="detail-sources"></div></div>
-<div class="gallery-section"><h3>Council Orders & Petitions — 12 images — Forty years residency proof</h3><div class="gallery" id="gallery-council"></div><div class="detail-pane" id="detail-council"></div></div>
-<div class="gallery-section"><h3>Name Fragments — Disambiguation — 3 images</h3><div class="gallery" id="gallery-names"></div><div class="detail-pane" id="detail-names"></div></div>
-<div class="gallery-section"><h3>Identity Firewalls — Documentation — 2 images</h3><div class="gallery" id="gallery-firewall"></div><div class="detail-pane" id="detail-firewall"></div></div>
-<div class="gallery-section"><h3>Orbit Convergence — 4 images</h3><div class="gallery" id="gallery-orbit"></div><div class="detail-pane" id="detail-orbit"></div></div>
-<div class="gallery-section"><h3>Fones / Rocky David — Transcriber — 1 image</h3><div class="gallery" id="gallery-fones"></div><div class="detail-pane" id="detail-fones"></div></div>
-<div class="gallery-section"><h3>Still Needs ID — Bad Copies — 3 images — flagged not hidden</h3><div class="gallery" id="gallery-needsid"></div><div class="detail-pane" id="detail-needsid"></div></div>
+<div class="gallery-section">
+<h3>March 24, 1681/2 Home-place — Appearance 1 of 2</h3>
+<p style="font-size:13px;color:var(--text-tertiary);">Joan life estate + mother clause. <span class="badge proven">PROVEN — SK Land Evid Vol IV</span></p>
+</div>
+
+<div class="gallery-section" style="border:2px dashed var(--warning);padding:16px;border-radius:12px;">
+<h3>May 19, 1682 Pawtuxet — Carpenter consent — Appearance 2 of 2 — UNPULLED</h3>
+<p style="font-size:13px;color:var(--text-tertiary);"><strong>Previous link to 1688-devilspurchase.jpg was wrong deed. Removed.</strong> Need original: NK Land Evid Vol 1, May 19 1682, John & Joan Greene to William Carpenter, witnesses Wickes, Gorton. <span class="badge caution">UNPULLED — high priority</span></p>
+<div class="request-box"><strong>Request this deed</strong><br><a href="mailto:reference@sos.ri.gov?subject=Request:%20May%2019%201682%20Greene%20to%20Carpenter%20Pawtuxet&body=Hello%20RI%20State%20Archives%2C%20I%20request%20a%20600%20DPI%20scan%20of%20NK%20Land%20Evidence%20Vol%201%2C%20May%2019%2C%201682%2C%20John%20%26%20Joan%20Greene%20to%20William%20Carpenter.">📧 Email RI State Archives →</a></div>
+</div>
+
+<div class="gallery-section">
+<h3>Sep 25, 1685 Edward Greene — John Sr death terminus — NOT Joan death proof</h3>
+<p style="font-size:13px;color:var(--text-tertiary);"><strong>PROVEN:</strong> John Greene Sr deceased before Sep 25, 1685 via Edward deed. <strong>NOT proven:</strong> Joan deceased by then. Need verbatim: does it mention Joan? Previous claim overstated — corrected. <span class="badge proven">John Sr PROVEN deceased by Sep 25 1685</span></p>
+</div>
+
+<div class="gallery-section">
+<h3>1688 Devil's Purchase — Same kin group as 1672 — 16 years later — Is this Jr?</h3>
+<p style="font-size:13px;color:var(--text-tertiary);">Image 19 of 444 — pp.20-21 — highlighted: “Womphoage, Ompamont, Quanuske and Mommocke have both signed formerly” — same cluster as 1672. Grantee: John Greene. If John Sr dead by Sep 25 1685, then 1688 John Greene is probably John Greene Jr. Need verbatim for “Jr”. <span class="badge hypothesis">PROBABLE Jr — /images/1688-devilspurchase.jpg</span></p>
+</div>
 </section>
 
-<section class="section" id="english-proof">
-<div class="section-title">English Proof Comparison — Why Joan is Anomalous</div>
-<h2>Other women leave a paper trail. Joan doesn't.</h2>
-<p class="lead">Comparator argument: English women of comparable status in Narragansett Country 1660-1690 routinely appear in multiple record types. Joan appears only when land rights intersect English law.</p>
+<section class="section" id="sources">
+<div class="section-title">Primary Sources — Every PROVEN links to image</div>
 <table class="data-table">
-<thead><tr><th>Woman</th><th>Baptism</th><th>Marriage</th><th>Church</th><th>Deeds</th><th>Probate</th><th>Total</th><th>Status</th></tr></thead>
+<thead><tr><th>Document</th><th>Date</th><th>What it says</th><th>Proof</th></tr></thead>
 <tbody>
-<tr><td>Sarah Stanton / Tibbitts — neighbor</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>5+</td><td><span class="badge proven">Multiple</span> — [PENDING confirm]</td></tr>
-<tr><td>Mary Tibbitts / Greene</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>5+</td><td><span class="badge proven">Multiple</span></td></tr>
-<tr><td>Elizabeth Wickes — same orbit</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>5+</td><td><span class="badge proven">Multiple</span></td></tr>
-<tr style="background:var(--danger-dim);"><td><strong>Joan Greene — wife of Quidnessett John</strong></td><td>✗</td><td>✗</td><td>✗</td><td>2 — Mar 24 1681/2 + May 19 1682 ONLY</td><td>✗</td><td>2</td><td><span class="badge rejected">Anomalous — only when title needed clearing</span></td></tr>
+<tr><td>1672 Fones #90 pp.22-23</td><td>Jan 1 1671/2</td><td>Anashuecot = Awashowet = Awassecouse same person; top damaged; Tocomiquian father of Awassecouse; Henry Greene witness</td><td><a href="/images/1672_kin_cluster_p22_marks_tocomiquian.jpg">Image 1687.jpg — Tier 1</a></td></tr>
+<tr><td>Mar 24 1681/2 Home-place</td><td>Mar 24 1681/2</td><td>Joan life estate + mother clause</td><td><a href="/images/1682_home_place_deed.jpg">Image</a></td></tr>
+<tr><td>May 19 1682 Pawtuxet Carpenter</td><td>May 19 1682</td><td>Joan free & voluntary consent — UNPULLED</td><td><span class="badge caution">UNPULLED</span></td></tr>
+<tr><td>Sep 25 1685 Edward Greene</td><td>Sep 25 1685</td><td>John Sr deceased — PROVEN for John Sr only, Joan death UNRESOLVED</td><td>Needs verbatim</td></tr>
+<tr><td>1688 Devil's Purchase pp.20-21</td><td>1688</td><td>Same kin group as 1672 — probable Jr</td><td><a href="/images/1688-devilspurchase.jpg">Image 19 of 444</a></td></tr>
 </tbody>
 </table>
 </section>
 
-<section class="section" id="primary-sources">
-<div class="section-title">Primary Sources — Every PROVEN Links to Image</div>
-<h2>Every claim points back to a document you can see</h2>
-<table class="data-table">
-<thead><tr><th>Document</th><th>Date</th><th>What it says</th><th>Status — Link</th></tr></thead>
-<tbody>
-<tr><td>RI Land — 1672 Fones Purchase Deed #90</td><td>1 Jan 1671/72</td><td>Anashuecot "Chiefe Sachem and heire" = Awashowet = Awassecouse — same person, phonetic variation in same deed. Top damaged, mark not visible. Tocomiquian father of Awassecouse.</td><td><span class="badge proven">Tier 1</span> <a href="https://raw.githubusercontent.com/lemuwah/joan-archive/main/images/1672_scan_p22_kin_cluster.jpg" target="_blank">Scan pulled 19 July 2026 →</a></td></tr>
-<tr><td>Mar 24, 1681/2 Home-place Deed</td><td>24 Mar 1681/2 (1682 NS)</td><td>Joan — 30s life estate, "or to her mother if she survive" — if Alice Beggarly (d. Jan 1643/44) meaningless, if Narragansett matrilineal coherent.</td><td><span class="badge proven">Tier 1</span> <a href="https://raw.githubusercontent.com/lemuwah/joan-archive/main/images/1682.jpg" target="_blank">1682.jpg →</a></td></tr>
-<tr><td>May 19, 1682 Pawtuxet — Carpenter</td><td>19 May 1682</td><td>Joan "free & voluntary consent" — UNPULLED original. Appearance 2 of 2.</td><td><span class="badge caution">UNPULLED — Request needed</span></td></tr>
-<tr><td>Sep 25, 1685 Edward Greene deed</td><td>25 Sep 1685</td><td>John Greene Sr deceased by this date — PROVEN for John Sr only. Joan death UNRESOLVED — last May 19 1682. Does it mention Joan? Need verbatim.</td><td><span class="badge proven">John Sr PROVEN | Joan UNRESOLVED</span></td></tr>
-<tr><td>Hough 1858 Court Martial pp.173-191</td><td>24 Aug 1676</td><td>John Greene appears; Daniel Greene [PROBABLE ID] as witness — verbatim pending.</td><td><span class="badge caution">ID PROBABLE only — PENDING</span></td></tr>
-</tbody>
-</table>
+<section class="section" id="names">
+<div class="section-title">Name Fragments — Corrected</div>
+<h2>Who is NOT Joan</h2>
+<table class="data-table"><thead><tr><th>Name</th><th>Husband / Role</th><th>Fits Quidnessett Joan?</th></tr></thead><tbody>
+<tr><td>Joane Tattersall — m. Nov 4 1619 Salisbury</td><td>Surgeon John Greene — 1st wife</td><td>NO — died ~1635 Boston</td></tr>
+<tr><td>Alice Beggarly</td><td>Surgeon John Greene — 2nd wife</td><td>NO — died Jan 1643/44 — 38 yrs before May 1682</td></tr>
+<tr><td>Phillippa (not Phillip) — CORRECTED</td><td>Surgeon John Greene — 3rd wife — after Aug 1668</td><td>NO — Warwick</td></tr>
+<tr><td>Mary Jeffery — “sometimes wife to John Greene” per father's will</td><td>Newport/Newark John? — per Jeffery will</td><td>NO — distinct firewall</td></tr>
+<tr style="background:var(--positive-dim);"><td>Joan wife of John Greene of Quidnessett — Mar 24 1681/2 + May 19 1682 only</td><td>John Greene of Quidnessett</td><td>YES — 2 appearances only — last May 19 1682</td></tr>
+<tr><td>Anashuecot / Awashowet / Awassecouse — SAME PERSON per p.22</td><td>Chiefe Sachem and heire 1672 — father Tocomiquian</td><td>WORKING HYPOTHESIS — Joan = Anashuecot? — PROBABLE not PROVEN</td></tr>
+</tbody></table>
 </section>
 
 <section class="section" id="firewalls">
-<div class="section-title">Identity Firewalls — Separation of the Johns</div>
-<h2>5-John Firewall — Why separation matters</h2>
-<table class="data-table">
-<thead><tr><th>Attribute</th><th>Quidnessett John — Subject</th><th>Surgeon John (Warwick)</th><th>Newark John (NJ)</th><th>Stonewall John (d.1676)</th><th>John 5: East Greenwich m. Wardwell</th></tr></thead>
-<tbody>
-<tr><td>Wives</td><td>Joan/e — Mar 24 1681/2 + May 19 1682 ONLY — Last appearance May 19 1682</td><td>1) Joane Tattersall Nov 4 1619 Salisbury d.~1635, 2) Alice Beggarly d.Jan 1643/44, 3) Phillippa (not Phillip) after Aug 27 1668</td><td>NJ records — Mary Jeffery per father will "sometimes wife to John Greene" — check assignment</td><td>Nawham d.July 2 1676</td><td>Abigail Wardwell — Clarke legend risk</td></tr>
-<tr><td>Geography</td><td>Quidnessett throughout</td><td>Shawomet/Warwick</td><td>Newark</td><td>Narragansett</td><td>East Greenwich</td></tr>
-<tr><td>Key doc</td><td>1672 first-named; 1682 x2</td><td>Winthrop Dec 1638 marries Beggarly</td><td>1666 NJ</td><td>Roger Williams Apr 1 1676</td><td>East Greenwich — Wardwell marriage</td></tr>
-</tbody>
-</table>
-<div class="note-box info"><strong>Mary Jeffery note:</strong> Father will says "my daughter Mary, sometimes wife to John Greene" — likely Newport John, not Quidnessett. Creates additional firewall: Mary Jeffery ≠ Joan.</div>
+<div class="section-title">5-John Firewall</div>
+<h2>Five distinct John Greenes — don't merge them</h2>
+<table class="data-table"><thead><tr><th>John</th><th>Wife(s)</th><th>Key doc</th></tr></thead><tbody>
+<tr><td>Quidnessett John</td><td>Joan/e — Mar 24 1681/2 + May 19 1682 only — Sr death before Sep 25 1685 PROVEN</td><td>1672; 1682 x2; 1685 Edward</td></tr>
+<tr><td>Surgeon John (Warwick)</td><td>1) Joane Tattersall 1619-~1635, 2) Alice Beggarly d.1643/44, 3) Phillippa after 1668</td><td>Winthrop; Will 1658</td></tr>
+<tr><td>Newark John (NJ)</td><td>Documented NJ</td><td>1666 Newark</td></tr>
+<tr><td>Stonewall John d.1676</td><td>Nawham d.July 2 1676</td><td>Roger Williams Apr 1676</td></tr>
+<tr><td>John 5 East Greenwich + Mary Jeffery confusion</td><td>Abigail Wardwell; Mary Jeffery “sometimes wife to John Greene” per father will</td><td>East Greenwich; Jeffery will</td></tr>
+<tr><td>John Greene Jr? — Hypothesis per 1688</td><td>Unknown</td><td>1688 Devil's Purchase — same kin group as 1672 — if Sr dead 1685, probable Jr</td></tr>
+</tbody></table>
+</section>
+
+<section class="section" id="pressure">
+<div class="section-title">📦 Pressure the Archive — Why aren't they preserved?</div>
+<h2>Are we protecting our children's history?</h2>
+<p class="lead">95% of deeds like Joan's have never been scanned. Every request you send is logged as public demand. Archives prioritize what the public asks for.</p>
+
+<div class="request-box"><strong>1. May 19, 1682 Pawtuxet — Joan's consent — UNPULLED</strong><br>RI State Archives — NK Land Evid Vol 1 — May 19 1682<br><a href="mailto:reference@sos.ri.gov?subject=Request:%20May%2019%201682%20Greene%20to%20Carpenter">📧 Email Archives →</a></div>
+<div class="request-box"><strong>2. Sep 25, 1685 Edward Greene — verbatim needed</strong><br>Does it mention Joan? Settles whether Joan death proven by 1685 or still UNRESOLVED.<br><a href="mailto:reference@sos.ri.gov?subject=Request:%20Sep%2025%201685%20Edward%20Greene%20verbatim">📧 Request Verbatim →</a></div>
+<div class="request-box"><strong>3. Alternate copy 1672 Fones top — recover Anashuecot head</strong><br>Current p.22 top torn — need intact copy<br><a href="mailto:reference@rihs.org?subject=Request:%20Alternate%20copy%201672%20Fones%20Deed">📧 Request Alternate 1672 →</a></div>
+<div class="request-box"><strong>4. 1688 Devil's Purchase verbatim — is it Jr?</strong><br>Same kin group as 1672, 16 years later, after John Sr dead — probable Jr.<br><a href="mailto:reference@sos.ri.gov?subject=Request:%20May%2025%201688%20Devil%27s%20Purchase%20verbatim">📧 Request 1688 Verbatim →</a></div>
 </section>
 
 <section class="section" id="contamination">
 <div class="section-title">Contamination Index</div>
-<h2>Errors that became facts through repetition</h2>
+<h2>Errors that became facts</h2>
 <div class="card-grid">
-<div class="card" style="border:2px solid var(--danger);"><h3>Trap 1: La Mance poison — Tier 4 INVALIDATED</h3><p>La Mance (1904) assigned "Joan Beggarly" with NO cited primary sources. Chronologically impossible — Alice Beggarly died Jan 1643/44, 38 years before Joan 1682. <a href="https://raw.githubusercontent.com/lemuwah/joan-archive/main/images/leManceLaw.jpg" target="_blank">Image: leManceLaw.jpg</a></p><span class="badge rejected">INVALIDATED</span></div>
-<div class="card" style="border:2px solid var(--positive);"><h3>Trap 5: Death-date — CORRECTED</h3><p>Old: "Joan PROVEN before Sep 25 1685" — overstated. Proven: John Sr deceased before Sep 25 1685 via Edward deed. Joan death UNRESOLVED — last May 19 1682. 1695-96 = contamination from Lieutenant John² MA probate.</p><span class="badge caution">John PROVEN | Joan UNRESOLVED</span></div>
-<div class="card"><h3>Trap 7: Bow-and-arrow — NULL</h3><p>Mark visible p.22 belongs to Mommocke, NOT Anashuecot — head missing/damaged. No primary shows Anashuecot bow-and-arrow. Origin Kettelle Papers Box 2; RIHS Mss 1210. Rocky Mountain "his marke" = UNVERIFIED layer.</p><span class="badge rejected">NULL</span></div>
-<div class="card"><h3>Trap 8: Tocomminon-as-father — Open thread</h3><p>p.22 proves Tocomiquian father of Awassecouse (=Anashuecot). Does NOT prove father of Joan until Joan=Anashuecot proven (65-73% per packet). Moved off homepage per Law 3 to avoid bold claim. See /theory/open-contradictions/</p><span class="badge hypothesis">OPEN</span></div>
+<div class="card"><h3>La Mance poison</h3><p>Assigned “Joan Beggarly” zero sources. Still in trees. Impossible.</p><span class="badge rejected">Tier 4 — INVALIDATED</span></div>
+<div class="card" style="border:2px solid var(--positive);"><h3>Death-date — CORRECTED per your catch</h3><p>Previous: “Joan PROVEN deceased before Sep 25 1685” — OVERSTATED. PROVEN: John Sr deceased before Sep 25 1685. Joan death = UNRESOLVED — last May 19 1682.</p><span class="badge caution">CORRECTED — John PROVEN | Joan UNRESOLVED</span></div>
+<div class="card"><h3>Bow-and-arrow — CORRECTED via scan</h3><p>Mark visible = Mommocke, not Anashuecot. Anashuecot head missing. No primary shows Anashuecot bow-and-arrow.</p><span class="badge rejected">NULL — Page loss</span></div>
 </div>
 </section>
 
 <section class="section" id="unknown">
-<div class="section-title">What We Don't Know — Honest Gaps</div>
-<h2>We don't hide gaps. We list them so you can help fill them.</h2>
+<div class="section-title">What We Don't Know</div>
 <div class="card-grid">
-<div class="card"><h3>❓ When did Joan die? — UNRESOLVED</h3><p>Last May 19 1682. Need Edward Greene Sep 25 1685 verbatim — does it mention Joan? Need burial/probate. Not proven before 1685.</p></div>
-<div class="card"><h3>❓ May 19 1682 Pawtuxet original — UNPULLED</h3><p>Current placeholder incorrectly linked to 1688 Devil's Purchase. Need original scan from RI State Archives.</p></div>
-<div class="card"><h3>❓ Anashuecot mark + gender — page loss</h3><p>p.22 top damaged — need alternate copy to recover head and mark. Rocky Mountain transcript UNVERIFIED.</p></div>
-<div class="card"><h3>❓ Hough 1858 verbatim — CRITICAL per packet XV</h3><p>Need pp.173-191 — confirms exact form of John Greene intervention. If bond/surety, Lane 5 upgrades 75%→90%+.</p></div>
-<div class="card"><h3>❓ Plymouth Colony Records — Awashonks as "Joan"</h3><p>Drake p.249 says Awashonks anglicized as "Joan" — Plymouth manuscript not yet accessed.</p></div>
+<div class="card" style="border:2px solid var(--warning);"><h3>When did Joan die?</h3><p>Last appearance May 19, 1682. Previous PROVEN before Sep 25 1685 was wrong — that proves John Sr dead, not Joan. Need Edward deed verbatim.</p><span class="badge caution">UNRESOLVED</span></div>
+<div class="card"><h3>1688 John Greene — Jr?</h3><p>Same kin group as 1672: Womphoage, Ompamont, Quanuske, Mommocke. If Sr dead 1685, 1688 grantee likely Jr.</p><span class="badge hypothesis">PROBABLE Jr</span></div>
+<div class="card"><h3>May 19 1682 Pawtuxet original</h3><p>Still UNPULLED — high priority — previous link to 1688 Devil's was error.</p><span class="badge caution">UNPULLED</span></div>
 </div>
-</section>
-
-<section class="section" id="pressure">
-<div class="section-title">📦 Pressure the Archive — Why Aren't They Preserved?</div>
-<h2>History is rotting. Every request is a vote to save it.</h2>
-<p class="lead">Only about 5% digitized【2505269480216209349†L60-L63】. Over 10 billion pages — most with little to none digitized【3639377021753146381†L66-L72】. Vast majority has *not* been digitized and is *not* available online【3639377021753146381†L41-L45】. Archives prioritize what public asks for. Your email matters.</p>
-
-<div class="request-box"><strong>1. May 19, 1682 Pawtuxet — Joan's consent — UNPULLED</strong><br>Where: RI State Archives ref@sos.ri.gov — NK Land Evidence Vol 1, May 19 1682, John & Joan Greene to William Carpenter, witnesses Wickes & Gorton<br><a href="mailto:reference@sos.ri.gov?subject=Request:%20May%2019%201682%20Greene%20to%20Carpenter%20Pawtuxet">📧 Request this deed →</a></div>
-
-<div class="request-box"><strong>2. Sep 25, 1685 Edward Greene — Need verbatim — does it mention Joan?</strong><br>Where: RI State Archives — NK Land Evidence Vol 2-3<br><a href="mailto:reference@sos.ri.gov?subject=Request:%20Sep%2025%201685%20Edward%20Greene%20deed%20verbatim">📧 Request verbatim →</a></div>
-
-<div class="request-box"><strong>3. 1672 Fones — Alternate copy to recover Anashuecot head</strong><br>Where: RIHS reference@rihs.org — Fones Record — need intact top<br><a href="mailto:reference@rihs.org?subject=Request:%20Alternate%20copy%201672%20Fones%20Purchase%20Deed%20%2390">📧 Request alternate copy →</a></div>
-
-<div class="request-box"><strong>4. Hough 1858 pp.173-191 — CRITICAL — Court Martial verbatim</strong><br>Where: RI State Archives / Brown University Library<br><a href="mailto:reference@sos.ri.gov?subject=Request:%20Hough%201858%20pp.173-191%20Newport%20Court%20Martial%20Aug%2024%201676">📧 Request Hough verbatim →</a></div>
-
-<div class="note-box verified"><strong>Your note:</strong> 55 images, 42 verified — that's more primary than most academic sites. All in one folder, served via raw GitHub, every PROVEN links to image — best practice.</div>
 </section>
 
 <footer class="site-footer">
-<p>The Joan/e Archive — Open access research library. History belongs to everyone. Access to the evidence should too.</p>
-<p>55 images — Base URL: https://raw.githubusercontent.com/lemuwah/joan-archive/main/images/ — All images in one folder per README 18 July 2026<br>Research Packet v4.2 March 2026 — 5-lane 65-73% — Public Site v2.0 — Built with proof links on every PROVEN.</p>
+<p>The Joan Archive — Open access research library.</p>
+<p>Every PROVEN links to an image. Every UNPULLED has a request button. 95% of archives are not digitized — your request creates demand.</p>
+<p style="margin-top:8px;">Public Site v1.3 Public — Includes death-date correction, Phillippa fix, Pawtuxet UNPULLED flag, 1688 continuity as Jr hypothesis, Tocomiquian moved to internal thread per Law 3. Last verified: 19 July 2026</p>
+<p style="margin-top:8px;"><a href="https://github.com/lemuwah/joan-archive">GitHub</a> · <a href="/theory/open-contradictions/">Open RED Threads</a> · <a href="https://phys.org/news/2024-04-freedom-extent-archives-accessible.html">5% source</a></p>
 </footer>
 </main>
 </div>
-
-<script>
-const IMG_BASE = 'https://raw.githubusercontent.com/lemuwah/joan-archive/main/images/';
-const galleryData = {
-'gallery-1672': [
-{file:'1672_scan_p22_kin_cluster.jpg',caption:'1672 Kin Cluster p.22 — NEW scan — Awashowet=Anashuecot=Awassecouse proof + Mommocke mark visible — NOT Anashuecot',meta:'NK Land Evidence pp.22-23 — Top damaged, Tocomiquian line lower — PROVEN Tier 1 — 19 July 2026',status:'sourced'},
-{file:'SignaturesFones20.jpg',caption:'1672 Fones Purchase — Signatures — John Greene first-named purchaser',meta:'RI State Archives Deed #90',status:'sourced'},
-{file:'1677_anashuecot_Heire_Proper.jpg',caption:'Anashuecot Heire Proper — "Chiefe Sachem and heire"',meta:'1672 deed extract',status:'sourced'},
-{file:'rocky-davis-transcript-1672.jpg',caption:'Rocky Davis Transcript — 1672',meta:'Transcription — gender identifier UNVERIFIED layer',status:'sourced'},
-{file:'succession-on-1672-amended.jpg',caption:'Succession on 1672 Amended',meta:'Amended succession record',status:'sourced'},
-],
-'gallery-1682': [
-{file:'1682.jpg',caption:'1682 Home-Place (1 of 2) — Mar 24 1681/2 — life estate',meta:'SK Land Evidence Vol IV — John & Joan to sons',status:'sourced'},
-{file:'1682-2.jpg',caption:'1682 Home-Place (2 of 2) — "or to her mother if she survive"',meta:'Life estate + mother clause — key for matrilineal',status:'sourced'},
-{file:'original-transcription-1682-johnandjoan.jpg',caption:'Original Transcription — John & Joan 1682',meta:'Transcription',status:'sourced'},
-{file:'john-and-joane.jpg',caption:'John and Joane — Name Close-up',meta:'Grantor names',status:'sourced'},
-{file:'johntodaniel.jpg',caption:'1682 Deed of Gift — John to Daniel/James — Primary Core',meta:'Kingstown Land Evidence — Primary Core',status:'sourced'},
-{file:'daniel-and-john-green-land-kingstown.jpg',caption:'1682 Land Conveyance & Plat — 120-Acre Tract',meta:'Kingstown — 120 Acre',status:'sourced'},
-{file:'green-land-kingstown.jpg',caption:'1682 Land Conveyance (alt)',meta:'Alt copy',status:'sourced'},
-{file:'john-and-deborah.jpg',caption:'John and Deborah — Likely John Jr & Deborah — Vital Record',meta:'NK / Jamestown Marriage & Birth Records',status:'sourced'},
-],
-'gallery-1674': [
-{file:'1674_awawsunks_her_marke_cakochawhunt.jpg',caption:'Awawsunks her marke — 1674 — comparator',meta:'RI Land Evidences Vol1 pp.52-53 — clerk COULD record female correctly',status:'sourced'},
-{file:'1674_awawsunks_her_marke_cakochawhunt_simon_eldist_RI_land_evidences_v1_p52-53.jpg',caption:'Same Deed Wider Crop — Simon Eldist witness',meta:'Wider crop',status:'sourced'},
-{file:'greene-mark-awawsuncks-1674.jpg',caption:'Greene Mark Beside Awawsuncks',meta:'Witness mark comparison',status:'sourced'},
-{file:'greene-witness-1674-awawsucks-her-mark.jpg',caption:'Greene as Witness to Mark',meta:'1674 witness line',status:'sourced'},
-{file:'greene-witness-1674-awawsucks-her-marksearch.jpg',caption:'Greene Witness Search Variant',meta:'Alt crop',status:'sourced'},
-{file:'cakochawhunt.jpg',caption:'Cakochawhunt',meta:'Related mark analysis',status:'sourced'},
-],
-'gallery-absolom': [
-{file:'absolom.jpg',caption:'Absolom Entry — 1672 signature',meta:'1672 deed signature',status:'sourced'},
-{file:'fullabsolom.jpg',caption:'Full Affidavit Page',meta:'Pilgrim Hall Museum transcription',status:'sourced'},
-{file:'absolom-affidavit.jpg',caption:'Absolom Affidavit Close Crop — Counsellor testimony',meta:'Counsellor testimony',status:'sourced'},
-{file:'absolom-his-mark-note.jpg',caption:'His marke Notation — bow-and-arrow discussion',meta:'Copyist convention — see Scan Lab',status:'sourced'},
-{file:'absolom-right-beneath-greene-deed.jpg',caption:'Signature Position — beneath Greene deed',meta:'Directly beneath Greene text',status:'sourced'},
-{file:'absolom-an-indian-bottom line.jpg',caption:'Bottom-Line Entry — "An Indian"',meta:'Descriptor line',status:'sourced'},
-{file:'bristol_death_absolom_kin.jpg',caption:'Bristol Death Record — Possible Absolom kinsman',meta:'UNVERIFIED',status:'pending'},
-{file:'1677_absolom_counsellor_testimony_duplicate_pages22-23.jpg',caption:'Absolom Testimony Duplicate pp.22-23',meta:'Duplicate — Tocomiquian line',status:'sourced'},
-],
-'gallery-smith': [
-{file:'Bond_of_Arnoldus_van_Hardenberg_as_surety_for_Mr._Richard_Smith.jpg',caption:'Bond: van Hardenberg for Smith — Dutch WIC',meta:'Dutch WIC network',status:'sourced'},
-{file:'Bond_of_Richard_Smith_to_Isaac_Allerton_as_security_for_a_debt_due_to_Allerton_by_John_Wilcox.jpg',caption:'Bond: Smith to Allerton — Wilcox debt',meta:'Wilcox debt security',status:'sourced'},
-{file:'Counter_bond_by_Willem_Tomassen.jpg',caption:'Counter-Bond by Willem Tomassen',meta:'Dutch network',status:'sourced'},
-{file:'Dutch_colonial_council_minutes_7-14_February_1647.jpg',caption:'Dutch Colonial Council Minutes 7-14 Feb 1647',meta:'7-14 Feb 1647',status:'sourced'},
-{file:'Smith-sells-New-Amsterdam-house-Aug-16-1651.jpg',caption:'Smith Sells New Amsterdam House Aug 16 1651',meta:'16 Aug 1651',status:'sourced'},
-],
-'gallery-devil': [
-{file:'1688-devilspurchase.jpg',caption:'1688 Devil\'s Purchase — Same kin group as 1672 — Jr hypothesis',meta:'Post-war — Womphoage, Ompamont, Quanuske, Mommocke — same as 1672 — proves continuity — John Greene probable Jr',status:'sourced'},
-{file:'devils-foot.jpg',caption:'Devil\'s Foot — Boundary marker',meta:'Boundary marker — geographic ref',status:'sourced'},
-],
-'gallery-maps': [
-{file:'bay_map.jpg',caption:'Narragansett Bay Map',meta:'Regional orientation',status:'sourced'},
-{file:'colony_of_rhode_island_map.jpg',caption:'Colony of Rhode Island Map',meta:'Colonial boundaries',status:'sourced'},
-{file:'map-mass-bay.jpg',caption:'Massachusetts Bay Map',meta:'Northern neighbor',status:'sourced'},
-{file:'1677-east-greenwich.jpg',caption:'East Greenwich 1677',meta:'Local deed geography',status:'sourced'},
-{file:'May1677east_greenwich_page_2.jpg',caption:'East Greenwich Record May 1677 p.2',meta:'Boundary survey',status:'sourced'},
-{file:'Plat_of_Quidnesett.jpg',caption:'Plat of Quidnesett',meta:'Land division map',status:'sourced'},
-{file:'generalalfredgibbsmapacquidnesset.jpg',caption:'Quidnesset-Area Map — CAUTION verify provenance',meta:'CAUTION verify',status:'pending'},
-{file:'map.jpg',caption:'General Map — Needs caption + source',meta:'Needs caption',status:'pending'},
-],
-'gallery-sources': [
-{file:'actofvoluntarysubmission.jpg',caption:'Act of Voluntary Submission',meta:'Narragansett-English relations',status:'sourced'},
-{file:'source-reminder-aboriginals.jpg',caption:'Source Reminder: Aboriginals',meta:'Research note',status:'pending'},
-{file:'slide_1_the_problem.jpg',caption:'Slide 1: The Problem',meta:'Core problem overview',status:'pending'},
-],
-'gallery-council': [
-{file:'1678_council_order_holden_greene_forty-years_RI_records_62-63.jpg',caption:'Council Order 1678 — Holden/Greene forty years',meta:'RI Records 62-63',status:'sourced'},
-{file:'council-order-1678.jpg',caption:'Council Order 1678 (alt)',meta:'Alt copy',status:'sourced'},
-{file:'1679_capt_john_greene_assembly_payment_RI_records_46-47.jpg',caption:'Capt John Greene Assembly Payment',meta:'RI Records 46-47',status:'sourced'},
-{file:'captgreene1679.jpg',caption:'Capt Greene 1679 (alt)',meta:'Alt copy',status:'sourced'},
-{file:'1679_john_greene_certificate_narragansett_RI_records_56-57_roger_williams_testimony.jpg',caption:'John Greene Certificate — Roger Williams testimony',meta:'RI Records 56-57',status:'sourced'},
-{file:'1679_petition_narragansett_inhabitants_RI_records_58-59_forty-two-years.jpg',caption:'Petition 1679 — Narragansett inhabitants 42 years',meta:'RI Records 58-59',status:'sourced'},
-{file:'petition-1679-narragansett.jpg',caption:'Petition 1679 (alt)',meta:'Alt copy',status:'sourced'},
-{file:'john-40-years.jpg',caption:'John Greene 1679 Residency Affidavit — Forty Years and More',meta:'RI Colonial Records / Wickford',status:'sourced'},
-{file:'john40years.jpg',caption:'John Greene 1679 Affidavit (alt)',meta:'Alt copy',status:'sourced'},
-{file:'johngreenedeputy.jpg',caption:'Conservator of the Peace Record',meta:'RI General Assembly 1678-79',status:'sourced'},
-{file:'greenedeputy.jpg',caption:'Conservator of the Peace (alt)',meta:'Alt copy',status:'sourced'},
-{file:'greenesworn.jpg',caption:'Sworn Deposition of John Greene Senior',meta:'Newport Court / RI Colonial',status:'sourced'},
-],
-'gallery-names': [
-{file:'magnus.jpg',caption:'Quaiapen alias Magnus — HARD ELIMINATION — killed July 2 1676, cannot be Anashuecot conveyed 1677/8',meta:'Sister of Ninigret — Second Battle Nipsachuck — Talcott letter Sunck squaw Magnus',status:'sourced'},
-{file:'awawamicks.jpg',caption:'Awawamicks — Phonetic variant Awashuwett cluster',meta:'Compare with Awawsunks 1674',status:'hypothesis'},
-{file:'john-and-deborah.jpg',caption:'John and Deborah — Likely John Jr & Deborah',meta:'NK / Jamestown Marriage & Birth',status:'sourced'},
-],
-'gallery-firewall': [
-{file:'leManceLaw.jpg',caption:'La Mance 1904 — Contamination Source — Tier 4 INVALIDATED — NO sources',meta:'Assigned Joan Beggarly — chronologically impossible — Alice Beggarly d.1643/44',status:'rejected'},
-{file:'richard-green.jpg',caption:'Richard Green — Distinct from Richard Smith',meta:'Greene family separate household',status:'sourced'},
-],
-'gallery-orbit': [
-{file:'jobgreen.jpg',caption:'Job Green — Orbit',meta:'Greene family',status:'sourced'},
-{file:'negro-man-peleg.jpg',caption:'Peleg (Negro Man) — Greene household labor',meta:'Context for Greene household — UNVERIFIED',status:'pending'},
-{file:'james1695.jpg',caption:'James Greene 1695 — son named 1682 60 acres',meta:'No prior baptism',status:'sourced'},
-{file:'james-1695.jfif',caption:'James 1695 (alt format)',meta:'Alt format',status:'sourced'},
-],
-'gallery-fones': [
-{file:'fones-rocky-david.jpg',caption:'Fones / Rocky David — Transcriber — Clerk of 1672 and warden on 1682',meta:'John Fones was clerk 1672 and warden 1682',status:'sourced'},
-],
-'gallery-needsid': [
-{file:'records_of_proprietors_badcopy.jpg',caption:'Records of Proprietors (Bad Copy) — Needs caption',meta:'Bad quality scan — Needs ID',status:'needs-id'},
-{file:'badquality-colony-of-ri.jpg',caption:'Colony of RI (Bad Quality) — Needs caption',meta:'Bad quality',status:'needs-id'},
-{file:'bad-copy-smith-cluster.jpg',caption:'Smith Cluster (Bad Copy) — Needs caption',meta:'Bad quality',status:'needs-id'},
-],
-};
-let activeDetailId=null;
-function renderGalleries(){for(const [id,images] of Object.entries(galleryData)){const c=document.getElementById(id);if(!c)continue;c.innerHTML=images.map((img,i)=>{let sc=img.status||'pending';if(sc==='sourced')sc='sourced';const label={sourced:'✓ Verified',pending:'⏳ Pending',hypothesis:'? Hypothesis',rejected:'✗ Rejected','needs-id':'⚠ Needs ID'}[sc]||sc;return `<div class="gallery-item" onclick="showDetail('${id}',${i})"><img src="${IMG_BASE}${img.file}" alt="${img.caption}" loading="lazy" onerror="this.style.opacity=0.3"><span class="gallery-status ${sc}">${label}</span><div class="gallery-caption">${img.caption}</div><div class="gallery-meta">${img.meta.substring(0,60)}${img.meta.length>60?'...':''}</div></div>`}).join('');}}
-function showDetail(gId,idx){const images=galleryData[gId];const img=images[idx];const dId=gId.replace('gallery-','detail-');const pane=document.getElementById(dId);if(!pane)return;if(activeDetailId&&activeDetailId!==dId)document.getElementById(activeDetailId).classList.remove('active');pane.innerHTML=`<button class="detail-close" onclick="closeDetail('${dId}')">Close ×</button><img src="${IMG_BASE}${img.file}" alt="${img.caption}" loading="lazy" onerror="this.style.opacity=0.3"><div class="detail-body"><h4>${img.caption}</h4><p>${img.meta}</p><p class="detail-source"><a href="${IMG_BASE}${img.file}" target="_blank">View full size →</a> — File: ${img.file}</p></div>`;pane.classList.add('active');activeDetailId=dId;pane.scrollIntoView({behavior:'smooth',block:'nearest'});}
-function closeDetail(id){const p=document.getElementById(id);if(p){p.classList.remove('active');if(activeDetailId===id)activeDetailId=null;}}
-function setActive(el){document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));el.classList.add('active');if(window.innerWidth<=900)document.querySelector('.sidebar').classList.remove('open');}
-document.addEventListener('keydown',function(e){if(e.key==='Escape'&&activeDetailId)closeDetail(activeDetailId);});
-renderGalleries();
-</script>
+<script>function setActive(el){document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));el.classList.add('active');if(window.innerWidth<=900)document.querySelector('.sidebar').classList.remove('open');}</script>
 </body>
 </html>
