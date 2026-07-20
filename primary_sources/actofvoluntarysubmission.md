@@ -2,9 +2,9 @@
 source_type: primary
 archive: Internet Archive
 archive_url: https://archive.org/details/recordscolonyrh02bartgoog
-volume: Records of the Colony of Rhode Island and Providence Plantations, Vol. 2
-page: 40-41
-date: 1678-02-12
+date: 1664-03-20
+description: "Act of Submission recorded as submission in RECORDS OF THE COLONY OF RHODE ISLAND 1679"
+
 date_note: Old Style (1678/9)
 location: Whitehall / Narragansett Country
 subject: Jurisdiction over Narragansett and Niantick countries (King's Province)
