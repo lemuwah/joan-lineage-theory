@@ -47,8 +47,27 @@
     width: var(--sidebar-width); background: var(--surface); border-right: 1px solid var(--border);
     position: fixed; height: 100vh; overflow-y: auto; z-index: 200;
     display: flex; flex-direction: column;
+    transition: transform 0.3s ease;
   }
-  .sidebar-header { padding: 24px 20px 16px; border-bottom: 1px solid var(--border); }
+  .sidebar-header { padding: 24px 20px 16px; border-bottom: 1px solid var(--border); position: relative; }
+  .sidebar-close {
+    display: none;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    align-items: center;
+    justify-content: center;
+  }
+  .sidebar-close:hover { color: var(--text-primary); border-color: var(--border-accent); }
   .sidebar-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
   .sidebar-mark { width: 40px; height: 40px; border-radius: 8px; background: var(--accent); color: var(--bg); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; flex-shrink: 0; }
   .sidebar-title { font-size: 17px; font-weight: 600; letter-spacing: 0.3px; line-height: 1.2; }
@@ -256,8 +275,61 @@
   }
   @media (min-width: 901px) { .menu-toggle { display: none; } }
 
+    /* Utterances discussion styling */
+  .utterances-wrapper {
+    margin-top: 32px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--surface-raised);
+  }
+  .utterances-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .utterances-header h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+  }
+  .utterances-header p {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    margin: 0;
+  }
+  .utterances-frame-container {
+    min-height: 200px;
+    background: var(--surface-raised);
+  }
+  .utterances-loading {
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--text-tertiary);
+    font-size: 13px;
+  }
+  .utterances-loading .spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
   @media print {
-    .sidebar, .menu-toggle, .top-alert, .sidebar-backdrop { display: none !important; }
+    .sidebar, .menu-toggle, .top-alert, .sidebar-backdrop, .sidebar-close { display: none !important; }
+    .utterances-wrapper { display: none; }
     .main-content { margin-left: 0 !important; }
     body { background: #fff; color: #000; }
     .section { max-width: 100%; padding: 24px; border-bottom: 1px solid #ccc; }
@@ -268,6 +340,7 @@
   }
 </style>
 <base target="_blank">
+<base target="_blank">
 </head>
 <body>
 
@@ -277,6 +350,7 @@
 <div class="app-layout">
   <aside class="sidebar" role="navigation" aria-label="Main navigation">
     <div class="sidebar-header">
+      <button class="sidebar-close" onclick="toggleSidebar()" aria-label="Close sidebar">×</button>
       <div class="sidebar-brand">
         <div class="sidebar-mark">JA</div>
         <div>
@@ -294,61 +368,69 @@
 
     <nav class="sidebar-nav">
       <div class="nav-section-title">Archive Desks</div>
-      <a href="#archive" class="nav-item active" onclick="setActive(this)" aria-label="The Archive overview">
+      <a href="#archive" class="nav-item active" onclick="setActive(this); return true;" aria-label="The Archive overview">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>
         The Archive
       </a>
-      <a href="#rotting" class="nav-item" onclick="setActive(this)" aria-label="History Is Rotting">
+      <a href="#rotting" class="nav-item" onclick="setActive(this); return true;" aria-label="History Is Rotting">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/></svg>
         History Is Rotting
       </a>
-      <a href="#help" class="nav-item" onclick="setActive(this)" aria-label="How to Help">
+      <a href="#help" class="nav-item" onclick="setActive(this); return true;" aria-label="How to Help">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
         How to Help
       </a>
-      <a href="#contamination" class="nav-item" onclick="setActive(this)" aria-label="Contamination Index">
+      <a href="#contamination" class="nav-item" onclick="setActive(this); return true;" aria-label="Contamination Index">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
         Contamination Index
       </a>
-      <a href="#deeds" class="nav-item" onclick="setActive(this)" aria-label="Deed Gallery">
+      <a href="#deeds" class="nav-item" onclick="setActive(this); return true;" aria-label="Deed Gallery">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
         Deed Gallery
       </a>
-      <a href="#primary-sources" class="nav-item" onclick="setActive(this)" aria-label="Primary Sources">
+      <a href="#primary-sources" class="nav-item" onclick="setActive(this); return true;" aria-label="Primary Sources">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
         Primary Sources
       </a>
-      <a href="#deed-1672-anomaly" class="nav-item" onclick="setActive(this)" aria-label="The 1672 Deed Anomaly">
+      <a href="#deed-1672-anomaly" class="nav-item" onclick="setActive(this); return true;" aria-label="The 1672 Deed Anomaly">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-6"/><path d="M9 15l3-3 3 3"/></svg>
         The 1672 Anomaly
       </a>
-      <a href="#name-fragments" class="nav-item" onclick="setActive(this)" aria-label="Name Fragments">
+      <a href="#name-fragments" class="nav-item" onclick="setActive(this); return true;" aria-label="Name Fragments">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
         Name Fragments
       </a>
-      <a href="#firewalls" class="nav-item" onclick="setActive(this)" aria-label="Identity Firewalls">
+      <a href="#firewalls" class="nav-item" onclick="setActive(this); return true;" aria-label="Identity Firewalls">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 8h22"/></svg>
         Identity Firewalls
       </a>
-      <a href="#orbit" class="nav-item" onclick="setActive(this)" aria-label="Orbit Convergence">
+      <a href="#orbit" class="nav-item" onclick="setActive(this); return true;" aria-label="Orbit Convergence">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><path d="M12 2v4"/><path d="M12 18v4"/><path d="M2 12h4"/><path d="M18 12h4"/></svg>
         Orbit Convergence
       </a>
-      <a href="#hypotheses" class="nav-item" onclick="setActive(this)" aria-label="Competing Hypotheses">
+      <a href="#hypotheses" class="nav-item" onclick="setActive(this); return true;" aria-label="Competing Hypotheses">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
         Competing Hypotheses
       </a>
-      <a href="#evidence-matrix" class="nav-item" onclick="setActive(this)" aria-label="Evidence Matrix">
+      <a href="#evidence-matrix" class="nav-item" onclick="setActive(this); return true;" aria-label="Evidence Matrix">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
         Evidence Matrix
       </a>
-      <a href="#unknown" class="nav-item" onclick="setActive(this)" aria-label="What We Don't Know">
+      <a href="#unknown" class="nav-item" onclick="setActive(this); return true;" aria-label="What We Don't Know">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
         What We Don't Know
       </a>
-      <a href="#4-laws" class="nav-item" onclick="setActive(this)" aria-label="The 4 Laws">
+      <a href="#4-laws" class="nav-item" onclick="setActive(this); return true;" aria-label="The 4 Laws">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         The 4 Laws
+      </a>
+      <a href="#tools" class="nav-item" onclick="setActive(this); return true;" aria-label="Tools">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        Tools
+      </a>
+      <a href="#discuss" class="nav-item" onclick="setActive(this); return true;" aria-label="Community Discussion">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+        Discussion
       </a>
     </nav>
 
@@ -1520,29 +1602,75 @@ renderGalleries();
           <p style="margin-top:8px;"><a href="https://github.com/lemuwah/joan-archive/issues/new?labels=%F0%9F%92%AC+discussion&title=Discussion%3A+Joan+Archive+Note" target="_blank" style="padding:6px 12px;border:1px solid var(--border);border-radius:6px;display:inline-block;margin-top:6px;">Open a discussion without commenting →</a></p>
         </div>
       </div>
-      <div id="utterances-container" style="margin-top:32px;border:1px solid var(--border);border-radius:12px;padding:16px;background:var(--surface-raised);">
-        <div style="font-size:12px;color:var(--text-tertiary);margin-bottom:12px;">💬 Discussion threads load below. If blank, allow 3rd party scripts or <a href="https://github.com/lemuwah/joan-archive/issues" target="_blank">view on GitHub</a>.</div>
-        <!-- Utterances will render here -->
+
+      <div class="utterances-wrapper">
+        <div class="utterances-header">
+          <div>
+            <h3>💬 Discussion Threads</h3>
+            <p>Powered by Utterances · Posts as GitHub Issues · No tracking cookies</p>
+          </div>
+          <a href="https://github.com/lemuwah/joan-archive/issues" target="_blank" style="font-size:12px;padding:5px 10px;border:1px solid var(--border);border-radius:6px;white-space:nowrap;">View on GitHub →</a>
+        </div>
+        <div class="utterances-frame-container" id="utterances-container">
+          <div class="utterances-loading" id="utterances-loading">
+            <span class="spinner"></span> Loading discussion threads...
+          </div>
+        </div>
       </div>
     </section>
 
-<script src="https://utteranc.es/client.js"
-        repo="lemuwah/joan-archive"
-        issue-term="pathname"
-        label="💬 discussion"
-        theme="github-dark"
-        crossorigin="anonymous"
-        async>
-</script>
 <script>
-// Move utterances iframe into our container after load
-setTimeout(() => {
-  const iframe = document.querySelector('iframe.utterances-frame');
+// ── Utterances Integration ──
+// Injects the utterances script after page load, then moves the iframe
+// into our styled container via MutationObserver (reliable, not setTimeout)
+(function() {
   const container = document.getElementById('utterances-container');
-  if (iframe && container && iframe.parentElement !== container) {
-    container.appendChild(iframe);
-  }
-}, 3000);
+  const loading = document.getElementById('utterances-loading');
+  if (!container) return;
+
+  // Create and inject the utterances script
+  const script = document.createElement('script');
+  script.src = 'https://utteranc.es/client.js';
+  script.setAttribute('repo', 'lemuwah/joan-archive');
+  script.setAttribute('issue-term', 'pathname');
+  script.setAttribute('label', '💬 discussion');
+  script.setAttribute('theme', 'github-dark');
+  script.setAttribute('crossorigin', 'anonymous');
+  script.async = true;
+
+  // Use MutationObserver to detect when utterances iframe appears
+  const observer = new MutationObserver(function(mutations) {
+    const iframe = document.querySelector('iframe.utterances-frame');
+    if (iframe && iframe.parentElement !== container) {
+      container.appendChild(iframe);
+      if (loading) loading.style.display = 'none';
+      observer.disconnect();
+    }
+  });
+
+  // Also handle the case where utterances loads very fast
+  script.onload = function() {
+    setTimeout(function() {
+      const iframe = document.querySelector('iframe.utterances-frame');
+      if (iframe && iframe.parentElement !== container) {
+        container.appendChild(iframe);
+      }
+      if (loading) loading.style.display = 'none';
+    }, 1500);
+  };
+
+  script.onerror = function() {
+    if (loading) {
+      loading.innerHTML = '⚠️ Could not load discussion threads. <a href="https://github.com/lemuwah/joan-archive/issues" target="_blank">View on GitHub →</a>';
+    }
+  };
+
+  // Start observing before injecting
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  // Inject the script
+  document.body.appendChild(script);
+})();
 </script>
 </body>
 </html>
