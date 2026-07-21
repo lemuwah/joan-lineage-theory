@@ -27,7 +27,7 @@ Forty years of total invisibility to English law doesn't end with a single menti
 - **3–5%** annual loss rate for uncatalogued manuscript collections without climate control.
 - **0** institutions currently hold a complete digitization of 17th-century land evidence across all four colonial jurisdictions that governed this exact territory.
 
-The document that could resolve the biggest open question here — the 1676 Newport Court Martial transcript (Hough 1858, pp.173–191) — has never been systematically digitized. It may be sitting, readable, in a library right now.
+The document that could resolve the biggest open question here — Record of a court martial held at Newport, R.I., in August, 1676 — has never been systematically digitized. It may be sitting, readable, in a library right now.
 
 **You don't need expertise to help with this.** A phone camera exceeds the resolution of many institutional scanners. If you're near an archive that touches Narragansett Country, John Greene of Quidnessett, or Anashuecot/Absolom Counsellor between 1670–1690, a single photo of a relevant page is a real, permanent contribution — see **How to Help** on the live site for a menu of asks ranging from 60 seconds to a full afternoon. "No record found" counts too: log it in the Negative Space Log so nobody else burns six hours on the same dead end.
 
