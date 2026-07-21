@@ -1,13 +1,13 @@
-joan-archive
+## joan-archive
 A curated repository of digitized primary source images and documents related to Rhode Island colonial history, land transactions, and the Greene family of Quidnessett.
-About
+**About**
 This archive collects photographs, scans, and transcripts of original documents spanning roughly 1644–1937. The materials center on:
 Land records and deeds from the Narragansett region and East Greenwich
 Native American marks, signatures, and testimony (including Awawsunks, Cakochawhunt, Pessacus, Canonicus)
 Colonial council orders, petitions, and assembly records
 Greene family documents — John Greene of Quidnessett and descendants
 Maps and plats of Quidnessett, Kingstown, and surrounding areas
-File Naming Convention
+**File Naming Convention**
 Files are named by date (where known) followed by a descriptive slug:
 plain
 [YYYY]-[brief-description].[ext]
@@ -16,7 +16,7 @@ Examples:
 1674_awawsunks_her_marke_cakochawhunt.jpg — Awawsunks's mark, 1674
 1679_capt_john_greene_assembly_payment_RI_records_46-47.jpg — Assembly payment record, RI Records vol. 46–47
 1682_life_estate_30_shillings.jpg — Life estate document, 30 shillings
-Sources Referenced
+**Sources Referenced**
 Many files cite published record volumes:
 RI Records — Records of the Colony of Rhode Island and Providence Plantations
 RI Land Evidences — Rhode Island Land Evidence volumes
@@ -27,13 +27,13 @@ bad-copy-smith-cluster.jpg
 badquality-colony-of-ri.jpg
 records_of_proprietors_badcopy.jpg
 These are retained for completeness but flagged in filenames.
-How to Use
+## How to Use
 Images are organized flat in the root directory. Use your browser's find function or clone the repo and search filenames by keyword (date, surname, place name, or document type).
-Contributing
+## Contributing
 This is a personal research archive. For corrections, improved scans, or source identifications, open an issue or pull request.
 License
 MIT License — see LICENSE for full text.
-Image Index
+## Image Index
 Table
 Filename	Last Commit Message	Last Commit Date
 1644-gorton-pessacus-canonicus-act-of-submission-with-awashawe.jpg	Add files via upload	2 days ago
