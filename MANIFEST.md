@@ -17,9 +17,6 @@
 1682_life_estate_30_shillings.jpg  
 1688-devilspurchase.jpg  
 1937_updike_p19_overseer_thesis_john_greene_not_warwick.jpg  
-Bond_of_Arnoldus_van_Hardenberg_as_surety_for_Mr._Richard_Smith.jpg  
-Bond_of_Richard_Smith_to_Isaac_Allerton_as_security_for_a_debt_due_to_Allerton_by_John_Wilcox.jpg  
-Counter_bond_by_Willem_Tomassen.jpg  
 JA_logo_cutout.jpg  
 May1677east_greenwich_page_2.jpg  
 October-1674-survey-to-rename-town-to-kingstown.jpg  
