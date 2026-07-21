@@ -140,3 +140,82 @@ Priority retrieval order, cheapest-and-most-decisive first:
 - This thread is independent of the Joan/Anashuecot core identity question — resolving it changes the project's account of Quaiapen-era succession mechanics but does not by itself bear on whether Joan Greene is Anashuecot. It should be tracked and resolved on its own timeline without pressure to converge it with the main thesis.
 
 *Last updated: 2026-07-20*
+
+# Archivist Agent Review
+**Date:** 2026-07-20
+**Agent:** Archivist
+**Target file reviewed:** agents/explorer/2026-07-20_cogineaquon_hypotheses.md ("Explorer Agent Report — Cogineaquon / Cononjonant / Cojonoquond Signer Identity")
+
+---
+
+## 1. List of Claims Extracted
+
+| # | Claim (as stated in Explorer report) |
+|---|---|
+| C1 | "Coginiquant" leased Cocumscussoc land to the Smiths, March 8, 1656 and June 8, 1659 |
+| C2 | "Cononjonant" is named by Brooks as "cousin to her late husband" (Mixanno), signer of the June 11, 1659 Atherton Purchase deed, and was "gotten drunk to sign" |
+| C3 | "Cojonoquond," nephew of Miantonomo, is named as father of Quanopen/Quinnapin, with brothers Sunkeejunasuc and Ashamattan |
+| C4 | Quaiapen held real control of Cocumscussoc from 1657 and her name does not appear on the June 11, 1659 instrument |
+| C5 | The identity relationship among the three name-forms (one/two/three individuals) is unresolved |
+| C6 | Potter 1835 pp. 58–60 contains the Atherton Purchase narrative and may directly name the signer |
+| C7 | Arnold 1894 contains an independent index cross-reference to the same deed |
+| C8 | Brooks's "cousin to her late husband" phrase has an underlying citation not yet checked by the project |
+| C9 | Roger Williams's *Key into the Language of America* catalogs Narragansett kinship terminology |
+| C10 | RIHS MSS 629, Box 4, Folder 24 contains a 1720 copy of the 1659 Coginaquond deed |
+| C11 | This question predates the 1675–76 war and so is not subject to the same wartime-destruction pattern as the Joan/Anashuecot KPW-period thread |
+
+## 2. Source Anchors
+
+| Claim | Source Anchor | Status |
+|---|---|---|
+| C1 | Potter 1835, pp. 56–59 (per project's existing "Verified primary-source findings" / open-thread notes) | Documented — secondary compilation (Potter), primary status of underlying deed not yet independently confirmed by this project |
+| C2 | Brooks, *Our Beloved Kin* (secondary synthesis, no page cited in Explorer report or prior project notes) | **Unanchored** — no page number, no underlying primary citation on file |
+| C3 | Potter 1835, pp. 98 and 173, via a Native Northeast Portal re-citation (per project's existing open-thread notes) | Documented, but two layers removed from primary (Potter → portal → project) |
+| C4 | Brooks, *Our Beloved Kin* (per project's existing open-thread notes) | Secondary source; no primary deed or deposition anchor on file naming Quaiapen's absence from the instrument directly |
+| C5 | N/A — this is a standing project judgment, not a sourced fact | Correctly held as unresolved; not a claim requiring a source |
+| C6 | Potter 1835, pp. 58–60 | **Not yet retrieved by the project** — cited by title/page only, not read |
+| C7 | Arnold 1894 (no specific edition, volume, or page cited) | **Not yet retrieved** — reference is to "the index" generically, no page number on file |
+| C8 | Brooks, *Our Beloved Kin*, endnotes (unspecified) | **Not yet retrieved** — this claim is itself a proposal to check a source, not a checked source |
+| C9 | Roger Williams, *A Key into the Language of America* (1643, multiple modern editions) | Widely available primary text; not yet checked against this specific naming question |
+| C10 | RIHS MSS 629, Box 4, Folder 24 | Already an outstanding archival target per project notes (pre-dates this Explorer round) — not yet retrieved |
+| C11 | Derived from project's existing Great Swamp Massacre / dual-node timeline notes | Internally consistent with prior verified project chronology (Massacre Dec. 19, 1675; this deed dated June 11, 1659) |
+
+## 3. Inference-Only Claims
+
+The following are explicitly flagged in the Explorer report itself as **hypotheses**, not documented fact, and should not be cited elsewhere in the project as findings:
+
+- H-CG1 (single individual across all three names)
+- H-CG2 (two individuals; lessee = signer, Miantonomo's nephew distinct)
+- H-CG3 (three distinct individuals, coincidental phonetic convergence)
+- H-CG4 ("Cononjonant" is a mistranslated kin-term, not a proper name)
+- H-CG5 (ambiguity is purely a secondary-source artifact; primary sources may already agree)
+
+None of these should be promoted to Probable or Verified tier without the retrievals listed in Section 5 of the Explorer report (Potter pp. 58–60, Arnold 1894 index, Brooks's underlying citation, RIHS MSS 629).
+
+Additionally flagged as inference within the claims themselves:
+
+- C4's assertion that Quaiapen's name "does not appear on the instrument" is an inference from Brooks's narrative framing ("gotten drunk to sign" implies someone *other* than the rightful authority signed) rather than a direct quotation confirming Quaiapen's absence from the deed text. This should be checked against the deed itself, not assumed from Brooks's characterization.
+- C2's "gotten drunk to sign" detail is flagged by the Explorer's own Hostile Reviewer handoff as possibly misattached to a different Atherton-era transaction. The Archivist concurs this detail is currently **unanchored to a specific document** and should not be treated as settled.
+
+## 4. Missing Evidence
+
+- No page number for Brooks's "cousin to her late husband" claim (C2) — cannot verify without one.
+- No specific Arnold 1894 volume/page for the index cross-reference (C7) — "Arnold 1894" as currently logged is a title, not a citation.
+- No confirmation that the Native Northeast Portal's re-citation of Potter pp. 98/173 (C3) is accurate to Potter's actual text — the portal has not been checked against a scan or reprint of Potter himself.
+- No primary-document confirmation of Quaiapen's absence from the June 11, 1659 deed (C4) — currently rests entirely on Brooks's paraphrase.
+- No etymological/linguistic reference establishing whether "Cononjonant," "Coginiquant," and "Cojonoquond" plausibly derive from one Narragansett root or three — H-CG3 and H-CG4 both require this and it does not yet exist anywhere in the project's sources.
+
+## 5. Suggested Next Steps
+
+1. Retrieve Potter 1835 pp. 58–60 directly (highest priority — already flagged by Explorer as the cheapest, most decisive test; resolves H-CG5 outright if positive).
+2. Obtain a specific Arnold 1894 citation (volume + page) for the same deed rather than treating "Arnold 1894" as a single undifferentiated source.
+3. Locate Brooks's endnote for the "cousin to her late husband" / "gotten drunk to sign" passage and determine whether it points to a primary document — if so, retrieve that document directly rather than continuing to cite Brooks as if she were primary.
+4. Cross-check the Native Northeast Portal's Potter pp. 98/173 citation against an actual scan or reprint of Potter to rule out portal-transcription error as a fourth possible source of the name-cluster confusion.
+5. Add to research queue: a short comparative pass of Roger Williams's *Key* for any term resembling "Cononjonant" used as a kinship/status word rather than a name (supports or falsifies H-CG4).
+6. Update `/theory/source_spine.md` to record this claim cluster as: **Tier — Contradiction-held-open**, with C1, C3, C6, C7, C9, C10 marked as documented-but-unretrieved-by-this-project, and C2, C4, C8 marked as secondary-only/unanchored pending retrieval.
+
+## 6. Guardrail Compliance Note
+
+No new sources were invented in this review. No inference above has been collapsed into fact. The contradiction (one/two/three individuals) has been preserved as open, per project law, and has not been resolved or smoothed over by this review.
+
+*Last updated: 2026-07-20*
