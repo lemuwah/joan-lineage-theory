@@ -1,10 +1,3 @@
-# Image Manifest (Strict)
-
-This manifest lists **only** the actual files present in `/images`.  
-It is machine‑readable and used by the validation workflow.
-
-## Files
-
 1644-gorton-pessacus-canonicus-act-of-submission-with-awashawe.jpg  
 1644-gorton-pessacus-canonicus-act-of-submission.jpg  
 1644-gorton-pessacus-canonicus-act-of-submission2.jpg  
